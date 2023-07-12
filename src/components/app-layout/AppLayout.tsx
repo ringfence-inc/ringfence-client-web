@@ -2,14 +2,11 @@ import React, { ReactNode, useEffect } from 'react';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-
+import { Link } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
 
-const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
+
 
 const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
     (icon, index) => {
@@ -31,6 +28,20 @@ const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOu
     },
 );
 
+
+const items3: MenuProps['items'] = [
+    {
+        key: `blend`,
+        icon: React.createElement(UserOutlined),
+        label: <Link to="/g"> Blend Images </Link> 
+    },
+    {
+        key: `prompt`,
+        icon: React.createElement(LaptopOutlined),
+        label: `Prompt`,
+    }
+]
+
 interface LayoutComponentProps
 {
     content: ReactNode;
@@ -50,7 +61,7 @@ const AppLayout: React.FC<LayoutComponentProps> = ({ content, children }) => {
     return (
         <Layout>
             <Header style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ color: 'white' }} > Hello </div>
+                <div style={{ color: 'white' }} > Ringfence </div>
                 <div className="demo-logo" />
 
             </Header>
@@ -61,7 +72,7 @@ const AppLayout: React.FC<LayoutComponentProps> = ({ content, children }) => {
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         style={{ height: '100%', borderRight: 0 }}
-                        items={items2}
+                        items={items3}
                     />
                 </Sider>
 
@@ -75,10 +86,12 @@ const AppLayout: React.FC<LayoutComponentProps> = ({ content, children }) => {
 
                     <Content
                         style={{
-                            padding: 24,
-                            margin: 10,
+                            padding: 20,
+                            margin: 5,
                             minHeight: '78vh',
                             background: colorBgContainer,
+
+                            //paddingRight: 100
                         }}
                     >
                         {content}

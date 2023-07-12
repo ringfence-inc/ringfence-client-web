@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 
-import AppLayout from '../src/layot/Layout';
+import AppLayout from './components/app-layout/AppLayout';
+import UpploadImages from './components/pages/blend-images/upload-images/UploadImages';
+
 import { Button } from 'antd';
 import React from 'react';
+import BlendImages from './components/pages/blend-images/BlendImages';
 
 
 const Home: React.FC = () => {
@@ -16,7 +19,7 @@ const Home: React.FC = () => {
 const Gandon: React.FC = () => {
 
     return (
-        <div> Gandon</div>
+        <UpploadImages/>
     );
 }
 
@@ -29,7 +32,7 @@ const App: React.FC  = () => {
 
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/g" element={<Gandon />} />
+                    <Route path="/g" element={<BlendImages />} />
                 </Routes>
                
 
