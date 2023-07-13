@@ -1,80 +1,57 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Avatar, Divider, List, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Button } from 'antd';
+import { DownloadOutlined } from '@ant-design/icons';
+import { Image } from 'antd';
 
-interface DataType {
-    gender: string;
-    name: {
-        title: string;
-        first: string;
-        last: string;
-    };
-    email: string;
-    picture: {
-        large: string;
-        medium: string;
-        thumbnail: string;
-    };
-    nat: string;
+
+const colStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingLeft: 30,
+    paddingTop: 20,
+    border: '1px solid #d9d9d9',
+    height: 500,
+    overflow: 'auto',
+    textAlign: 'center'
+    
 }
 
+
 const BlendResults: React.FC = () => {
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState<DataType[]>([]);
 
-    const loadMoreData = () => {
-        if (loading) {
-            return;
-        }
-        setLoading(true);
-        fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-            .then((res) => res.json())
-            .then((body) => {
-                setData([...data, ...body.results]);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    };
-
-    useEffect(() => {
-        loadMoreData();
-    }, []);
 
     return (
-        <div
-            id="scrollableDiv"
-            style={{
-                height: 300,
-                overflow: 'auto',
-                padding: '0 16px',
-                border: '1px solid rgba(140, 140, 140, 0.35)',
-            }}
-        >
-            <InfiniteScroll
-                dataLength={data.length}
-                next={loadMoreData}
-                hasMore={data.length < 50}
-                loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-                endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-                scrollableTarget="scrollableDiv"
-            >
-                <List
-                    dataSource={data}
-                    renderItem={(item) => (
-                        <List.Item key={item.email}>
-                            <List.Item.Meta
-                                avatar={<Avatar src={item.picture.large} />}
-                                title={<a href="https://ant.design">{item.name.last}</a>}
-                                description={item.email}
-                            />
-                            <div>Content</div>
-                        </List.Item>
-                    )}
+        <div>
+            <div style={colStyle}>
+                <Image
+                    
+                    width={500}
+                    src="https://w-dog.ru/wallpapers/1/12/443673032936544/chelovek-pauk-tobi-magvajera.jpg"
                 />
-            </InfiniteScroll>
+                <div style={{ marginTop: 10 }}> </div>
+
+                <Image
+                    width={500}
+                    src="https://www.desktopbackground.org/download/1024x768/2015/05/13/947681_spiderman-in-action-widescreen-wallpapers_2560x1600_h.jpg"
+                />
+            </div>
+                    <div style={{ padding: 20, textAlign: 'center' }}>
+                <Button
+                    type="primary"
+                    shape="round"
+                    icon={<DownloadOutlined />}
+                    size={'large'}>
+                    Upload
+                </Button>
+            </div>
         </div>
+        
+        
+
+
+
     );
 };
 
