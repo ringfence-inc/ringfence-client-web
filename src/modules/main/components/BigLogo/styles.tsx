@@ -1,10 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 // Icons
-import LogoSvg from "public/icons/logo.svg";
+import LogoAndTextSvg from "public/icons/logo-and-text.svg";
 
-export const LogoIcon = styled(LogoSvg)`
-  width: 120px;
-  height: 120px;
-  color: ${({ theme }) => theme.colorWhite};
+export const LogoAndTextIcon = styled(LogoAndTextSvg)`
+  max-width: 630px;
+  width: 100%;
+
+  ${({ theme }) => css`
+    color: ${theme.color.white};
+  `};
 `;

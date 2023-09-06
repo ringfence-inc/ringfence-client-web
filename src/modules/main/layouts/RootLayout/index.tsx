@@ -4,6 +4,7 @@ import React from "react";
 
 // Components
 import { Inter } from "next/font/google";
+import { GlobalStyled } from "../GlobalStyled";
 
 // Layouts
 import AntdRegistry from "../AntdRegistry";
@@ -25,7 +26,9 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => (
       <AntdRegistry>
         <AntdTheme>
           <StyledRegistry>
-            <StyledTheme>{children}</StyledTheme>
+            <StyledTheme>
+              <GlobalStyled>{children}</GlobalStyled>
+            </StyledTheme>
           </StyledRegistry>
         </AntdTheme>
       </AntdRegistry>

@@ -1,9 +1,12 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 
 // Components
 import { ThemeProvider } from "styled-components";
 import { theme } from "antd";
+
+// Utils
+import { extendAntdTheme } from "@/shared/theme";
 
 // Hooks
 const { useToken } = theme;
@@ -16,7 +19,11 @@ export interface StyledThemeProps {
 export const StyledTheme = ({ children }: StyledThemeProps) => {
   const { token } = useToken();
 
-  return <ThemeProvider theme={token}>{children}</ThemeProvider>;
+  const theme = useMemo(() => {
+    return extendAntdTheme(token);
+  }, [token]);
+
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
 export default StyledTheme;
