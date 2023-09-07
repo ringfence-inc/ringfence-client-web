@@ -1,5 +1,6 @@
 // Styles
 import {
+  Wrap,
   StyledCarousel,
   StyledCard,
   CarouselProps,
@@ -11,7 +12,7 @@ import promoCards from "../../mock/promoCards";
 
 // Types
 export interface PromoCardsCarouselProps extends CarouselProps {
-  items?: PromoCardProps[];
+  items?: PromoCardProps[][];
 }
 
 export const PromoCardsCarousel = ({
@@ -20,9 +21,15 @@ export const PromoCardsCarousel = ({
 }: PromoCardsCarouselProps) => {
   return (
     <StyledCarousel {...props}>
-      {items.map((item, index) => (
-        <StyledCard key={index} {...item} num={index + 1} />
-      ))}
+      {items.map((cards, subIndex) => {
+        return (
+          <Wrap key={subIndex}>
+            {cards.map((card, subIndex) => {
+              return <StyledCard key={subIndex} {...card} num={subIndex + 1} />;
+            })}
+          </Wrap>
+        );
+      })}
     </StyledCarousel>
   );
 };

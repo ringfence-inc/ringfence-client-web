@@ -2,11 +2,10 @@
 import React from "react";
 
 // Components
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 
 // Theme
 import { antdTheme } from "@/shared/theme";
-
 export interface AntdThemeProps {
   children?: React.ReactNode;
 }
