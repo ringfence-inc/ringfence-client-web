@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 
 // Components
-import { InputHookForm, InputHookFormProps } from "../Input";
+import { Input, InputProps } from "../Input";
 import { Button, ButtonProps } from "../Button";
 
 // Styled components
-export const StyledInput = styled(InputHookForm)<InputHookFormProps>`
+export const StyledInput = styled(Input)<InputProps>`
   height: 68px;
 `;
 
@@ -23,7 +23,7 @@ export const SubmitButton = styled(Button).attrs(() => ({
   }
 `;
 
-export const Wrap = styled.form`
+export const Wrap = styled.div`
   max-width: 486px;
   width: 100%;
   display: flex;

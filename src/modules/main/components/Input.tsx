@@ -1,1 +1,1 @@
-export * from "@/shared/ui/Input/plugins/InputHookForm";
+export * from "@/shared/ui/Input";

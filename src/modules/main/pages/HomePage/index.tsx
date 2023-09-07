@@ -10,6 +10,9 @@ import PromoSection from "../../layouts/PromoSection";
 import SignUpSection from "../../layouts/SignUpSection";
 import Footer from "../../layouts/Footer";
 
+// Components
+import AuthModal from "@/modules/auth/components/AuthModal";
+
 export interface HomePageProps extends HtmlHTMLAttributes<HTMLDivElement> {}
 
 export const HomePage = ({ ...props }: HomePageProps) => (
@@ -19,6 +22,7 @@ export const HomePage = ({ ...props }: HomePageProps) => (
     <PromoSection />
     <SignUpSection />
     <Footer />
+    <AuthModal />
   </Wrap>
 );
 

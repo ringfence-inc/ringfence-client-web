@@ -9,7 +9,6 @@ export const antdTheme: ThemeConfig = {
   algorithm: darkAlgorithm,
   token: {
     colorBgBase: "#000",
-    borderRadius: 4,
     colorPrimary: "#4ADC8C",
     colorBgContainer: "#363837",
     sizeXXL: 68,
