@@ -5,34 +5,43 @@ import { StyledModal, ModalProps, SignInForm, SignUpForm } from "./styles";
 export interface AuthModalProps extends ModalProps {}
 
 // Hooks
-import useAuthModal, {
-  SIGN_IN_KEY,
-  SIGN_UP_KEY,
-} from "../../hooks/useAuthModal";
+import { useEffect } from "react";
+import useAuthModal from "../../hooks/useAuthModal";
 import useSignInForm from "../../hooks/useSignInForm";
 import useSignUpForm from "../../hooks/useSignUpForm";
 
 export const AuthModal = ({ ...props }: AuthModalProps) => {
-  const { modalState, closeAuthModal, openSignInModal, openSignUpModal } =
+  const { authMode, email, closeAuthModal, openSignInModal, openSignUpModal } =
     useAuthModal();
 
   const { form: signInForm, onSubmit: onSignInSubmit } = useSignInForm();
   const { form: signUpForm, onSubmit: onSignUpSubmit } = useSignUpForm();
+  const { setValue: setSignInValue, trigger: signInTrigger } = signInForm;
+  const { setValue: setSignUpValue, trigger: signUpTrigger } = signUpForm;
+
+  useEffect(() => {
+    if (email) {
+      setSignInValue("email", email);
+      signInTrigger("email");
+      setSignUpValue("email", email);
+      signUpTrigger("email");
+    }
+  }, [authMode, setSignInValue, setSignUpValue]);
 
   const handleClose = () => {
     closeAuthModal();
   };
 
   return (
-    <StyledModal open={!!modalState} onCancel={handleClose} {...props}>
-      {modalState === "signIn" && (
+    <StyledModal open={!!authMode} onCancel={handleClose} {...props}>
+      {authMode === "signIn" && (
         <SignInForm
           form={signInForm}
           onSubmit={onSignInSubmit}
           onLinkClick={openSignUpModal}
         />
       )}
-      {modalState === "signUp" && (
+      {authMode === "signUp" && (
         <SignUpForm
           form={signUpForm}
           onSubmit={onSignUpSubmit}

@@ -3,19 +3,24 @@ import { useCallback, useMemo } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 
 /**
- * Options for the `useAppRouterCreatePath` hook.
+ * A hook that creates a URL path with query parameters.
+ * @param options - Options for the hook.
+ * @returns An object with `createQueryString` and `createPathname` functions.
  */
-export interface UseAppRouterCreatePathOptions {
+/**
+ * Options for the useAppRouterCreatePath hook.
+ */
+interface UseAppRouterCreatePathOptions {
   /**
-   * Whether to delete empty parameters from the URL.
+   * Whether to delete empty parameters from the query string.
    */
   deleteEmpty?: boolean;
 }
 
 /**
- * A hook that creates a URL path with query parameters.
+ * Returns functions to create a URL path with query parameters.
  * @param options - Options for the hook.
- * @returns An object with `createQueryString` and `createPathname` functions.
+ * @returns An object with functions to create a query string and a URL path.
  */
 export const useAppRouterCreatePath = ({
   deleteEmpty = true,
@@ -25,38 +30,40 @@ export const useAppRouterCreatePath = ({
 
   /**
    * Creates a query string from a parameter name and value.
-   * @param name - The name of the parameter.
-   * @param value - The value of the parameter.
+   * @param query - An object containing the query parameters.
    * @returns The query string.
    */
   const createQueryString = useCallback(
-    (name: string, value: string | undefined | any) => {
-      const params = new URLSearchParams(searchParams as any);
+    (query: Record<string, string | Array<string> | undefined>) => {
+      if (query) {
+        const params = new URLSearchParams(searchParams as any);
 
-      if ((typeof value === "undefined" || value === null) && deleteEmpty) {
-        params.delete(name);
-      } else {
-        params.set(name, value as string);
+        for (const [key, value] of Object.entries(query)) {
+          if ((typeof value === "undefined" || value === null) && deleteEmpty) {
+            params.delete(key);
+          } else {
+            params.set(key, value as string);
+          }
+        }
+
+        return params.toString();
       }
-
-      return params.toString();
     },
-    [searchParams]
+    [searchParams, deleteEmpty]
   );
 
   /**
    * Creates a URL path with query parameters.
-   * @param name - The name of the parameter.
-   * @param value - The value of the parameter.
+   * @param query - An object containing the query parameters.
    * @returns The URL path.
    */
   const createPathname = useCallback(
-    (name: string, value: string | undefined | any) => {
-      const queryString = createQueryString(name, value);
+    (query: Record<string, string | Array<string> | undefined>) => {
+      const queryString = createQueryString(query);
 
-      return `${pathname}?${queryString}`;
+      return `${pathname}${queryString ? `?${queryString}` : ""}`;
     },
-    [createQueryString]
+    [createQueryString, pathname]
   );
 
   return useMemo(

@@ -10,7 +10,9 @@ export type InputProps = InputHookFormProps;
 
 // Styled components
 const Input = styled(InputFormHook)<InputProps>`
-  height: 48px;
+  .input-hook-form {
+    height: 48px;
+  }
 `;
 
 export default Input;

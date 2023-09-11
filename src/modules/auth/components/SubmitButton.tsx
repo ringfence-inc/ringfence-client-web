@@ -9,6 +9,7 @@ export type { ButtonProps };
 // Styled components
 export const SubmitButton = styled(_Button).attrs(() => ({
   type: "primary",
+  htmlType: "submit",
 }))<ButtonProps>`
   height: 46px !important;
   ${({ theme }) => css`
