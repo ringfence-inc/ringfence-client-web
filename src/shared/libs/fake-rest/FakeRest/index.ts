@@ -1,16 +1,16 @@
 // Original types
 import {
   Rest as OriginalRest,
-  RestConfig,
   RestRequestConfig,
   ResponseHandlers,
-  TokensObject,
   RequestError,
-} from 'libs/ts-fetch-rest-http-client';
+  TokensObject,
+  RestConfig,
+} from "../../rest";
 
 // Utils
-import { deepSearchKey } from 'tools/ts-deep-search-key';
-import { faker, Faker } from '@faker-js/faker';
+import { deepSearchKey } from "../../../utils/deepSearchKey";
+import { faker, Faker } from "@faker-js/faker";
 
 // Re-export types
 export type { RestConfig, ResponseHandlers, TokensObject };
@@ -35,8 +35,8 @@ export type FakeRequestHandlers = Record<string, any>;
 
 // Defaults
 export const defFakeRestOptions: FakeRestConfig = {
-  storageTokenKey: 'fakeToken',
-  storageRefreshTokenKey: 'fakeRefreshToken',
+  storageTokenKey: "fakeToken",
+  storageRefreshTokenKey: "fakeRefreshToken",
 };
 
 export class FakeRest extends OriginalRest implements FakeRestConfig {
@@ -54,15 +54,15 @@ export class FakeRest extends OriginalRest implements FakeRestConfig {
     const { fakeRequestHandlers: requestHandlers, log: globalLog } = this;
 
     // Retrieve params config
-    const { url = '', delay = 500, log = globalLog, method = 'GET' } = config;
+    const { url = "", delay = 500, log = globalLog, method = "GET" } = config;
 
     // Make path to fake request handler
-    const urlKeys = url.split('/').filter((key) => key);
+    const urlKeys = url.split("/").filter((key) => key);
     urlKeys.push(method.toLowerCase());
 
     // Get fake request handler or return empty function
     const fakeHandler: FakeRequestHandler =
-      deepSearchKey(requestHandlers, urlKeys) ||
+      deepSearchKey(requestHandlers as any, urlKeys) ||
       (() => ({
         noHandlerFound: true,
       }));
@@ -75,17 +75,18 @@ export class FakeRest extends OriginalRest implements FakeRestConfig {
 
         if (log) {
           console.log(`\n`);
-          console.log('Fake request', {
+          console.log("Fake request", {
             ...config,
             urlKeys,
             globalConfig: this,
             response,
           });
-          console.log('\n');
+          console.log("\n");
         }
 
         return response;
       } catch (error) {
+        // @ts-ignore
         throw new RequestError(error);
       }
     };

@@ -1,4 +1,5 @@
 import React from "react";
+import "antd/dist/reset.css";
 
 // Utils
 import { createGlobalStyle } from "styled-components";
@@ -8,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: #000;
     margin: 0;
   }
+
 `;
 
 // Types

@@ -10,3 +10,7 @@ export type { CarouselProps, PromoCardProps };
 // Styled components
 export const StyledCard = styled(PromoCard)<PromoCardProps>``;
 export const StyledCarousel = styled(Carousel)<CarouselProps>``;
+export const Wrap = styled.div`
+  display: flex !important;
+  gap: 32px;
+`;
