@@ -14,9 +14,11 @@ export type SignUpFormData = {
 
 export const useSignInForm = () => {
   const schema = yup.object().shape({
-    name: yup.string().required("Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    country: yup.string().required("Country is required"),
+    email: yup
+      .string()
+      .email("Please enter a valid email address")
+      .required("Email is required"),
+    password: yup.string().required("Password is required"),
   });
 
   const resolver = useYupResolver(schema);

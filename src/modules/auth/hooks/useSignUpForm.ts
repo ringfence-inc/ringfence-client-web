@@ -7,16 +7,26 @@ import * as yup from "yup";
 
 // Types
 export type SignUpFormData = {
-  name: string;
   email: string;
-  country: string;
+  password: string;
+  confirmPassword: string;
 };
 
 export const useSignUpForm = () => {
   const schema = yup.object().shape({
-    name: yup.string().required("Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    country: yup.string().required("Country is required"),
+    email: yup
+      .string()
+      .email("Please enter a valid email address")
+      .required("Email is required"),
+    password: yup
+      .string()
+      .min(6, "Password must be at least 6 characters long")
+      .required("Password is required"),
+    confirmPassword: yup
+      .string()
+      .min(6, "Password must be at least 6 characters long")
+      .oneOf([yup.ref("password")], "Passwords must match")
+      .required("Confirm password is required"),
   });
 
   const resolver = useYupResolver(schema);
