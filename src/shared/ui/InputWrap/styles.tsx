@@ -26,14 +26,14 @@ export const Wrap = styled.label<StyledWrapProps>`
     ${$labelPosition === "top" &&
     css`
       ${Label} {
-        margin-bottom: 4px;
+        margin-bottom: 8px;
       }
     `};
 
     ${$labelPosition === "bottom" &&
     css`
       ${Label} {
-        margin-top: 4px;
+        margin-top: 8px;
       }
     `};
 
@@ -43,7 +43,7 @@ export const Wrap = styled.label<StyledWrapProps>`
       flex-direction: row;
       align-items: center;
       ${Label} {
-        margin-right: 4px;
+        margin-right: 8px;
       }
     `};
 
@@ -53,7 +53,7 @@ export const Wrap = styled.label<StyledWrapProps>`
       flex-direction: row;
       align-items: center;
       ${Label} {
-        margin-left: 4px;
+        margin-left: 8px;
       }
     `};
   `};

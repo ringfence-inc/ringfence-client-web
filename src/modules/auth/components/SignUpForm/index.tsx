@@ -63,16 +63,18 @@ export const SignUpForm = ({
             name="password"
             placeholder="Password (at least 6 characters)"
             disabled={isLoading}
+            inputPassword
           />
           <Input
             name="confirmPassword"
             placeholder="Confirm password"
             disabled={isLoading}
+            inputPassword
           />
 
           <SubmitButton loading={isLoading}>SIGN UP</SubmitButton>
           <MutationAlert
-            successMessage="Successful registration"
+            successMessage="A registration confirmation email has been sent to the email address provided"
             mutation={mutation}
           />
         </InputsWrap>

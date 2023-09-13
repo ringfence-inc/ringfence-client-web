@@ -34,12 +34,14 @@ export const SetNewPasswordForm = ({
             name="password"
             placeholder="New Password"
             disabled={isLoading}
+            inputPassword
           />
           <Input
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
             disabled={isLoading}
+            inputPassword
           />
           <SubmitButton loading={isLoading}>Set up new password</SubmitButton>
           <MutationAlert

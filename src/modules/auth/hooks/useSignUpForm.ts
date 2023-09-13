@@ -23,7 +23,11 @@ export const useSignUpForm = () => {
   const { mutateAsync } = mutation;
 
   const schema = yup.object().shape({
-    nick_name: yup.string().required("Nick name is required"),
+    nick_name: yup
+      .string()
+      .min(4, "Nickname must be at least 4 characters long")
+      .max(16, "The length of the nickname should not exceed 16 characters")
+      .required("Nick name is required"),
     email: yup
       .string()
       .email("Please enter a valid email address")

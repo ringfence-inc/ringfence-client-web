@@ -58,7 +58,12 @@ export const SignInForm = ({
             placeholder="Email address"
             disabled={isLoading}
           />
-          <Input name="password" placeholder="Password" disabled={isLoading} />
+          <Input
+            name="password"
+            placeholder="Password"
+            disabled={isLoading}
+            inputPassword
+          />
 
           <SubmitButton loading={isLoading}>LOG IN</SubmitButton>
           <MutationAlert
