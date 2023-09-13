@@ -1,10 +1,7 @@
 import React from "react";
 
 // Styles
-import { LogoAndTextIcon } from "./styles";
-
-// Components
-import CircularLines from "../../../../shared/ui/CircularLines";
+import { LogoAndTextIcon, CircularLines } from "./styles";
 
 // Types
 export interface BigLogoProps extends React.HTMLAttributes<HTMLOrSVGElement> {}

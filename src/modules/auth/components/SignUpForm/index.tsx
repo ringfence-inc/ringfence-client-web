@@ -6,7 +6,7 @@ import {
   InputsWrap,
   Title,
   SubTitle,
-  ChangeActionLink,
+  LinkPrimary,
   Input,
   SubmitButton,
   OrText,
@@ -35,9 +35,9 @@ export const SignUpForm = ({
         <Title>CREATE AN ACCOUNT</Title>
         <SubTitle>
           Already have an account?
-          <ChangeActionLink onClick={onLinkClick} href={signInLink}>
+          <LinkPrimary onClick={onLinkClick} href={signInLink}>
             Login
-          </ChangeActionLink>
+          </LinkPrimary>
         </SubTitle>
         <InputsWrap>
           <Input name="email" placeholder="Email address" />
@@ -49,7 +49,7 @@ export const SignUpForm = ({
 
           <SubmitButton>LOG IN</SubmitButton>
         </InputsWrap>
-        <OrText>or</OrText>
+        {/* <OrText>or</OrText> */}
       </Wrap>
     </FormProvider>
   );

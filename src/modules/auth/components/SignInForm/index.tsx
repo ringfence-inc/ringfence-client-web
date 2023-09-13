@@ -4,9 +4,12 @@ import React, { HtmlHTMLAttributes } from "react";
 import {
   Wrap,
   InputsWrap,
+  ActionsWrap,
+  ForgotPasswordLink,
+  RememberMeCheckbox,
   Title,
   SubTitle,
-  ChangeActionLink,
+  LinkPrimary,
   Input,
   SubmitButton,
   OrText,
@@ -35,16 +38,21 @@ export const SignInForm = ({
         <Title>WELCOME TO RINGFENCE</Title>
         <SubTitle>
           {`Don't have an account?`}
-          <ChangeActionLink onClick={onLinkClick} href={signUpLink}>
+          <LinkPrimary onClick={onLinkClick} href={signUpLink}>
             Sign up for free
-          </ChangeActionLink>
+          </LinkPrimary>
         </SubTitle>
         <InputsWrap>
           <Input name="email" placeholder="Email address" />
           <Input name="password" placeholder="Password" />
+
           <SubmitButton>LOG IN</SubmitButton>
         </InputsWrap>
-        <OrText>or</OrText>
+        <ActionsWrap>
+          <RememberMeCheckbox />
+          <ForgotPasswordLink />
+        </ActionsWrap>
+        {/* <OrText>or</OrText> */}
       </Wrap>
     </FormProvider>
   );

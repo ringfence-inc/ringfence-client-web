@@ -1,0 +1,45 @@
+// Hooks
+import { useForm } from "react-hook-form";
+import useYupResolver from "@/shared/hooks/useYupResolver";
+
+// Utils
+import * as yup from "yup";
+
+// Types
+export type SetNewPasswordFormData = {
+  password: string;
+  confirmPassword: string;
+};
+
+export const useSetNewPasswordForm = () => {
+  const schema = yup.object().shape({
+    password: yup
+      .string()
+      .min(6, "Password must be at least 6 characters long")
+      .required("Password is required"),
+    confirmPassword: yup
+      .string()
+      .min(6, "Password must be at least 6 characters long")
+      .oneOf([yup.ref("password")], "Passwords must match")
+      .required("Confirm password is required"),
+  });
+
+  const resolver = useYupResolver(schema);
+
+  const form = useForm<SetNewPasswordFormData>({
+    resolver,
+  });
+
+  const { handleSubmit } = form;
+
+  const onSubmit = handleSubmit((data: SetNewPasswordFormData) => {
+    console.log(data);
+  });
+
+  return {
+    form,
+    onSubmit,
+  };
+};
+
+export default useSetNewPasswordForm;

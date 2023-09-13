@@ -4,22 +4,22 @@ import React from "react";
 import { useController, UseControllerProps } from "react-hook-form";
 
 // Components
-import Input, { InputProps } from "../index";
+import Checkbox, { CheckboxProps } from "../index";
 import InputWrap, {
   InputWrapProps,
   InputWrapPartialProps,
 } from "../../InputWrap";
 
 // Types
-export interface InputHookFormProps
-  extends InputProps,
-    Omit<UseControllerProps<any>, "defaultValue">,
+export interface CheckboxHookFormProps
+  extends CheckboxProps,
+    UseControllerProps<any>,
     InputWrapPartialProps {
   WrapComponent?: React.FC<InputWrapProps>;
   name: string;
 }
 
-export const InputHookForm = ({
+export const CheckboxHookForm = ({
   WrapComponent = InputWrap,
   name,
   rules,
@@ -27,10 +27,10 @@ export const InputHookForm = ({
   className,
   label = "",
   placeholder = label,
-  labelPosition,
+  labelPosition = "right",
   showLabel,
   ...props
-}: InputHookFormProps) => {
+}: CheckboxHookFormProps) => {
   const { field } = useController({
     name,
     rules,
@@ -39,11 +39,11 @@ export const InputHookForm = ({
 
   return (
     <WrapComponent
-      {...{ className, name, placeholder, showLabel, labelPosition }}
+      {...{ className, name, placeholder, label, labelPosition, showLabel }}
     >
-      <Input
+      <Checkbox
         {...field}
-        className="input-hook-form"
+        className="checkbox-hook-form"
         {...{ placeholder }}
         {...props}
       />
@@ -51,4 +51,4 @@ export const InputHookForm = ({
   );
 };
 
-export default InputHookForm;
+export default CheckboxHookForm;
