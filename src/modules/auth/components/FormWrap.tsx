@@ -8,7 +8,7 @@ export const FormWrap = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 64px 40px;
+
   ${({ theme }) => css`
     border-radius: ${theme.radius.xs};
   `};
@@ -19,6 +19,7 @@ export const InputsWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 40px;
   margin-bottom: 16px;
 `;
 

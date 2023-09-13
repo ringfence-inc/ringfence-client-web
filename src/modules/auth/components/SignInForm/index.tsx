@@ -4,9 +4,12 @@ import React, { HtmlHTMLAttributes } from "react";
 import {
   Wrap,
   InputsWrap,
+  ActionsWrap,
+  ForgotPasswordLink,
+  RememberMeCheckbox,
   Title,
   SubTitle,
-  ChangeActionLink,
+  LinkPrimary,
   Input,
   SubmitButton,
   OrText,
@@ -14,37 +17,65 @@ import {
 
 // Components
 import { FormProvider, UseFormReturn } from "react-hook-form";
+import { MutationAlert } from "../MutationAlert";
 
 // Types
+import type { UseMutationResult } from "@tanstack/react-query";
 export interface SignInFormProps extends HtmlHTMLAttributes<HTMLFormElement> {
   form: UseFormReturn<any>;
+  mutation: UseMutationResult<any, any, any, any>;
   signUpLink?: string;
   onLinkClick?: () => void;
 }
 
 export const SignInForm = ({
   form,
-  signUpLink = "/sign-up",
+  mutation,
+  signUpLink = "/auth/sign-up",
   onSubmit,
   onLinkClick,
   ...props
 }: SignInFormProps) => {
+  const { isLoading } = mutation || {};
+
   return (
     <FormProvider {...form}>
       <Wrap onSubmit={onSubmit} {...props}>
         <Title>WELCOME TO RINGFENCE</Title>
         <SubTitle>
           {`Don't have an account?`}
-          <ChangeActionLink onClick={onLinkClick} href={signUpLink}>
+          <LinkPrimary
+            onClick={onLinkClick}
+            href={signUpLink}
+            disabled={isLoading}
+          >
             Sign up for free
-          </ChangeActionLink>
+          </LinkPrimary>
         </SubTitle>
         <InputsWrap>
-          <Input name="email" placeholder="Email address" />
-          <Input name="password" placeholder="Password" />
-          <SubmitButton>LOG IN</SubmitButton>
+          <Input
+            name="email"
+            placeholder="Email address"
+            disabled={isLoading}
+          />
+          <Input
+            name="password"
+            placeholder="Password"
+            disabled={isLoading}
+            inputPassword
+          />
+
+          <SubmitButton loading={isLoading}>LOG IN</SubmitButton>
+          <MutationAlert
+            successMessage="Successful login"
+            mutation={mutation}
+          />
         </InputsWrap>
-        <OrText>or</OrText>
+        <ActionsWrap>
+          <RememberMeCheckbox disabled={isLoading} />
+          <ForgotPasswordLink disabled={isLoading} />
+        </ActionsWrap>
+        {/* <OrText>or</OrText> */}
       </Wrap>
     </FormProvider>
   );

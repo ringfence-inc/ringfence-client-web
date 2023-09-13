@@ -6,6 +6,10 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { GlobalStyled } from "../GlobalStyled";
 
+// React Query
+import { QueryClientProvider } from "@tanstack/react-query";
+import queryClient from "@/shared/libs/query";
+
 // Layouts
 import AntdRegistry from "../AntdRegistry";
 import AntdTheme from "../AntdTheme";
@@ -27,7 +31,11 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => (
         <AntdTheme>
           <StyledRegistry>
             <StyledTheme>
-              <GlobalStyled>{children}</GlobalStyled>
+              <GlobalStyled>
+                <QueryClientProvider client={queryClient}>
+                  {children}
+                </QueryClientProvider>
+              </GlobalStyled>
             </StyledTheme>
           </StyledRegistry>
         </AntdTheme>

@@ -5,40 +5,33 @@ import { StyledModal, ModalProps, SignInForm, SignUpForm } from "./styles";
 export interface AuthModalProps extends ModalProps {}
 
 // Hooks
-import useAuthModal, {
-  SIGN_IN_KEY,
-  SIGN_UP_KEY,
-} from "../../hooks/useAuthModal";
+import useAuthModal from "../../hooks/useAuthModal";
 import useSignInForm from "../../hooks/useSignInForm";
 import useSignUpForm from "../../hooks/useSignUpForm";
 
 export const AuthModal = ({ ...props }: AuthModalProps) => {
-  const { modalState, closeAuthModal, openSignInModal, openSignUpModal } =
-    useAuthModal();
+  const { authMode, closeAuthModal } = useAuthModal();
 
-  const { form: signInForm, onSubmit: onSignInSubmit } = useSignInForm();
-  const { form: signUpForm, onSubmit: onSignUpSubmit } = useSignUpForm();
+  const signInFormProps = useSignInForm();
+  const { form: signInForm, mutation: signInMutation } = signInFormProps;
+
+  const signUpFormProps = useSignUpForm();
+  const { form: signUpForm, mutation: signUpMutation } = signUpFormProps;
+
+  const { isLoading: isSignInLoading } = signInMutation;
+  const { isLoading: isSignUpLoading } = signUpMutation;
+
+  const isLoading = isSignInLoading || isSignUpLoading;
 
   const handleClose = () => {
+    if (isLoading) return;
     closeAuthModal();
   };
 
   return (
-    <StyledModal open={!!modalState} onCancel={handleClose} {...props}>
-      {modalState === "signIn" && (
-        <SignInForm
-          form={signInForm}
-          onSubmit={onSignInSubmit}
-          onLinkClick={openSignUpModal}
-        />
-      )}
-      {modalState === "signUp" && (
-        <SignUpForm
-          form={signUpForm}
-          onSubmit={onSignUpSubmit}
-          onLinkClick={openSignInModal}
-        />
-      )}
+    <StyledModal open={!!authMode} onCancel={handleClose} {...props}>
+      {authMode === "signIn" && <SignInForm {...signInFormProps} />}
+      {authMode === "signUp" && <SignUpForm {...signUpFormProps} />}
     </StyledModal>
   );
 };

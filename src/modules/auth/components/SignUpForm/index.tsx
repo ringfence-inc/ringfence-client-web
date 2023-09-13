@@ -1,55 +1,84 @@
-import React, { HtmlHTMLAttributes } from "react";
+import { HtmlHTMLAttributes } from "react";
 
 // Styles
 import {
-  Wrap,
-  InputsWrap,
-  Title,
-  SubTitle,
-  ChangeActionLink,
   Input,
+  InputsWrap,
+  LinkPrimary,
+  SubTitle,
   SubmitButton,
-  OrText,
+  Title,
+  Wrap,
 } from "./styles";
 
 // Components
 import { FormProvider, UseFormReturn } from "react-hook-form";
+import { MutationAlert } from "../MutationAlert";
 
 // Types
+import type { UseMutationResult } from "@tanstack/react-query";
 export interface SignUpFormProps extends HtmlHTMLAttributes<HTMLFormElement> {
   form: UseFormReturn<any>;
+  mutation: UseMutationResult<any, any, any, any>;
   signInLink?: string;
   onLinkClick?: () => void;
 }
 
 export const SignUpForm = ({
   form,
-  signInLink = "/sign-in",
+  mutation,
+  signInLink = "/auth/sign-in",
   onSubmit,
   onLinkClick,
   ...props
 }: SignUpFormProps) => {
+  const { isLoading } = mutation || {};
+
   return (
     <FormProvider {...form}>
       <Wrap onSubmit={onSubmit} {...props}>
         <Title>CREATE AN ACCOUNT</Title>
         <SubTitle>
           Already have an account?
-          <ChangeActionLink onClick={onLinkClick} href={signInLink}>
+          <LinkPrimary
+            onClick={onLinkClick}
+            href={signInLink}
+            disabled={isLoading}
+          >
             Login
-          </ChangeActionLink>
+          </LinkPrimary>
         </SubTitle>
         <InputsWrap>
-          <Input name="email" placeholder="Email address" />
+          <Input
+            name="email"
+            placeholder="Email address"
+            disabled={isLoading}
+          />
+          <Input
+            name="nick_name"
+            placeholder="Nick name"
+            disabled={isLoading}
+          />
           <Input
             name="password"
             placeholder="Password (at least 6 characters)"
+            disabled={isLoading}
+            inputPassword
           />
-          <Input name="confirmPassword" placeholder="Confirm password" />
+          <Input
+            name="confirmPassword"
+            placeholder="Confirm password"
+            disabled={isLoading}
+            inputPassword
+          />
 
-          <SubmitButton>LOG IN</SubmitButton>
+          <SubmitButton loading={isLoading}>SIGN UP</SubmitButton>
+          <MutationAlert
+            successMessage="A registration confirmation email has been sent to the email address provided"
+            mutation={mutation}
+          />
         </InputsWrap>
-        <OrText>or</OrText>
+        {/* <OrText>or</OrText> */}
       </Wrap>
     </FormProvider>
   );
