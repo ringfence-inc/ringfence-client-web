@@ -24,7 +24,7 @@ export interface SignUpFormProps extends HtmlHTMLAttributes<HTMLFormElement> {
 
 export const SignUpForm = ({
   form,
-  signInLink = "/sign-in",
+  signInLink = "/auth/sign-in",
   onSubmit,
   onLinkClick,
   ...props
