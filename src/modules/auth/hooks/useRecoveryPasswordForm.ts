@@ -10,7 +10,7 @@ export type PasswordRecoveryFormData = {
   email: string;
 };
 
-export const usePasswordRecoveryForm = () => {
+export const useRecoveryPasswordForm = () => {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -37,4 +37,4 @@ export const usePasswordRecoveryForm = () => {
   };
 };
 
-export default usePasswordRecoveryForm;
+export default useRecoveryPasswordForm;

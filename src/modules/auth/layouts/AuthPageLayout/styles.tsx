@@ -21,6 +21,7 @@ export const ContentWrap = styled.div`
   max-width: 528px;
   width: 100%;
   ${({ theme }) => css`
+    border-radius: ${theme.radius.xs};
     background-color: ${theme.colorBgElevated};
     padding: 58px 48px;
     color: ${theme.color.white};
