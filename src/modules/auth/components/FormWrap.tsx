@@ -19,6 +19,7 @@ export const InputsWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 40px;
   margin-bottom: 16px;
 `;
 
