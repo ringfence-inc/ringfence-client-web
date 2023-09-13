@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 // Components
+import Link, { LinkProps } from "@/shared/ui/Link";
 import { Input, InputProps } from "../Input";
 import { Button, ButtonProps } from "../Button";
 
@@ -8,6 +9,8 @@ import { Button, ButtonProps } from "../Button";
 export const StyledInput = styled(Input)<InputProps>`
   height: 68px;
 `;
+
+export const StyledLink = styled(Link)<LinkProps>``;
 
 export const SubmitButton = styled(Button).attrs(() => ({
   type: "primary",

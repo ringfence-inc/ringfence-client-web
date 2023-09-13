@@ -8,9 +8,9 @@ import useSignUpForm from "../../hooks/useSignUpForm";
 export interface SignInPageProps extends SignUpFormProps {}
 
 export const SignInPage = ({ ...props }: SignInPageProps) => {
-  const { form, onSubmit } = useSignUpForm();
+  const formProps = useSignUpForm();
 
-  return <SignUpForm {...props} form={form} onSubmit={onSubmit} />;
+  return <SignUpForm {...props} {...formProps} />;
 };
 
 export default SignInPage;

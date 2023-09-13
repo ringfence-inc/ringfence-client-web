@@ -29,6 +29,7 @@ export const InputHookForm = ({
   placeholder = label,
   labelPosition,
   showLabel,
+  required,
   ...props
 }: InputHookFormProps) => {
   const { field } = useController({
@@ -39,12 +40,12 @@ export const InputHookForm = ({
 
   return (
     <WrapComponent
-      {...{ className, name, placeholder, showLabel, labelPosition }}
+      {...{ className, name, placeholder, showLabel, labelPosition, required }}
     >
       <Input
         {...field}
         className="input-hook-form"
-        {...{ placeholder }}
+        {...{ placeholder, required }}
         {...props}
       />
     </WrapComponent>

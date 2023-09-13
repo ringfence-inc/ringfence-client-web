@@ -29,6 +29,7 @@ export const CheckboxHookForm = ({
   placeholder = label,
   labelPosition = "right",
   showLabel,
+  required,
   ...props
 }: CheckboxHookFormProps) => {
   const { field } = useController({
@@ -39,12 +40,20 @@ export const CheckboxHookForm = ({
 
   return (
     <WrapComponent
-      {...{ className, name, placeholder, label, labelPosition, showLabel }}
+      {...{
+        className,
+        name,
+        placeholder,
+        label,
+        labelPosition,
+        showLabel,
+        required,
+      }}
     >
       <Checkbox
         {...field}
         className="checkbox-hook-form"
-        {...{ placeholder }}
+        {...{ placeholder, required }}
         {...props}
       />
     </WrapComponent>

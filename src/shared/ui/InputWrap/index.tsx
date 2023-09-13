@@ -19,6 +19,7 @@ export interface InputWrapPartialProps {
   showErrors?: boolean;
   label?: string;
   placeholder?: string;
+  required?: boolean;
   labelPosition?: "top" | "bottom" | "left" | "right";
 }
 export interface InputWrapProps
@@ -33,6 +34,7 @@ export const InputWrap = ({
   name,
   showLabel = false,
   showErrors = true,
+  required = false,
   labelPosition = "top",
   label = "",
   placeholder = label,
@@ -49,7 +51,13 @@ export const InputWrap = ({
   const isBottomOrRight = isBottom || isRight;
 
   const renderLabel = () => {
-    return showLabel && <Label className={`${clsPrefix}-label`}>{label}</Label>;
+    return (
+      showLabel && (
+        <Label className={`${clsPrefix}-label`} $required={required}>
+          {label}
+        </Label>
+      )
+    );
   };
 
   const renderErrorMessage = () => {

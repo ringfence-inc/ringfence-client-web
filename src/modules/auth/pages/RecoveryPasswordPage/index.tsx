@@ -10,9 +10,9 @@ export interface RecoveryPasswordPageProps extends RecoveryPasswordFormProps {}
 export const RecoveryPasswordPage = ({
   ...props
 }: RecoveryPasswordPageProps) => {
-  const { form, onSubmit } = useRecoveryPasswordForm();
+  const formProps = useRecoveryPasswordForm();
 
-  return <RecoveryPasswordForm {...props} form={form} onSubmit={onSubmit} />;
+  return <RecoveryPasswordForm {...props} {...formProps} />;
 };
 
 export default RecoveryPasswordPage;

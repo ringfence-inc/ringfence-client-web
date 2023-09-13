@@ -1,19 +1,29 @@
 // Hooks
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useYupResolver from "@/shared/hooks/useYupResolver";
+import useCreateAccount from "../api/hooks/useCreateAccount";
+import useAuthModal from "./useAuthModal";
 
 // Utils
 import * as yup from "yup";
 
 // Types
-export type SignUpFormData = {
+export type SignUpFormValues = {
   email: string;
+  nick_name: string;
   password: string;
   confirmPassword: string;
 };
 
 export const useSignUpForm = () => {
+  const { email } = useAuthModal();
+  const mutation = useCreateAccount();
+  console.log("sign up mutation", mutation);
+  const { mutateAsync } = mutation;
+
   const schema = yup.object().shape({
+    nick_name: yup.string().required("Nick name is required"),
     email: yup
       .string()
       .email("Please enter a valid email address")
@@ -31,18 +41,33 @@ export const useSignUpForm = () => {
 
   const resolver = useYupResolver(schema);
 
-  const form = useForm<SignUpFormData>({
+  const form = useForm<SignUpFormValues>({
     resolver,
   });
 
-  const { handleSubmit } = form;
+  const {
+    handleSubmit,
+    formState: { isDirty },
+    setValue,
+    trigger,
+  } = form;
 
-  const onSubmit = handleSubmit((data: SignUpFormData) => {
-    console.log(data);
+  useEffect(() => {
+    if (email && !isDirty) {
+      setValue("email", email);
+      trigger("email");
+    }
+  }, [email]);
+
+  const onSubmit = handleSubmit(async (values: SignUpFormValues) => {
+    const { email, password, nick_name } = values;
+
+    await mutateAsync({ email, password, nick_name });
   });
 
   return {
     form,
+    mutation,
     onSubmit,
   };
 };

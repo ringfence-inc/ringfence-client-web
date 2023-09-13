@@ -8,9 +8,9 @@ import useSetNewPasswordForm from "../../hooks/useSetNewPasswordForm";
 export interface SetNewPasswordPageProps extends SetNewPasswordFormProps {}
 
 export const SetNewPasswordPage = ({ ...props }: SetNewPasswordPageProps) => {
-  const { form, onSubmit } = useSetNewPasswordForm();
+  const formProps = useSetNewPasswordForm();
 
-  return <SetNewPasswordForm {...props} form={form} onSubmit={onSubmit} />;
+  return <SetNewPasswordForm {...props} {...formProps} />;
 };
 
 export default SetNewPasswordPage;

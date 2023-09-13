@@ -1,17 +1,26 @@
-import React, { useState, HtmlHTMLAttributes } from "react";
+import React, { useState, useMemo, HtmlHTMLAttributes } from "react";
 
 // Styles
-import { Wrap, StyledInput, SubmitButton } from "./styles";
+import { Wrap, StyledInput, SubmitButton, StyledLink } from "./styles";
 
 // Types
 export interface SignUpFormProps extends HtmlHTMLAttributes<HTMLDivElement> {}
 
 // Hooks
-import { useAuthModal } from "@/modules/auth/hooks/useAuthModal";
+import { useAppRouterCreatePath } from "@/shared/hooks/useAppRouterCreatePath";
+import { EMAIL_KEY } from "@/modules/auth/hooks/useAuthModal";
 
 export const SignUpForm = ({ ...props }: SignUpFormProps) => {
   const [email, setEmail] = useState("");
-  const { openSignUpModal } = useAuthModal(email);
+  const { createPathname } = useAppRouterCreatePath();
+
+  const hrefParamsSuffix = useMemo(
+    () =>
+      createPathname({
+        [EMAIL_KEY]: email,
+      }),
+    [email, createPathname]
+  );
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -27,8 +36,10 @@ export const SignUpForm = ({ ...props }: SignUpFormProps) => {
         placeholder="Email"
       />
       <StyledInput size="large" name="country" placeholder="Country" />
-      <SubmitButton onClick={openSignUpModal} size="large">
-        SIGN UP
+      <SubmitButton size="large">
+        <StyledLink href={`/auth/sign-up${hrefParamsSuffix}`}>
+          SIGN UP
+        </StyledLink>
       </SubmitButton>
     </Wrap>
   );

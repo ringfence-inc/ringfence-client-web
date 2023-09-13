@@ -17,7 +17,7 @@ export const deepSearchKey = (
 
   for (let i = 0; i < keys.length; i++) {
     const currentKey = keys[i];
-    value = value[currentKey];
+    value = value?.[currentKey];
 
     if (typeof value === "undefined") {
       return undefined;
@@ -26,3 +26,5 @@ export const deepSearchKey = (
 
   return value;
 };
+
+export default deepSearchKey;

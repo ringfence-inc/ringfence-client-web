@@ -17,9 +17,7 @@ export interface StyledWrapProps extends HtmlHTMLAttributes<HTMLDivElement> {
 }
 
 // Styled components
-export const Label = styled(_Label)<LabelProps>`
-  display: block;
-`;
+export const Label = styled(_Label)<LabelProps>``;
 
 export const ErrorMessage = styled(_ErrorMessage)<ErrorMessageProps>``;
 

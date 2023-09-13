@@ -1,17 +1,21 @@
 // Hooks
 import { useForm } from "react-hook-form";
 import useYupResolver from "@/shared/hooks/useYupResolver";
+import useSetNewPassword from "../api/hooks/useSetNewPassword";
 
 // Utils
 import * as yup from "yup";
 
 // Types
-export type SetNewPasswordFormData = {
+export type SetNewPasswordFormValues = {
   password: string;
   confirmPassword: string;
 };
 
 export const useSetNewPasswordForm = () => {
+  const mutation = useSetNewPassword();
+  const { mutateAsync } = mutation;
+
   const schema = yup.object().shape({
     password: yup
       .string()
@@ -26,14 +30,15 @@ export const useSetNewPasswordForm = () => {
 
   const resolver = useYupResolver(schema);
 
-  const form = useForm<SetNewPasswordFormData>({
+  const form = useForm<SetNewPasswordFormValues>({
     resolver,
   });
 
   const { handleSubmit } = form;
 
-  const onSubmit = handleSubmit((data: SetNewPasswordFormData) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (values: SetNewPasswordFormValues) => {
+    const { password } = values;
+    return await mutateAsync({ password, code: "PASTE CODE HERE" });
   });
 
   return {

@@ -14,10 +14,18 @@ export const AuthModal = ({ ...props }: AuthModalProps) => {
   const { authMode, email, closeAuthModal, openSignInModal, openSignUpModal } =
     useAuthModal();
 
-  const { form: signInForm, onSubmit: onSignInSubmit } = useSignInForm();
-  const { form: signUpForm, onSubmit: onSignUpSubmit } = useSignUpForm();
+  const signInFormProps = useSignInForm();
+  const { form: signInForm, mutation: signInMutation } = signInFormProps;
   const { setValue: setSignInValue, trigger: signInTrigger } = signInForm;
+
+  const signUpFormProps = useSignUpForm();
+  const { form: signUpForm, mutation: signUpMutation } = signUpFormProps;
   const { setValue: setSignUpValue, trigger: signUpTrigger } = signUpForm;
+
+  const { isLoading: isSignInLoading } = signInMutation;
+  const { isLoading: isSignUpLoading } = signUpMutation;
+
+  const isLoading = isSignInLoading || isSignUpLoading;
 
   useEffect(() => {
     if (email) {
@@ -29,25 +37,14 @@ export const AuthModal = ({ ...props }: AuthModalProps) => {
   }, [authMode, setSignInValue, setSignUpValue]);
 
   const handleClose = () => {
+    if (isLoading) return;
     closeAuthModal();
   };
 
   return (
     <StyledModal open={!!authMode} onCancel={handleClose} {...props}>
-      {authMode === "signIn" && (
-        <SignInForm
-          form={signInForm}
-          onSubmit={onSignInSubmit}
-          onLinkClick={openSignUpModal}
-        />
-      )}
-      {authMode === "signUp" && (
-        <SignUpForm
-          form={signUpForm}
-          onSubmit={onSignUpSubmit}
-          onLinkClick={openSignInModal}
-        />
-      )}
+      {authMode === "signIn" && <SignInForm {...signInFormProps} />}
+      {authMode === "signUp" && <SignUpForm {...signUpFormProps} />}
     </StyledModal>
   );
 };
