@@ -4,10 +4,7 @@ import { SetNewPasswordForm, SetNewPasswordFormProps } from "./styles";
 // Hooks
 import useSetNewPasswordForm from "../../hooks/useSetNewPasswordForm";
 
-// Types
-export interface SetNewPasswordPageProps extends SetNewPasswordFormProps {}
-
-export const SetNewPasswordPage = ({ ...props }: SetNewPasswordPageProps) => {
+export const SetNewPasswordPage = ({ ...props }: any) => {
   const formProps = useSetNewPasswordForm();
 
   return <SetNewPasswordForm {...props} {...formProps} />;

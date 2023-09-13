@@ -15,7 +15,8 @@ export const Input = ({
   ...props
 }: InputProps) => {
   const Component =
-    InputComponent || (inputPassword ? StyledInputPassword : StyledInput);
+    InputComponent ||
+    ((inputPassword ? StyledInputPassword : StyledInput) as React.FC<any>);
 
   return <Component {...props} />;
 };

@@ -4,10 +4,7 @@ import { SignInForm, SignInFormProps } from "./styles";
 // Hooks
 import useSignInForm from "../../hooks/useSignInForm";
 
-// Types
-export interface SignInPageProps extends SignInFormProps {}
-
-export const SignInPage = ({ ...props }: SignInPageProps) => {
+export const SignInPage = ({ ...props }: any) => {
   const formProps = useSignInForm();
 
   return <SignInForm {...props} {...formProps} />;
