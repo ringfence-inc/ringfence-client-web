@@ -3,11 +3,18 @@ import React from "react";
 // Styles
 import { LogoAndTextIcon } from "./styles";
 
+// Components
+import CircularLines from "../CircularLines";
+
 // Types
 export interface BigLogoProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
 export const BigLogo = ({ ...props }: BigLogoProps) => {
-  return <LogoAndTextIcon {...props} />;
+  return (
+    <CircularLines>
+      <LogoAndTextIcon {...props} />
+    </CircularLines>
+  );
 };
 
 export default BigLogo;
