@@ -24,7 +24,7 @@ export const ContentWrap = styled.div`
     border-radius: ${theme.radius.xs};
     background-color: ${theme.colorBgElevated};
     padding: 58px 48px;
-    color: ${theme.color.white};
+    color: ${theme.color.text};
   `};
 `;
 

@@ -4,7 +4,9 @@ import React from "react";
 
 // Components
 import { Inter } from "next/font/google";
-import { GlobalStyled } from "../GlobalStyled";
+
+// Styles
+import "antd/dist/reset.css";
 
 // React Query
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -12,9 +14,9 @@ import queryClient from "@/shared/libs/query";
 
 // Layouts
 import AntdRegistry from "../AntdRegistry";
-import AntdTheme from "../AntdTheme";
 import StyledRegistry from "../StyledRegistry";
-import StyledTheme from "../StyledTheme";
+import Theme from "@/shared/ui/Theme";
+import GlobalStyled from "@/shared/ui/GlobalStyled";
 
 // Font connection
 const inter = Inter({ subsets: ["latin"] });
@@ -28,17 +30,13 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <body className={inter.className}>
       <AntdRegistry>
-        <AntdTheme>
-          <StyledRegistry>
-            <StyledTheme>
-              <GlobalStyled>
-                <QueryClientProvider client={queryClient}>
-                  {children}
-                </QueryClientProvider>
-              </GlobalStyled>
-            </StyledTheme>
-          </StyledRegistry>
-        </AntdTheme>
+        <StyledRegistry>
+          <QueryClientProvider client={queryClient}>
+            <Theme>
+              <GlobalStyled>{children}</GlobalStyled>
+            </Theme>
+          </QueryClientProvider>
+        </StyledRegistry>
       </AntdRegistry>
     </body>
   </html>

@@ -1,64 +1,64 @@
 // Types
 import type { GlobalToken } from "antd";
+import type { ThemeType } from "./types";
 
 export interface StyledTheme {
   color: {
-    primary: string;
-    white: string;
-    black: string;
+    primary?: string;
+    white?: string;
+    black?: string;
+    text?: string;
   };
   m: {
-    xss: string;
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
+    xss?: string;
+    xs?: string;
+    sm?: string;
+    md?: string;
+    lg?: string;
+    xl?: string;
+    xxl?: string;
   };
   radius: {
-    xss: string;
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
-    half: string;
+    xss?: string;
+    xs?: string;
+    sm?: string;
+    md?: string;
+    lg?: string;
+    xl?: string;
+    xxl?: string;
+    half?: string;
   };
   weight: {
-    normal: number;
-    semiBold: number;
-    bold: number;
+    normal?: number;
+    semiBold?: number;
+    bold?: number;
   };
   font: {
-    h1: string;
-    h2: string;
-    h3: string;
-    h4: string;
-    h5: string;
-    sm: string;
-    lg: string;
-    xl: string;
+    h1?: string;
+    h2?: string;
+    h3?: string;
+    h4?: string;
+    h5?: string;
+    sm?: string;
+    lg?: string;
+    xl?: string;
   };
   line: {
-    h1: number;
-    h2: number;
-    h3: number;
-    h4: number;
-    h5: number;
-    sm: number;
-    lg: number;
+    h1?: number;
+    h2?: number;
+    h3?: number;
+    h4?: number;
+    h5?: number;
+    sm?: number;
+    lg?: number;
   };
   maxWidth: string;
 }
 
 export interface StyledAntdTheme extends StyledTheme, GlobalToken {}
 
-export const styledTheme = {
-  color: {
-    black: "#000",
-  },
+export const styledCommonTheme = {
+  color: {},
   m: {},
   weight: {
     normal: 400,
@@ -80,18 +80,48 @@ export const styledTheme = {
   maxWidth: "1524px",
 };
 
-export const extendAntdTheme = (token: GlobalToken): StyledAntdTheme => {
-  const { color, m, weight, font, line } = styledTheme;
+export const styledLightTheme = {
+  ...styledCommonTheme,
+  color: {
+    ...styledCommonTheme.color,
+    primary: "#4ADC8C",
+    white: "#fff",
+    black: "#000",
+    text: "#000",
+  },
+};
+
+export const styledDarkTheme = {
+  ...styledCommonTheme,
+  color: {
+    ...styledCommonTheme.color,
+    primary: "#4ADC8C",
+    white: "#fff",
+    black: "#000",
+    text: "#fff",
+  },
+};
+
+export const styledThemes: Record<ThemeType, StyledTheme> = {
+  light: styledLightTheme,
+  dark: styledDarkTheme,
+};
+
+export const extendAntdTheme = (
+  token: GlobalToken,
+  theme?: ThemeType
+): StyledAntdTheme => {
+  const { color, m, weight, font, line } = styledThemes[theme || "dark"];
 
   return {
     ...token,
-    ...styledTheme,
+    ...styledCommonTheme,
     color: {
-      primary: token.colorPrimary,
-      white: token.colorWhite,
       ...color,
+      primary: token.colorPrimary,
     },
     m: {
+      ...m,
       xss: `${token.marginXXS}px`, // 4px
       xs: `${token.marginXS}px`, // 8px
       sm: `${token.marginSM}px`, // 12px
@@ -99,10 +129,10 @@ export const extendAntdTheme = (token: GlobalToken): StyledAntdTheme => {
       lg: `${token.marginLG}px`, // 24px
       xl: `${token.marginXL}px`, // 32px
       xxl: `${token.marginXXL}px`, // 48px
-      ...m,
     },
     weight,
     font: {
+      ...font,
       h1: `${token.fontSizeHeading1}px`, // 38px
       h2: `${token.fontSizeHeading2}px`, // 30px
       h3: `${token.fontSizeHeading3}px`, // 24px
@@ -111,9 +141,9 @@ export const extendAntdTheme = (token: GlobalToken): StyledAntdTheme => {
       sm: `${token.fontSizeSM}px`, // 12px
       lg: `${token.fontSizeLG}px`, // 16px
       xl: `${token.fontSizeXL}px`, // 20px
-      ...font,
     },
     line: {
+      ...line,
       h1: token.lineHeightHeading1, // 1.57
       h2: token.lineHeightHeading2, // 1.21
       h3: token.lineHeightHeading3, // 1.26
@@ -121,9 +151,8 @@ export const extendAntdTheme = (token: GlobalToken): StyledAntdTheme => {
       h5: token.lineHeightHeading5, // 1.4
       sm: token.lineHeightSM, // 1.66
       lg: token.lineHeightLG, // 1.5
-      ...line,
     },
   };
 };
 
-export default styledTheme;
+export default styledCommonTheme;
