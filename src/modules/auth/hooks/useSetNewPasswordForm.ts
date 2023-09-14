@@ -43,6 +43,7 @@ export const useSetNewPasswordForm = () => {
 
   return {
     form,
+    mutation,
     onSubmit,
   };
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import "antd/dist/reset.css";
 
 // Utils
 import { createGlobalStyle } from "styled-components";

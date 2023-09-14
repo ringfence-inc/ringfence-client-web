@@ -26,6 +26,8 @@ export const ErrorMessage = ({
   message,
   ...props
 }: ErrorMessageProps) => {
+  if (!global?.window) return "";
+
   const errorRender = ({ message = "", messages }: any = {}) => {
     return (
       <Text className={className} {...props}>

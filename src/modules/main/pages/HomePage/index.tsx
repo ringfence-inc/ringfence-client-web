@@ -11,7 +11,7 @@ import SignUpSection from "../../layouts/SignUpSection";
 import Footer from "../../layouts/Footer";
 
 export const HomePage = ({ ...props }: any) => (
-  <Wrap {...props}>
+  <Wrap>
     <MainSection />
     <CardsSection />
     <PromoSection />

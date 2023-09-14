@@ -12,18 +12,20 @@ import { extendAntdTheme } from "@/shared/theme";
 const { useToken } = theme;
 
 // Types
+import type { ThemeType } from "@/shared/theme/types";
 export interface StyledThemeProps {
   children?: React.ReactNode;
+  theme?: ThemeType;
 }
 
-export const StyledTheme = ({ children }: StyledThemeProps) => {
+export const StyledTheme = ({ theme = "dark", children }: StyledThemeProps) => {
   const { token } = useToken();
 
-  const theme = useMemo(() => {
-    return extendAntdTheme(token);
+  const extendedTheme = useMemo(() => {
+    return extendAntdTheme(token, theme);
   }, [token]);
 
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={extendedTheme}>{children}</ThemeProvider>;
 };
 
 export default StyledTheme;
