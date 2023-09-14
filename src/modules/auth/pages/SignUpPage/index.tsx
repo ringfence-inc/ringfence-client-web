@@ -7,7 +7,7 @@ import useSignUpForm from "../../hooks/useSignUpForm";
 export const SignInPage = ({ ...props }: any) => {
   const formProps = useSignUpForm();
 
-  return <SignUpForm {...props} {...formProps} />;
+  return <SignUpForm {...formProps} />;
 };
 
 export default SignInPage;

@@ -7,7 +7,7 @@ import useSetNewPasswordForm from "../../hooks/useSetNewPasswordForm";
 export const SetNewPasswordPage = ({ ...props }: any) => {
   const formProps = useSetNewPasswordForm();
 
-  return <SetNewPasswordForm {...props} {...formProps} />;
+  return <SetNewPasswordForm {...formProps} />;
 };
 
 export default SetNewPasswordPage;

@@ -7,7 +7,7 @@ import useSignInForm from "../../hooks/useSignInForm";
 export const SignInPage = ({ ...props }: any) => {
   const formProps = useSignInForm();
 
-  return <SignInForm {...props} {...formProps} />;
+  return <SignInForm {...formProps} />;
 };
 
 export default SignInPage;

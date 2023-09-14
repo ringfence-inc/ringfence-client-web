@@ -14,7 +14,7 @@ export interface AuthPageLayoutProps
 export const AuthPageLayout = ({ ...props }: AuthPageLayoutProps) => {
   return (
     <Theme theme="light">
-      <Wrap {...props}>
+      <Wrap>
         <TopWrap>
           <SmallLogo />
         </TopWrap>
