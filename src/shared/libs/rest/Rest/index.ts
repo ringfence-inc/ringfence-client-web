@@ -204,8 +204,16 @@ export class Rest implements RestConfig {
 
       const handler = _responseHandlers?.[responseType];
       if (handler) {
-        return await handler(response);
+        const processedResponse = await handler(response);
+
+        if (!response.ok) {
+          throw new RequestError(processedResponse);
+        }
       } else {
+        if (!response.ok) {
+          throw new RequestError(response);
+        }
+
         throw new RequestError({
           message: `Handler for ${responseType} not found`,
         });
