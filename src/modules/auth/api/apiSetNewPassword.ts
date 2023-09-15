@@ -3,7 +3,7 @@ import rest from "@/shared/api";
 import objToFormData from "@/shared/utils/objToFormData";
 
 // Constants
-export const QUERY_KEY_SET_NEW_PASSWORD = "/auth/set-new-password";
+export const QUERY_KEY_SET_NEW_PASSWORD = "/auth/recovery-change-password";
 
 // Types
 export interface SetNewPasswordRequest {

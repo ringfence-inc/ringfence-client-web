@@ -18,7 +18,7 @@ export const useSignInForm = () => {
   const { email } = useAuthModal();
 
   const mutation = useLogin();
-  const { mutateAsync } = mutation;
+  const { mutate } = mutation;
 
   const schema = yup.object().shape({
     email: yup
@@ -49,7 +49,7 @@ export const useSignInForm = () => {
   }, [email]);
 
   const onSubmit = handleSubmit(async (values: SignInFormValues) => {
-    return await mutateAsync(values);
+    return await mutate(values);
   });
 
   return {

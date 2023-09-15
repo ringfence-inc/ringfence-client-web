@@ -14,7 +14,7 @@ export type SetNewPasswordFormValues = {
 
 export const useSetNewPasswordForm = () => {
   const mutation = useSetNewPassword();
-  const { mutateAsync } = mutation;
+  const { mutate } = mutation;
 
   const schema = yup.object().shape({
     password: yup
@@ -38,7 +38,7 @@ export const useSetNewPasswordForm = () => {
 
   const onSubmit = handleSubmit(async (values: SetNewPasswordFormValues) => {
     const { password } = values;
-    return await mutateAsync({ password, code: "PASTE CODE HERE" });
+    return await mutate({ password, code: "PASTE CODE HERE" });
   });
 
   return {

@@ -18,7 +18,11 @@ export interface LoginResponse {
 
 // Api function
 export const apiLogin = async (data: LoginRequest): Promise<LoginResponse> => {
-  return await rest.post(QUERY_KEY_LOGIN, false, objToFormData(data));
+  const response = await rest.post(QUERY_KEY_LOGIN, false, objToFormData(data));
+
+  rest.setTokens(response);
+
+  return response;
 };
 
 export default apiLogin;

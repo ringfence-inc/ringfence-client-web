@@ -1,6 +1,7 @@
 // Utils
 import rest from "@/shared/api";
 import objToFormData from "@/shared/utils/objToFormData";
+import queryClient from "@/shared/libs/query";
 
 // Constants
 export const QUERY_KEY_LOGOUT = "/auth/logout";
@@ -16,9 +17,22 @@ export interface LogoutResponse {
 
 // Api function
 export const apiLogout = async (
-  data: LogoutRequest
+  params: LogoutRequest
 ): Promise<LogoutResponse> => {
-  return await rest.post(QUERY_KEY_LOGOUT, false, objToFormData(data));
+  const response = await rest.post(
+    QUERY_KEY_LOGOUT,
+    false,
+    objToFormData(params)
+  );
+
+  if (global?.window) {
+    global.window.location.href = "/";
+  }
+
+  rest.setTokens({ token: "", refreshToken: "" });
+  queryClient.clear();
+
+  return response;
 };
 
 export default apiLogout;
