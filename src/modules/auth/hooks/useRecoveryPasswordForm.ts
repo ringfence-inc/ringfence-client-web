@@ -13,7 +13,7 @@ export type PasswordRecoveryFormValues = {
 
 export const useRecoveryPasswordForm = () => {
   const mutation = useRecoveryPassword();
-  const { mutateAsync } = mutation;
+  const { mutate } = mutation;
 
   const schema = yup.object().shape({
     email: yup
@@ -31,7 +31,7 @@ export const useRecoveryPasswordForm = () => {
   const { handleSubmit } = form;
 
   const onSubmit = handleSubmit(async (values: PasswordRecoveryFormValues) => {
-    return await mutateAsync(values);
+    return await mutate(values);
   });
 
   return {

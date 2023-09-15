@@ -3,7 +3,7 @@ import rest from "@/shared/api";
 import objToFormData from "@/shared/utils/objToFormData";
 
 // Constants
-export const QUERY_KEY_RECOVERY_PASSWORD = "/auth/recovery-password";
+export const QUERY_KEY_RECOVERY_PASSWORD = "/auth/recovery-send-email";
 
 // Types
 export interface RecoveryPasswordRequest {

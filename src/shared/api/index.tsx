@@ -10,7 +10,7 @@ import fakeApi from "./fake";
 
 // Config
 export const restConfig: RestConfig = {
-  baseUrl: "",
+  baseUrl: "https://shkrift.com/api",
 };
 
 export const originalRest = initRest(restConfig);
@@ -21,4 +21,4 @@ export const rest = initFakeRest({
   log: true,
 });
 
-export default rest;
+export default originalRest;

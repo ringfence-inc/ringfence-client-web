@@ -1,25 +1,25 @@
 // Create REST class with all methods
 
 // Utils
-import { isEmpty } from '../utils/isEmpty';
-import { RequestError } from '../RequestError';
-import { dataToURL } from '../utils/dataToUrl';
-import { jsonResponseHandler } from '../utils/jsonResponseHandler';
-import { textResponseHandler } from '../utils/textResponseHandler';
-import { blobResponseHandler } from '../utils/blobResponseHandler';
-import { arrayBufferResponseHandler } from '../utils/arrayBufferResponseHandler';
-import { formDataResponseHandler } from '../utils/formDataResponseHandler';
+import { isEmpty } from "../utils/isEmpty";
+import { RequestError } from "../RequestError";
+import { dataToURL } from "../utils/dataToUrl";
+import { jsonResponseHandler } from "../utils/jsonResponseHandler";
+import { textResponseHandler } from "../utils/textResponseHandler";
+import { blobResponseHandler } from "../utils/blobResponseHandler";
+import { arrayBufferResponseHandler } from "../utils/arrayBufferResponseHandler";
+import { formDataResponseHandler } from "../utils/formDataResponseHandler";
 
 // Config
-import { UNAUTHORIZED_CODE } from '../config';
+import { UNAUTHORIZED_CODE } from "../config";
 
 // Types
 export type ResponseTypes =
-  | 'json'
-  | 'text'
-  | 'blob'
-  | 'arrayBuffer'
-  | 'formData';
+  | "json"
+  | "text"
+  | "blob"
+  | "arrayBuffer"
+  | "formData";
 export type ResponseHandlers = Record<
   ResponseTypes,
   (response: Response) => any
@@ -28,6 +28,7 @@ export type ResponseHandlers = Record<
 export type TokensObject = {
   token?: string;
   refreshToken?: string;
+  refresh_token?: string;
 };
 
 export type TokensObjectKeys = keyof TokensObject;
@@ -49,7 +50,7 @@ export interface RestConfig {
 }
 
 export interface RestRequestConfig extends RestConfig {
-  method?: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+  method?: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
   body?: any;
   fullUrl?: string;
   responseType?: ResponseTypes;
@@ -82,13 +83,13 @@ export class Rest implements RestConfig {
   constructor({
     baseUrl,
     url,
-    storageTokenKey = 'token',
-    storageRefreshTokenKey = 'refreshToken',
+    storageTokenKey = "token",
+    storageRefreshTokenKey = "refreshToken",
     options,
     responseHandlers = defResponseHandlers,
 
     refreshTokenEnabled = false,
-    refreshTokenEndpoint = '/auth/refresh-token',
+    refreshTokenEndpoint = "/auth/refresh-token",
     refreshTokenResponseTransform = (r) => r,
     onTokenRefreshSuccess = () => {},
     onTokenRefreshError = () => {},
@@ -111,7 +112,7 @@ export class Rest implements RestConfig {
   setTokens(obj: Partial<Record<TokensObjectKeys, string>>) {
     if (!global?.window) return null;
     const { storageTokenKey, storageRefreshTokenKey } = this;
-    const { token, refreshToken } = obj;
+    const { token, refresh_token, refreshToken = refresh_token } = obj;
 
     if (token) {
       localStorage.setItem(storageTokenKey as string, token);
@@ -130,9 +131,9 @@ export class Rest implements RestConfig {
     if (!global?.window) return {};
 
     const { storageTokenKey, storageRefreshTokenKey } = this;
-    const token = localStorage.getItem(storageTokenKey as string) || '';
+    const token = localStorage.getItem(storageTokenKey as string) || "";
     const refreshToken =
-      localStorage.getItem(storageRefreshTokenKey as string) || '';
+      localStorage.getItem(storageRefreshTokenKey as string) || "";
 
     this.token = token;
     this.refreshToken = refreshToken;
@@ -148,13 +149,13 @@ export class Rest implements RestConfig {
     fullUrl,
     isAuth,
     body,
-    method = 'GET',
-    responseType = 'json',
+    method = "GET",
+    responseType = "json",
     options = {},
     responseHandlers,
     refreshTokenEnabled = this.refreshTokenEnabled,
   }: RestRequestConfig) {
-    const { token, baseUrl = '', baseOptions = {}, executeTokenRefresh } = this;
+    const { token, baseUrl = "", baseOptions = {}, executeTokenRefresh } = this;
 
     const _responseHandlers = {
       ...(this.responseHandlers || {}),
@@ -172,17 +173,17 @@ export class Rest implements RestConfig {
     const _options = { ...baseOptions, ...options, method, headers };
 
     if (isAuth) {
-      if (!headers.has('Authorization')) {
+      if (!headers.has("Authorization")) {
         if (token) {
-          headers.append('Authorization', `Bearer ${token}`);
+          headers.append("Authorization", `Bearer ${token}`);
         } else {
-          throw new RequestError({ message: 'Unauthorized' });
+          throw new RequestError({ message: "Unauthorized" });
         }
       }
     }
 
     if (!_options.body) {
-      if (method === 'GET') {
+      if (method === "GET") {
         if (!isEmpty(body)) {
           _fullUrl += `?${dataToURL(body)}`;
         }
@@ -191,7 +192,7 @@ export class Rest implements RestConfig {
           if (body instanceof FormData) {
             _options.body = body;
           } else {
-            headers.append('Content-Type', 'application/json');
+            headers.append("Content-Type", "application/json");
             _options.body = JSON.stringify(body);
           }
         }
@@ -200,10 +201,6 @@ export class Rest implements RestConfig {
 
     const executeRequest = async () => {
       const response = await fetch(_fullUrl, _options);
-
-      if (!response.ok) {
-        throw new RequestError(response);
-      }
 
       const handler = _responseHandlers?.[responseType];
       if (handler) {
@@ -222,7 +219,7 @@ export class Rest implements RestConfig {
         const tokens = await executeTokenRefresh();
 
         if (tokens) {
-          headers.set('Authorization', `Bearer ${tokens.token}`);
+          headers.set("Authorization", `Bearer ${tokens.token}`);
           return await executeRequest();
         }
       }
@@ -235,34 +232,34 @@ export class Rest implements RestConfig {
     }
   }
 
-  async get(url = '', isAuth: boolean, body: any, config?: RestRequestConfig) {
-    return this.request({ url, isAuth, body, method: 'GET', ...config });
+  async get(url = "", isAuth: boolean, body: any, config?: RestRequestConfig) {
+    return this.request({ url, isAuth, body, method: "GET", ...config });
   }
 
-  async post(url = '', isAuth: boolean, body: any, config?: RestRequestConfig) {
-    return this.request({ url, isAuth, body, method: 'POST', ...config });
+  async post(url = "", isAuth: boolean, body: any, config?: RestRequestConfig) {
+    return this.request({ url, isAuth, body, method: "POST", ...config });
   }
 
   async patch(
-    url = '',
+    url = "",
     isAuth: boolean,
     body: any,
     config?: RestRequestConfig
   ) {
-    return this.request({ url, isAuth, body, method: 'PATCH', ...config });
+    return this.request({ url, isAuth, body, method: "PATCH", ...config });
   }
 
-  async put(url = '', isAuth: boolean, body: any, config?: RestRequestConfig) {
-    return this.request({ url, isAuth, body, method: 'PUT', ...config });
+  async put(url = "", isAuth: boolean, body: any, config?: RestRequestConfig) {
+    return this.request({ url, isAuth, body, method: "PUT", ...config });
   }
 
   async delete(
-    url = '',
+    url = "",
     isAuth: boolean,
     body: any,
     config?: RestRequestConfig
   ) {
-    return this.request({ url, isAuth, body, method: 'DELETE', ...config });
+    return this.request({ url, isAuth, body, method: "DELETE", ...config });
   }
 
   async executeTokenRefresh() {
@@ -280,12 +277,15 @@ export class Rest implements RestConfig {
       const response = await this.post(
         refreshTokenEndpoint,
         true,
-        { refreshToken },
+        { refresh_token: refreshToken },
         { refreshTokenEnabled: false }
       );
 
-      const { token: newToken, refreshToken: newRefreshToken } =
-        refreshTokenResponseTransform(response);
+      const {
+        token: newToken,
+        refresh_token,
+        refreshToken: newRefreshToken = refresh_token,
+      } = refreshTokenResponseTransform(response);
 
       const newTokens = { token: newToken, refreshToken: newRefreshToken };
       this.setTokens(newTokens);

@@ -20,7 +20,7 @@ export const useSignUpForm = () => {
   const { email } = useAuthModal();
   const mutation = useCreateAccount();
   console.log("sign up mutation", mutation);
-  const { mutateAsync } = mutation;
+  const { mutate } = mutation;
 
   const schema = yup.object().shape({
     nick_name: yup
@@ -66,7 +66,7 @@ export const useSignUpForm = () => {
   const onSubmit = handleSubmit(async (values: SignUpFormValues) => {
     const { email, password, nick_name } = values;
 
-    await mutateAsync({ email, password, nick_name });
+    await mutate({ email, password, nick_name });
   });
 
   return {
