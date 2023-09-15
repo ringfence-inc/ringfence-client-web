@@ -209,6 +209,8 @@ export class Rest implements RestConfig {
         if (!response.ok) {
           throw new RequestError(processedResponse);
         }
+
+        return processedResponse;
       } else {
         if (!response.ok) {
           throw new RequestError(response);

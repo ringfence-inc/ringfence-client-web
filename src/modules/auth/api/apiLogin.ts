@@ -20,7 +20,7 @@ export interface LoginResponse {
 export const apiLogin = async (data: LoginRequest): Promise<LoginResponse> => {
   const response = await rest.post(QUERY_KEY_LOGIN, false, objToFormData(data));
 
-  rest.setTokens(response);
+  rest.setTokens(response || {});
 
   return response;
 };
