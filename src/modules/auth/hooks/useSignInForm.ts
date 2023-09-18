@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useYupResolver from "@/shared/hooks/useYupResolver";
 import useLogin from "../api/hooks/useLogin";
 import useAuthModal from "./useAuthModal";
+import { useRouter } from "next/navigation";
 
 // Utils
 import * as yup from "yup";
@@ -15,9 +16,19 @@ export type SignInFormValues = {
 };
 
 export const useSignInForm = () => {
+  const router = useRouter();
   const { email } = useAuthModal();
 
-  const mutation = useLogin();
+  const mutation = useLogin(
+    {},
+    {
+      onSuccess: () => {
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 500);
+      },
+    }
+  );
   const { mutate } = mutation;
 
   const schema = yup.object().shape({

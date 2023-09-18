@@ -23,7 +23,11 @@ export type UseAppRouterStateReturn = [
     | Array<string>
     | undefined,
   setQueryState: (
-    value?: Record<string, string | Array<string> | undefined>,
+    value?:
+      | Record<string, string | Array<string> | undefined>
+      | string
+      | Array<string>
+      | undefined,
     options?: any
   ) => void,
   router: any,

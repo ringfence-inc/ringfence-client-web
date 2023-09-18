@@ -17,19 +17,23 @@ export interface LogoutResponse {
 
 // Api function
 export const apiLogout = async (
-  params: LogoutRequest
+  params?: LogoutRequest
 ): Promise<LogoutResponse> => {
-  const response = await rest.post(
-    QUERY_KEY_LOGOUT,
-    false,
-    objToFormData(params)
-  );
+  let response = {} as LogoutResponse;
+  try {
+    const response = await rest.post(
+      QUERY_KEY_LOGOUT,
+      false,
+      objToFormData(params)
+    );
+  } catch (error) {}
+
+  rest.removeTokens();
 
   if (global?.window) {
     global.window.location.href = "/";
   }
 
-  rest.setTokens({ token: "", refreshToken: "" });
   queryClient.clear();
 
   return response;
