@@ -12,7 +12,7 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  token: string;
+  accessToken: string;
   refresh_token: string;
 }
 
@@ -20,7 +20,9 @@ export interface LoginResponse {
 export const apiLogin = async (data: LoginRequest): Promise<LoginResponse> => {
   const response = await rest.post(QUERY_KEY_LOGIN, false, objToFormData(data));
 
-  rest.setTokens(response || {});
+  const { accessToken, refreshToken } = response;
+
+  rest.setTokens({ token: accessToken, refreshToken });
 
   return response;
 };
