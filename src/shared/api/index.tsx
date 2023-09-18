@@ -15,7 +15,7 @@ export const restConfig: RestConfig = {
 
 export const originalRest = initRest(restConfig);
 
-export const rest = initFakeRest({
+export const fakeRest = initFakeRest({
   ...restConfig,
   fakeRequestHandlers: fakeApi,
   log: true,

@@ -16,7 +16,6 @@ import { faker, Faker } from "@faker-js/faker";
 export type { RestConfig, ResponseHandlers, TokensObject };
 
 // Types
-
 export interface FakeRestConfig extends RestConfig {
   delay?: number;
   fakeRequestHandlers?: FakeRequestHandlers;
@@ -86,6 +85,7 @@ export class FakeRest extends OriginalRest implements FakeRestConfig {
 
         return response;
       } catch (error) {
+        console.error(error);
         // @ts-ignore
         throw new RequestError(error);
       }

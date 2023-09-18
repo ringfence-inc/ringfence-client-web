@@ -7,10 +7,11 @@ import {
   ResponseHandlers,
   ResponseTypes,
 } from "./Rest";
-export type { RequestError, RequestErrorConfig } from "./RequestError";
+export { RequestError } from "./RequestError";
 
 export { Rest };
 
+export type { RequestErrorConfig } from "./RequestError";
 export type {
   RestConfig,
   RestRequestConfig,
