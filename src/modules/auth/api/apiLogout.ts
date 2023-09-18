@@ -32,7 +32,7 @@ export const apiLogout = async (
   rest.setTokens({ token: "", refreshToken: "" });
   queryClient.clear();
 
-  return response as any;
+  return response;
 };
 
 export default apiLogout;
