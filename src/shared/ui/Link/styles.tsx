@@ -8,6 +8,7 @@ export type { LinkProps as NextLinkProps };
 
 export const StyledLink = styled(Link)`
   ${({ theme }) => css`
+    display: inline-flex;
     cursor: pointer;
     text-decoration: none;
     &[data-disabled="true"] {

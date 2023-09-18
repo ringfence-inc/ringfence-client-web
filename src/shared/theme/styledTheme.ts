@@ -8,6 +8,8 @@ export interface StyledTheme {
     white?: string;
     black?: string;
     text?: string;
+    midGrey?: string;
+    darkGrey?: string;
   };
   m: {
     xss?: string;
@@ -58,7 +60,10 @@ export interface StyledTheme {
 export interface StyledAntdTheme extends StyledTheme, GlobalToken {}
 
 export const styledCommonTheme = {
-  color: {},
+  color: {
+    midGrey: "#333",
+    darkGrey: "#191919",
+  },
   m: {},
   weight: {
     normal: 400,

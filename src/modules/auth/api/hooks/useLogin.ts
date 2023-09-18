@@ -14,7 +14,7 @@ import {
 
 // Request hook
 export const useLogin = (
-  defParams?: LoginRequest,
+  defParams?: Partial<LoginRequest>,
   options?: UseMutationOptions<LoginResponse, RequestError, LoginRequest>
 ) =>
   useMutation<LoginResponse, RequestError, LoginRequest>({

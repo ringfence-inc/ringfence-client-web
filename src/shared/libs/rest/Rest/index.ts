@@ -127,6 +127,19 @@ export class Rest implements RestConfig {
     return obj;
   }
 
+  removeTokens() {
+    if (!global?.window) return null;
+    const { storageTokenKey, storageRefreshTokenKey } = this;
+
+    localStorage.removeItem(storageTokenKey as string);
+    localStorage.removeItem(storageRefreshTokenKey as string);
+
+    this.token = undefined;
+    this.refreshToken = undefined;
+
+    return null;
+  }
+
   getTokens() {
     if (!global?.window) return {};
 
@@ -177,7 +190,12 @@ export class Rest implements RestConfig {
         if (token) {
           headers.append("Authorization", `Bearer ${token}`);
         } else {
-          throw new RequestError({ message: "Unauthorized" });
+          const { token: storageToken } = this.getTokens();
+          if (storageToken) {
+            headers.append("Authorization", `Bearer ${storageToken}`);
+          } else {
+            throw new RequestError({ message: "Unauthorized" });
+          }
         }
       }
     }

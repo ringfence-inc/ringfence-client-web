@@ -1,6 +1,7 @@
 // Utils
 import rest from "@/shared/api";
 import objToFormData from "@/shared/utils/objToFormData";
+import { queryCache } from "@/shared/libs/query";
 
 // Constants
 export const QUERY_KEY_LOGIN = "/auth/login";
@@ -23,6 +24,8 @@ export const apiLogin = async (data: LoginRequest): Promise<LoginResponse> => {
   const { accessToken, refreshToken } = response;
 
   rest.setTokens({ token: accessToken, refreshToken });
+
+  queryCache.clear();
 
   return response;
 };
