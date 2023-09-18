@@ -24,7 +24,9 @@ export type {
 // Styled components
 export const Link = styled(_Link)``;
 
-export const Layout = styled(_Layout)<LayoutProps>``;
+export const Layout = styled(_Layout)<LayoutProps>`
+  min-height: 100vh;
+`;
 
 export const SubLayout = styled(_Layout)<LayoutProps>``;
 
