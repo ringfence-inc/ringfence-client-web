@@ -83,7 +83,7 @@ export class Rest implements RestConfig {
   constructor({
     baseUrl,
     url,
-    storageTokenKey = "token",
+    storageTokenKey = "accessToken",
     storageRefreshTokenKey = "refreshToken",
     options,
     responseHandlers = defResponseHandlers,
@@ -292,7 +292,7 @@ export class Rest implements RestConfig {
       );
 
       const {
-        token: newToken,
+        accessToken: newToken,
         refresh_token,
         refreshToken: newRefreshToken = refresh_token,
       } = refreshTokenResponseTransform(response);
