@@ -5,7 +5,7 @@ import _Button, { ButtonProps } from "../../components/Button";
 import _IconButton, { IconButtonProps } from "../../components/IconButton";
 import _GenerateImagesButton, {
   GenerateImagesButtonProps,
-} from "../../components/GenerateImagesButton";
+} from "./components/GenerateImagesButton";
 import _GridViewSwitch from "../../components/GridViewSwitch";
 
 // Re export types

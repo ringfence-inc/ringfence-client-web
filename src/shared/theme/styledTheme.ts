@@ -6,6 +6,7 @@ export interface StyledTheme {
   color: {
     primary?: string;
     white?: string;
+    grey?: string;
     black?: string;
     text?: string;
     midGrey?: string;
@@ -62,6 +63,7 @@ export interface StyledAntdTheme extends StyledTheme, GlobalToken {}
 export const styledCommonTheme = {
   color: {
     midGrey: "#333",
+    grey: "#CDCDCD",
     darkGrey: "#191919",
   },
   m: {},

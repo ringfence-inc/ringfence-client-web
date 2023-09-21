@@ -63,13 +63,13 @@ export const SignUpForm = ({
             name="password"
             placeholder="Password (at least 6 characters)"
             disabled={isLoading}
-            inputPassword
+            inputType="password"
           />
           <Input
             name="confirmPassword"
             placeholder="Confirm password"
             disabled={isLoading}
-            inputPassword
+            inputType="password"
           />
 
           <SubmitButton loading={isLoading}>SIGN UP</SubmitButton>

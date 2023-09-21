@@ -9,6 +9,9 @@ export interface LabelProps extends HtmlHTMLAttributes<HTMLLabelElement> {
 // Styled components
 export const Label = styled.span<LabelProps>`
   display: block;
+  ${({ theme }) => css`
+    color: ${theme.color.text};
+  `};
   ${({ theme, $required }) => css`
     &::after {
       content: ${$required ? "'*'" : "''"};

@@ -35,6 +35,7 @@ export const Header = styled(_Header)<HeaderProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: transparent !important;
 `;
 
 export const LeftWrap = styled.div`
@@ -50,7 +51,9 @@ export const RightWrap = styled.div`
 
 export const Content = styled(_Content)<ContentProps>``;
 
-export const SideMenu = styled(_SideMenu)<SideMenuProps>``;
+export const SideMenu = styled(_SideMenu)<SideMenuProps>`
+  background-color: transparent !important;
+`;
 
 // Styled icon components
 export const LogoTextIcon = styled(LogoTextSvg)`
