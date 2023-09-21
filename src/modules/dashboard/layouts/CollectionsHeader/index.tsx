@@ -1,7 +1,11 @@
 import { HtmlHTMLAttributes } from "react";
 
 // Styles
-import { Wrap, NewCollectionButton } from "./styles";
+import { Wrap } from "./styles";
+
+// Components
+import Actions from "./components/Actions";
+import NewCollectionButton from "./components/NewCollectionButton";
 
 // Types
 import type { UseCollectionsTableReturn } from "../../hooks/useCollectionsTable";
@@ -18,9 +22,11 @@ export const CollectionsHeader = ({
   onCreateClick,
   ...props
 }: CollectionsHeaderProps) => {
+  const { hasSelected } = table || {};
+
   return (
     <Wrap {...props}>
-      <div />
+      {hasSelected ? <Actions /> : <div />}
       <NewCollectionButton onClick={onCreateClick} disabled={disabledCreate} />
     </Wrap>
   );

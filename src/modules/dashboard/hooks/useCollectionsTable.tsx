@@ -9,6 +9,7 @@ import type { CollectionsTableProps } from "../layouts/CollectionsTable";
 import type { GetCollectionsCollection } from "@/modules/dashboard/api/apiGetCollections";
 
 // Components
+import Link from "@/shared/ui/Link";
 import CollectionStatus from "../components/CollectionStatus";
 
 // Types
@@ -16,6 +17,7 @@ export interface UseCollectionsTableReturn
   extends Partial<CollectionsTableProps> {
   mapData: (data: GetCollectionsCollection[]) => GetCollectionsCollection[];
   data: GetCollectionsResponse;
+  hasSelected?: boolean;
 }
 
 export const useCollectionsTable = (): UseCollectionsTableReturn => {
@@ -28,6 +30,13 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (text, record) => (
+        <Link
+          href={`/dashboard/collections/${record?.id}?title=${record?.name}`}
+        >
+          {text}
+        </Link>
+      ),
     },
     {
       title: "Created At",
@@ -70,6 +79,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
     data: data as GetCollectionsResponse,
     mapData,
     loading: isLoading,
+    hasSelected: selectedRowKeys?.length > 0,
   };
 };
 
