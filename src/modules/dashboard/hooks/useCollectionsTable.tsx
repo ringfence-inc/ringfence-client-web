@@ -3,9 +3,13 @@ import { useState } from "react";
 import useGetCollections from "../api/hooks/useGetCollections";
 
 // Types
+import type { ColumnType } from "@/shared/ui/Table";
 import type { GetCollectionsResponse } from "@/modules/dashboard/api/apiGetCollections";
 import type { CollectionsTableProps } from "../layouts/CollectionsTable";
 import type { GetCollectionsCollection } from "@/modules/dashboard/api/apiGetCollections";
+
+// Components
+import CollectionStatus from "../components/CollectionStatus";
 
 // Types
 export interface UseCollectionsTableReturn
@@ -19,7 +23,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
 
   const { data, isLoading } = useGetCollections();
 
-  const columns = [
+  const columns: Array<ColumnType<GetCollectionsCollection>> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -39,6 +43,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      render: (text, record) => <CollectionStatus data={record} />,
     },
   ];
 

@@ -12,12 +12,18 @@ export interface GetCollectionsRequest {
   limit?: number;
 }
 
+export type TCollectionStatus =
+  | "not_checked"
+  | "detected"
+  | "in_progress"
+  | "checked";
+
 export interface GetCollectionsCollection {
   id: number;
   name: string;
   created_at: string;
   createdCount: number;
-  status: "not_checked" | "detected" | "in_progress" | "checked";
+  status: TCollectionStatus;
 }
 
 export interface GetCollectionsResponse {
