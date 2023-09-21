@@ -1,5 +1,8 @@
 import styled, { css } from "styled-components";
 
+// Styles
+import { inputSizeCss } from "@/shared/styles/sizes";
+
 // Components
 import Input, { InputProps } from "antd/lib/input";
 
@@ -7,13 +10,19 @@ import Input, { InputProps } from "antd/lib/input";
 export type { InputProps as AntdInputProps };
 
 // Styled CSS
-export const styledInputCss = css<InputProps>``;
+export const commonInputCss = css<InputProps>`
+  ${inputSizeCss};
+`;
 
 // Styled components
 export const StyledInput = styled(Input)<InputProps>`
-  ${styledInputCss}
+  ${commonInputCss}
 `;
 
 export const StyledInputPassword = styled(Input.Password)<InputProps>`
-  ${styledInputCss}
+  ${commonInputCss}
+`;
+
+export const StyledInputTextArea = styled(Input.TextArea)<InputProps>`
+  ${commonInputCss}
 `;

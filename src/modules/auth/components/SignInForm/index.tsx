@@ -62,7 +62,7 @@ export const SignInForm = ({
             name="password"
             placeholder="Password"
             disabled={isLoading}
-            inputPassword
+            inputType="password"
           />
 
           <SubmitButton loading={isLoading}>LOG IN</SubmitButton>

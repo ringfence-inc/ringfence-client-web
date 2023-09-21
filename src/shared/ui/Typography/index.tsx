@@ -1,29 +1,36 @@
-import styled, { css } from "styled-components";
+import { HtmlHTMLAttributes } from "react";
 
-// Components
-import AntdTitle, { TitleProps } from "antd/lib/typography/Title";
-import AntdText, { TextProps } from "antd/lib/typography/Text";
-import AntdParagraph, { ParagraphProps } from "antd/lib/typography/Paragraph";
-import AntdLink, { LinkProps } from "antd/lib/typography/Link";
+// Styles
+import {
+  Text,
+  H1,
+  H2,
+  H3,
+  RegularP,
+  RegularText,
+  SmallP,
+  SmallText,
+  commonTypographyCss,
+  paragraphTypographyCss,
+  titleTypographyCss,
+} from "./styles";
 
-// Re export types
-export type { TitleProps, TextProps, ParagraphProps, LinkProps };
+// Re export styles
+export { commonTypographyCss, paragraphTypographyCss, titleTypographyCss };
 
-// Styled css
-export const commonTypographyCss = css``;
+// Types
+export interface TypographyProps extends HtmlHTMLAttributes<HTMLSpanElement> {}
+export const Typography = ({ ...props }: TypographyProps) => {
+  return <Text {...props}>{props.children}</Text>;
+};
 
-export const Title = styled(AntdTitle)<TitleProps>`
-  ${commonTypographyCss}
-`;
+export default Typography;
 
-export const Text = styled(AntdText)<TextProps>`
-  ${commonTypographyCss}
-`;
-
-export const Paragraph = styled(AntdParagraph)<ParagraphProps>`
-  ${commonTypographyCss}
-`;
-
-export const Link = styled(AntdLink)<LinkProps>`
-  ${commonTypographyCss}
-`;
+Typography.H1 = H1;
+Typography.H2 = H2;
+Typography.H3 = H3;
+Typography.RegularP = RegularP;
+Typography.SmallP = SmallP;
+Typography.RegularText = RegularText;
+Typography.SmallText = SmallText;
+Typography.Text = Text;

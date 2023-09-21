@@ -4,22 +4,22 @@ import React from "react";
 import { useController, UseControllerProps } from "react-hook-form";
 
 // Components
-import Input, { InputProps } from "../index";
+import Select, { SelectProps } from "../index";
 import InputWrap, {
   InputWrapProps,
   InputWrapPartialProps,
 } from "../../InputWrap";
 
 // Types
-export interface InputHookFormProps
-  extends InputProps,
-    Omit<UseControllerProps<any>, "defaultValue">,
+export interface SelectHookFormProps
+  extends Omit<SelectProps, "placeholder">,
+    UseControllerProps<any>,
     InputWrapPartialProps {
   WrapComponent?: React.FC<InputWrapProps>;
   name: string;
 }
 
-export const InputHookForm = ({
+export const SelectHookForm = ({
   WrapComponent = InputWrap,
   name,
   rules,
@@ -27,12 +27,12 @@ export const InputHookForm = ({
   className,
   label = "",
   placeholder = label,
-  labelPosition,
+  labelPosition = "top",
   showLabel,
   required,
   style = {},
   ...props
-}: InputHookFormProps) => {
+}: SelectHookFormProps) => {
   const { field } = useController({
     name,
     rules,
@@ -46,15 +46,15 @@ export const InputHookForm = ({
         name,
         placeholder,
         label,
-        showLabel,
         labelPosition,
+        showLabel,
         required,
       }}
     >
-      <Input
+      <Select
         {...field}
-        className="input-hook-form"
-        style={{ width: "100%", ...style }}
+        className="select-hook-form"
+        style={{ ...style, width: "100%" }}
         {...{ placeholder, required }}
         {...props}
       />
@@ -62,4 +62,4 @@ export const InputHookForm = ({
   );
 };
 
-export default InputHookForm;
+export default SelectHookForm;
