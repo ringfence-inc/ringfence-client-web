@@ -12,14 +12,14 @@ import type { UseCollectionsTableReturn } from "../../hooks/useCollectionsTable"
 export interface CollectionHeaderProps
   extends HtmlHTMLAttributes<HTMLDivElement> {
   table?: UseCollectionsTableReturn;
-  disabledCreate?: boolean;
-  onCreateClick?: () => void;
+  disableAdd?: boolean;
+  onAddImagesClick?: () => void;
 }
 
 export const CollectionHeader = ({
   table,
-  disabledCreate = false,
-  onCreateClick,
+  disableAdd = false,
+  onAddImagesClick,
   ...props
 }: CollectionHeaderProps) => {
   const { hasSelected } = table || {};
@@ -28,7 +28,7 @@ export const CollectionHeader = ({
     <Wrap {...props}>
       <ViewSwitch />
       {hasSelected ? <Actions /> : <div />}
-      <AddImagesButton onClick={onCreateClick} disabled={disabledCreate} />
+      <AddImagesButton onClick={onAddImagesClick} disabled={disableAdd} />
     </Wrap>
   );
 };

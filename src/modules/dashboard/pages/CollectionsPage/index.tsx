@@ -30,7 +30,7 @@ export const CollectionsPage = () => {
         show={showCreate}
         setShow={setShowCreate}
       />
-      {!loading && !hasData && (
+      {!loading && !hasData && !showCreate && (
         <NoCollections
           onCreateClick={handleCreateClick}
           disabled={showCreate}

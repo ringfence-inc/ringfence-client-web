@@ -1,4 +1,4 @@
-import { HtmlHTMLAttributes } from "react";
+import { useState, HtmlHTMLAttributes } from "react";
 
 // Styles
 import {
@@ -6,6 +6,7 @@ import {
   Title,
   CollectionHeader,
   PicturesGrid,
+  UploadCollectionImages,
   CollectionImagesTable,
   Spin,
 } from "./styles";
@@ -32,11 +33,18 @@ export const CollectionPage = () => {
   });
   const isGridView = viewMode === GRID_VIEW_SWITCH_GRID;
   const { collectionId } = useParams();
+  const numCollectionId = Number(collectionId);
+
+  const [showUpload, setShowUpload] = useState<boolean>(false);
 
   const table = useCollectionImagesTable({
-    collectionId: Number(collectionId),
+    collectionId: numCollectionId,
   });
   const { data, loading, hasData } = table;
+
+  const handleAddImagesClick = () => {
+    setShowUpload(true);
+  };
 
   return (
     <Wrap>
@@ -44,7 +52,18 @@ export const CollectionPage = () => {
 
       {!loading && hasData && (
         <>
-          <CollectionHeader />
+          {(showUpload || (!loading && !hasData)) && (
+            <UploadCollectionImages
+              show={showUpload}
+              setShow={setShowUpload}
+              collectionId={numCollectionId}
+              showClose={hasData}
+            />
+          )}
+          <CollectionHeader
+            onAddImagesClick={handleAddImagesClick}
+            disableAdd={showUpload}
+          />
           <Title>{title as string}</Title>
           {isGridView ? (
             <PicturesGrid items={data?.data || []} />
