@@ -133,6 +133,7 @@ export const useAppRouterState = ({
   }, [keysArr, searchParams]);
 
   useEffect(() => {
+    if (!defaultValue) return;
     setQueryState(defaultValue);
   }, []);
 

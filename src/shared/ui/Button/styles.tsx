@@ -15,6 +15,7 @@ export const commonButtonCss = css`
     ${buttonSizeCss};
   }
   display: flex !important;
+  justify-content: center !important;
   align-items: center !important;
   font-weight: 500 !important;
 `;

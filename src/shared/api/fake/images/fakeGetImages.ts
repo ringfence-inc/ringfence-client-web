@@ -18,6 +18,7 @@ export const fakeGetImages = ({
     const image: GetImagesImage = {
       id: i + 1,
       src: faker.image.urlPicsumPhotos({ width: 320, height: 320 }),
+      thumbnail: faker.image.urlPicsumPhotos({ width: 160, height: 160 }),
     };
     images.push(image);
   }

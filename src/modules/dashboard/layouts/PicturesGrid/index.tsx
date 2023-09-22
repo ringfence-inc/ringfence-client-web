@@ -3,10 +3,9 @@ import { HtmlHTMLAttributes } from "react";
 // Styles
 import { Wrap, Picture } from "./styles";
 
-// Api
-import { GetImagesImage } from "../../api/apiGetImages";
-
 // Types
+import type { GetImagesImage } from "../../api/apiGetImages";
+import type { CollectionImage } from "../../api/apiGetCollectionImages";
 export interface PicturesGridProps extends HtmlHTMLAttributes<HTMLDivElement> {
   items?: Array<GetImagesImage>;
 }

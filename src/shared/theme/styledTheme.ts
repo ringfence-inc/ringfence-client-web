@@ -79,7 +79,7 @@ export const styledCommonTheme = {
     xs: "8px",
     sm: "14px",
     md: "16px",
-    lg: "24px",
+    lg: "20px",
     xl: "32px",
     xxl: "40px",
     half: "50%",

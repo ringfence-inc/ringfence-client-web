@@ -1,53 +1,50 @@
 // Hooks
 import { useState } from "react";
-import useGetCollections from "../api/hooks/useGetCollections";
+import useGetCollectionImages from "../api/hooks/useGetCollectionImages";
 
 // Types
 import type { ColumnType } from "@/shared/ui/Table";
-import type { GetCollectionsResponse } from "@/modules/dashboard/api/apiGetCollections";
-import type { CollectionsTableProps } from "../layouts/CollectionsTable";
-import type { GetCollectionsCollection } from "@/modules/dashboard/api/apiGetCollections";
+import type {
+  GetCollectionImagesResponse,
+  CollectionImage,
+} from "@/modules/dashboard/api/apiGetCollectionImages";
+import type { CollectionImagesTableProps } from "../layouts/CollectionImagesTable";
 
 // Components
-import Link from "@/shared/ui/Link";
 import CollectionStatus from "../components/CollectionStatus";
 
 // Types
-export interface UseCollectionsTableReturn
-  extends Partial<CollectionsTableProps> {
-  mapData: (data: GetCollectionsCollection[]) => GetCollectionsCollection[];
-  data: GetCollectionsResponse;
+export interface UseCollectionImagesTableReturn
+  extends Partial<CollectionImagesTableProps> {
+  mapData: (data: CollectionImage[]) => CollectionImage[];
+  data: GetCollectionImagesResponse;
   hasSelected?: boolean;
   hasData?: boolean;
 }
 
-export const useCollectionsTable = (): UseCollectionsTableReturn => {
+export interface UseCollectionImagesTableProps {
+  collectionId: number;
+}
+
+export const useCollectionImagesTable = ({
+  collectionId,
+}: UseCollectionImagesTableProps): UseCollectionImagesTableReturn => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-  const { data, isLoading } = useGetCollections();
+  const { data, isLoading } = useGetCollectionImages({
+    collectionId,
+  });
 
-  const columns: Array<ColumnType<GetCollectionsCollection>> = [
+  const columns: Array<ColumnType<CollectionImage>> = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text, record) => (
-        <Link
-          href={`/dashboard/collections/${record?.id}?title=${record?.name}`}
-        >
-          {text}
-        </Link>
-      ),
     },
     {
       title: "Created At",
       dataIndex: "created_at",
       key: "created_at",
-    },
-    {
-      title: "Created Count",
-      dataIndex: "createdCount",
-      key: "createdCount",
     },
     {
       title: "Status",
@@ -67,7 +64,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
     onChange: onSelectChange,
   };
 
-  const mapData = (data: GetCollectionsCollection[]) => {
+  const mapData = (data: CollectionImage[]) => {
     return data.map((collection) => ({
       ...collection,
       key: collection.id,
@@ -77,7 +74,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
   return {
     columns,
     rowSelection,
-    data: data as GetCollectionsResponse,
+    data: data as GetCollectionImagesResponse,
     mapData,
     loading: isLoading,
     hasSelected: selectedRowKeys?.length > 0,
@@ -85,4 +82,4 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
   };
 };
 
-export default useCollectionsTable;
+export default useCollectionImagesTable;
