@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 // Types
 import type { RestRequestConfig } from "@/shared/libs/rest";
 import type {
-  CollectionImage,
+  TCollectionImage,
   GetCollectionImagesResponse,
   GetCollectionImagesRequest,
 } from "@/modules/dashboard/api/apiGetCollectionImages";
@@ -12,10 +12,10 @@ export const fakeGetCollectionImages = ({
   body = {},
 }: RestRequestConfig): GetCollectionImagesResponse => {
   const { page = 1, limit = 12 } = (body as GetCollectionImagesRequest) || {};
-  const images: CollectionImage[] = [];
+  const images: TCollectionImage[] = [];
 
   for (let i = (page - 1) * limit; i < page * limit; i++) {
-    const collection: CollectionImage = {
+    const collection: TCollectionImage = {
       id: i + 1,
       name: faker.lorem.words(3),
       created_at: faker.date.past().toISOString(),

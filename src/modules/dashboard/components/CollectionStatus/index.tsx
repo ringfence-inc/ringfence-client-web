@@ -10,9 +10,9 @@ export const statusesText: Record<TCollectionStatus, string> = {
 
 // Types
 import type { GetCollectionsCollection } from "../../api/apiGetCollections";
-import type { CollectionImage } from "../../api/apiGetCollectionImages";
+import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 export interface CollectionStatusProps extends WrapProps {
-  data?: GetCollectionsCollection | CollectionImage;
+  data?: GetCollectionsCollection | TCollectionImage;
 }
 
 export const CollectionStatus = ({ data, ...props }: CollectionStatusProps) => {

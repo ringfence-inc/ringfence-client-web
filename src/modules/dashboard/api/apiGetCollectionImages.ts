@@ -19,7 +19,7 @@ export type TCollectionImageStatus =
   | "in_progress"
   | "checked";
 
-export interface CollectionImage {
+export interface TCollectionImage {
   id: number;
   name: string;
   created_at: string;
@@ -29,7 +29,7 @@ export interface CollectionImage {
 }
 
 export interface GetCollectionImagesResponse {
-  data?: CollectionImage[];
+  data?: TCollectionImage[];
   meta?: ResponseMeta;
 }
 

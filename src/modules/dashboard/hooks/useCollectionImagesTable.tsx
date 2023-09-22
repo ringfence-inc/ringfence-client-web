@@ -6,7 +6,7 @@ import useGetCollectionImages from "../api/hooks/useGetCollectionImages";
 import type { ColumnType } from "@/shared/ui/Table";
 import type {
   GetCollectionImagesResponse,
-  CollectionImage,
+  TCollectionImage,
 } from "@/modules/dashboard/api/apiGetCollectionImages";
 import type { CollectionImagesTableProps } from "../layouts/CollectionImagesTable";
 
@@ -16,7 +16,7 @@ import CollectionStatus from "../components/CollectionStatus";
 // Types
 export interface UseCollectionImagesTableReturn
   extends Partial<CollectionImagesTableProps> {
-  mapData: (data: CollectionImage[]) => CollectionImage[];
+  mapData: (data: TCollectionImage[]) => TCollectionImage[];
   data: GetCollectionImagesResponse;
   hasSelected?: boolean;
   hasData?: boolean;
@@ -35,7 +35,7 @@ export const useCollectionImagesTable = ({
     collectionId,
   });
 
-  const columns: Array<ColumnType<CollectionImage>> = [
+  const columns: Array<ColumnType<TCollectionImage>> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -64,7 +64,7 @@ export const useCollectionImagesTable = ({
     onChange: onSelectChange,
   };
 
-  const mapData = (data: CollectionImage[]) => {
+  const mapData = (data: TCollectionImage[]) => {
     return data.map((collection) => ({
       ...collection,
       key: collection.id,

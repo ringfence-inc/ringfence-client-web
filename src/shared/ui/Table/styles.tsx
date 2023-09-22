@@ -21,4 +21,24 @@ export type {
 };
 
 // Components
-export const StyledTable = styled(Table)<TableProps<any>>``;
+export const StyledTable = styled(Table)<TableProps<any>>`
+  ${({ theme }) => css`
+    .ant-table {
+      background: transparent;
+    }
+
+    .ant-table-cell {
+      border-color: ${theme.color.midGrey} !important;
+    }
+
+    .ant-table-thead {
+      tr {
+        th {
+          text-transform: uppercase;
+          background: transparent !important;
+          color: ${theme.color.grey};
+        }
+      }
+    }
+  `};
+`;

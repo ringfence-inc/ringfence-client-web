@@ -2,10 +2,10 @@
 import { StyledTable, TableProps } from "./styles";
 
 // Types
-import type { CollectionImage } from "../../api/apiGetCollectionImages";
+import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 import type { UseCollectionImagesTableReturn } from "../../hooks/useCollectionImagesTable";
 export interface CollectionImagesTableProps
-  extends TableProps<CollectionImage> {
+  extends TableProps<TCollectionImage> {
   table: UseCollectionImagesTableReturn;
 }
 
