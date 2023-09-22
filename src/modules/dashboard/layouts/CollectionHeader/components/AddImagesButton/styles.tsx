@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
-// Icons
-import PenSvg from "public/icons/pen.svg";
+// Icon
+import Picture from "public/icons/picture.svg";
 
 // Components
 import _Button, { ButtonProps } from "../../../../components/Button";
@@ -10,13 +10,13 @@ import _Button, { ButtonProps } from "../../../../components/Button";
 export type { ButtonProps };
 
 // Styled components
-export const StyledButton = styled(_Button).attrs(() => ({
-  type: "primary",
-  size: "middle",
-}))<ButtonProps>``;
-
-// Styled icons
-export const PenIcon = styled(PenSvg)`
+export const FolderIcon = styled(Picture)`
   width: 20px;
   height: 20px;
 `;
+
+export const StyledButton = styled(_Button).attrs(() => ({
+  type: "primary",
+  size: "middle",
+  icon: <FolderIcon />,
+}))<ButtonProps>``;

@@ -15,6 +15,7 @@ export interface GetImagesRequest {
 export interface GetImagesImage {
   id: number;
   src: string;
+  thumbnail: string;
 }
 
 export interface GetImagesResponse {

@@ -10,7 +10,11 @@ export const IconButton = ({
   icon = children,
   ...props
 }: IconButtonProps) => {
-  return <StyledButton shape={shape} icon={icon} {...props} />;
+  return (
+    <StyledButton shape={shape} {...props}>
+      {icon || children}
+    </StyledButton>
+  );
 };
 
 export default IconButton;

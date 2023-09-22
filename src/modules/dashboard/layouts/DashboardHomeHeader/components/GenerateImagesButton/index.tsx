@@ -1,5 +1,5 @@
 // Styles
-import { StyledButton, ButtonProps } from "./styles";
+import { StyledButton, ButtonProps, PenIcon } from "./styles";
 
 // Types
 export interface GenerateImagesButtonProps extends ButtonProps {}
@@ -8,7 +8,11 @@ export const GenerateImagesButton = ({
   children = "Generate Images",
   ...props
 }: GenerateImagesButtonProps) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
+  return (
+    <StyledButton icon={<PenIcon />} {...props}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default GenerateImagesButton;

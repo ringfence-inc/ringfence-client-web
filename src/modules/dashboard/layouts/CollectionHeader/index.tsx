@@ -1,35 +1,36 @@
 import { HtmlHTMLAttributes } from "react";
 
 // Styles
-import { Wrap } from "./styles";
+import { Wrap, ViewSwitch } from "./styles";
 
 // Components
 import Actions from "./components/Actions";
-import NewCollectionButton from "./components/NewCollectionButton";
+import AddImagesButton from "./components/AddImagesButton";
 
 // Types
 import type { UseCollectionsTableReturn } from "../../hooks/useCollectionsTable";
-export interface CollectionsHeaderProps
+export interface CollectionHeaderProps
   extends HtmlHTMLAttributes<HTMLDivElement> {
   table?: UseCollectionsTableReturn;
   disabledCreate?: boolean;
   onCreateClick?: () => void;
 }
 
-export const CollectionsHeader = ({
+export const CollectionHeader = ({
   table,
   disabledCreate = false,
   onCreateClick,
   ...props
-}: CollectionsHeaderProps) => {
+}: CollectionHeaderProps) => {
   const { hasSelected } = table || {};
 
   return (
     <Wrap {...props}>
+      <ViewSwitch />
       {hasSelected ? <Actions /> : <div />}
-      <NewCollectionButton onClick={onCreateClick} disabled={disabledCreate} />
+      <AddImagesButton onClick={onCreateClick} disabled={disabledCreate} />
     </Wrap>
   );
 };
 
-export default CollectionsHeader;
+export default CollectionHeader;

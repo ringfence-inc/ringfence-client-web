@@ -2,9 +2,12 @@
 import { StyledImage, ImageProps } from "./styles";
 
 // Types
-export interface PictureProps extends ImageProps {}
+import type { TCollectionImage } from "../../api/apiGetCollectionImages";
+export interface PictureProps
+  extends ImageProps,
+    Omit<Partial<TCollectionImage>, "id" | "src"> {}
 
-export const Picture = (props: PictureProps) => {
+export const Picture = ({ ...props }: PictureProps) => {
   return <StyledImage {...props} />;
 };
 

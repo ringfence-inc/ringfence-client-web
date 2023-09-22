@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
+  button {
+    all: unset;
+  }
+
 `;
 
 // Types

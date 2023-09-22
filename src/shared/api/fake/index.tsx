@@ -4,6 +4,7 @@ import fakeGetImages from "./images/fakeGetImages";
 // Collections api
 import fakeGetCollections from "./collections/fakeGetImages";
 import fakeCreateCollection from "./collections/fakeCreateCollection";
+import fakeGetCollectionImages from "./collections/fakeGetColletionImages";
 
 export const fakeApi = {
   auth: {},
@@ -13,6 +14,9 @@ export const fakeApi = {
   collections: {
     get: fakeGetCollections,
     post: fakeCreateCollection,
+  },
+  collection: {
+    get: fakeGetCollectionImages,
   },
 };
 
