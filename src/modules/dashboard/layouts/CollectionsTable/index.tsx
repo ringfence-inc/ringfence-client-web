@@ -2,10 +2,9 @@
 import { StyledTable, TableProps } from "./styles";
 
 // Types
-import type { GetCollectionsCollection } from "../../api/apiGetCollections";
+import type { TCollection } from "../../api/apiGetCollections";
 import type { UseCollectionsTableReturn } from "../../hooks/useCollectionsTable";
-export interface CollectionsTableProps
-  extends TableProps<GetCollectionsCollection> {
+export interface CollectionsTableProps extends TableProps<TCollection> {
   table: UseCollectionsTableReturn;
 }
 

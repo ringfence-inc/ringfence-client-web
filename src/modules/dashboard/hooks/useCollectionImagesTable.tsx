@@ -12,6 +12,7 @@ import type { CollectionImagesTableProps } from "../layouts/CollectionImagesTabl
 
 // Components
 import CollectionStatus from "../components/CollectionStatus";
+import CollectionNameThumbnail from "../components/CollectionNameThumbnail";
 
 // Types
 export interface UseCollectionImagesTableReturn
@@ -40,6 +41,7 @@ export const useCollectionImagesTable = ({
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (text, record) => <CollectionNameThumbnail data={record} />,
     },
     {
       title: "Created At",

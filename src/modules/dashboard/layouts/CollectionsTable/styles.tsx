@@ -7,9 +7,7 @@ import Table, { TableProps } from "@/shared/ui/Table";
 export type { TableProps };
 
 // Types
-import { GetCollectionsCollection } from "../../api/apiGetCollections";
+import { TCollection } from "../../api/apiGetCollections";
 
 // Styled components
-export const StyledTable = styled(Table)<
-  TableProps<GetCollectionsCollection>
->``;
+export const StyledTable = styled(Table)<TableProps<TCollection>>``;

@@ -5,11 +5,23 @@ import CloudUploadSvg from "public/icons/cloud-upload.svg";
 
 // Components
 import Typography, { TypographyProps } from "@/shared/ui/Typography";
-import Upload, { DraggerProps } from "antd/lib/upload";
+import Upload, {
+  DraggerProps,
+  UploadChangeParam,
+  RcFile,
+  UploadFile,
+  UploadListProps,
+} from "antd/lib/upload";
 const { Dragger } = Upload;
 
 // Re export types
-export type { DraggerProps as AntdDraggerProps };
+export type {
+  DraggerProps as AntdDraggerProps,
+  UploadChangeParam,
+  RcFile,
+  UploadFile,
+  UploadListProps,
+};
 
 // Styled components
 export const StyledDragger = styled(Dragger)`

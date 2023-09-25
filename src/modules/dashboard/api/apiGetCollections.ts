@@ -18,7 +18,7 @@ export type TCollectionStatus =
   | "in_progress"
   | "checked";
 
-export interface GetCollectionsCollection {
+export interface TCollection {
   id: number;
   name: string;
   created_at: string;
@@ -27,7 +27,7 @@ export interface GetCollectionsCollection {
 }
 
 export interface GetCollectionsResponse {
-  data?: GetCollectionsCollection[];
+  data?: TCollection[];
   meta?: ResponseMeta;
 }
 

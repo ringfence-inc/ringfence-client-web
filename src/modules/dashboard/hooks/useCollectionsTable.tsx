@@ -6,7 +6,7 @@ import useGetCollections from "../api/hooks/useGetCollections";
 import type { ColumnType } from "@/shared/ui/Table";
 import type { GetCollectionsResponse } from "@/modules/dashboard/api/apiGetCollections";
 import type { CollectionsTableProps } from "../layouts/CollectionsTable";
-import type { GetCollectionsCollection } from "@/modules/dashboard/api/apiGetCollections";
+import type { TCollection } from "@/modules/dashboard/api/apiGetCollections";
 
 // Components
 import Link from "@/shared/ui/Link";
@@ -15,7 +15,7 @@ import CollectionStatus from "../components/CollectionStatus";
 // Types
 export interface UseCollectionsTableReturn
   extends Partial<CollectionsTableProps> {
-  mapData: (data: GetCollectionsCollection[]) => GetCollectionsCollection[];
+  mapData: (data: TCollection[]) => TCollection[];
   data: GetCollectionsResponse;
   hasSelected?: boolean;
   hasData?: boolean;
@@ -26,7 +26,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
 
   const { data, isLoading } = useGetCollections();
 
-  const columns: Array<ColumnType<GetCollectionsCollection>> = [
+  const columns: Array<ColumnType<TCollection>> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -67,7 +67,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
     onChange: onSelectChange,
   };
 
-  const mapData = (data: GetCollectionsCollection[]) => {
+  const mapData = (data: TCollection[]) => {
     return data.map((collection) => ({
       ...collection,
       key: collection.id,
