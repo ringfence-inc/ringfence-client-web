@@ -1,5 +1,8 @@
 import styled, { css } from "styled-components";
 
+// Styles
+import primaryColorHover from "@/shared/styles/primaryColorHover";
+
 // Icons
 import ExpandSvg from "public/icons/expand.svg";
 
@@ -47,6 +50,10 @@ export const OverlayFullScreenWrap = styled(Overlay)`
   bottom: 12px;
   width: 32px;
   height: 32px;
+  ${({ theme }) => css`
+    color: ${theme.color.text};
+  `};
+  ${primaryColorHover};
 `;
 
 export const StyledCheckbox = styled(Checkbox).attrs(
@@ -55,11 +62,7 @@ export const StyledCheckbox = styled(Checkbox).attrs(
 
 export const StyledCollectionStatus = styled(
   CollectionStatus
-)<CollectionStatusProps>`
-  ${({ theme }) => css`
-    color: ${theme.color.text};
-  `};
-`;
+)<CollectionStatusProps>``;
 
 export const StyledImage = styled(Image)<ImageProps>`
   ${({ theme }) => css`
@@ -75,7 +78,4 @@ export const StyledImage = styled(Image)<ImageProps>`
 export const ExpandIcon = styled(ExpandSvg)`
   width: 24px;
   height: 24px;
-  ${({ theme }) => css`
-    color: ${theme.color.text};
-  `};
 `;

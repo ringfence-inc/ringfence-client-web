@@ -27,6 +27,9 @@ export const Picture = ({
   ...props
 }: PictureProps) => {
   const [showPreview, setShowPreview] = useState<boolean>(false);
+
+  const handlePreviewClick = () => setShowPreview(true);
+
   const { thumbnail, src } = data || {};
   return (
     <Wrap {...props}>
@@ -45,7 +48,7 @@ export const Picture = ({
 
       {showOverlay && (
         <>
-          <OverlayFullScreenWrap>
+          <OverlayFullScreenWrap onClick={handlePreviewClick}>
             <ExpandIcon />
           </OverlayFullScreenWrap>
           <StyledImagePreview

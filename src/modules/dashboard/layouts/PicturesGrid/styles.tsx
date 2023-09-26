@@ -3,6 +3,9 @@ import styled, { css } from "styled-components";
 // Components
 import _Picture, { PictureProps } from "../../components/Picture";
 
+// Re export types
+export type { PictureProps };
+
 // Styled components
 export const Wrap = styled.div`
   display: grid;

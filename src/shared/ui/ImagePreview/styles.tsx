@@ -7,6 +7,8 @@ import Image, { ImageProps } from "antd/lib/image";
 export type { ImageProps as AntdImageProps };
 
 // Styled components
-export const StyledImage = styled(Image)`
+export const Wrap = styled.div`
+  position: absolute;
   display: none;
 `;
+export const StyledImage = styled(Image)``;

@@ -1,5 +1,5 @@
 // Styles
-import { StyledImage, AntdImageProps } from "./styles";
+import { Wrap, StyledImage, AntdImageProps } from "./styles";
 
 // Types
 export interface ImagePreviewProps extends AntdImageProps {
@@ -24,7 +24,11 @@ export const ImagePreview = ({
 
   return (
     <>
-      <StyledImage preview={previewProps} src={src} {...props} />
+      {visible && (
+        <Wrap>
+          <StyledImage preview={previewProps} src={src} {...props} />
+        </Wrap>
+      )}
       {children}
     </>
   );

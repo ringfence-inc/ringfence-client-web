@@ -66,7 +66,10 @@ export const CollectionPage = () => {
           />
           <Title>{title as string}</Title>
           {isGridView ? (
-            <PicturesGrid items={data?.data || []} />
+            <PicturesGrid
+              items={data?.data || []}
+              pictureProps={{ showOverlay: true }}
+            />
           ) : (
             <CollectionImagesTable table={table} />
           )}
