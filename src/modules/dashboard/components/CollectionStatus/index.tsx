@@ -1,5 +1,5 @@
 // Styles
-import { Wrap, Dot, WrapProps, TCollectionStatus } from "./styles";
+import { Wrap, Text, Dot, WrapProps, TCollectionStatus } from "./styles";
 
 export const statusesText: Record<TCollectionStatus, string> = {
   checked: "Checked",
@@ -21,7 +21,7 @@ export const CollectionStatus = ({ data, ...props }: CollectionStatusProps) => {
   return (
     <Wrap $status={status} {...props}>
       <Dot />
-      {statusesText[status as TCollectionStatus] || "No status"}
+      <Text>{statusesText[status as TCollectionStatus] || "No status"}</Text>
       {props.children}
     </Wrap>
   );

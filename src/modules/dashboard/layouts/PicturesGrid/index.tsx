@@ -14,9 +14,8 @@ export interface PicturesGridProps extends HtmlHTMLAttributes<HTMLDivElement> {
 export const PicturesGrid = ({ items = [], ...props }: PicturesGridProps) => {
   return (
     <Wrap {...props}>
-      {items.map((item) => {
-        const { id, src, status } = item as any;
-        return <Picture key={id} {...{ src, status }} />;
+      {items.map((item, index) => {
+        return <Picture key={item?.id || index} data={item} />;
       })}
     </Wrap>
   );

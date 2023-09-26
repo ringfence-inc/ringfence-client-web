@@ -2,6 +2,9 @@ import { HtmlHTMLAttributes } from "react";
 
 import styled, { css } from "styled-components";
 
+// Components
+import Typography, { TypographyProps } from "@/shared/ui/Typography";
+
 // Types
 import { TCollectionStatus } from "../../api/apiGetCollections";
 
@@ -26,6 +29,8 @@ export const Dot = styled.div`
   height: 4px;
   border-radius: 50%;
 `;
+
+export const Text = styled(Typography.SmallText)<TypographyProps>``;
 
 export const Wrap = styled.div<WrapProps>`
   display: flex;
