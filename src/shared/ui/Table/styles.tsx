@@ -25,10 +25,26 @@ export const StyledTable = styled(Table)<TableProps<any>>`
   ${({ theme }) => css`
     .ant-table {
       background: transparent;
+
+      .ant-table-content {
+        table {
+          tbody {
+            tr {
+              border-radius: ${theme.radius.xss};
+              td {
+              }
+            }
+          }
+        }
+      }
     }
 
-    .ant-table-cell {
-      border-color: ${theme.color.midGrey} !important;
+    .ant-table-row {
+      &:hover {
+        td {
+          background: rgba(74, 220, 140, 0.1) !important;
+        }
+      }
     }
 
     .ant-table-thead {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 
 // Styles
 import {
@@ -27,13 +27,24 @@ export const Picture = ({
   ...props
 }: PictureProps) => {
   const [showPreview, setShowPreview] = useState<boolean>(false);
+  const [overlayVisible, setOverlayVisible] = useState<boolean>(false);
 
   const handlePreviewClick = () => setShowPreview(true);
+  const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = "/images/placeholder-image.jpg";
+    e.currentTarget.srcset = "";
+  };
+  const handleLoad = () => {
+    if (showOverlay) {
+      console.log("image onload");
+      setOverlayVisible(true);
+    }
+  };
 
   const { thumbnail, src } = data || {};
   return (
     <Wrap {...props}>
-      {showOverlay && (
+      {overlayVisible && (
         <>
           <OverlayCheckboxWrap>
             <StyledCheckbox />
@@ -44,9 +55,13 @@ export const Picture = ({
         </>
       )}
 
-      <StyledImage src={thumbnail} />
+      <StyledImage
+        src={thumbnail}
+        onError={handleError}
+        onLoadingComplete={handleLoad}
+      />
 
-      {showOverlay && (
+      {overlayVisible && (
         <>
           <OverlayFullScreenWrap onClick={handlePreviewClick}>
             <ExpandIcon />

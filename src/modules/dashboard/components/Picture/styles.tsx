@@ -36,7 +36,7 @@ export const Overlay = styled.label`
 export const OverlayCheckboxWrap = styled(Overlay)`
   left: 2px;
   top: 2px;
-  padding: 5px 8px;
+  padding: 8px;
 `;
 
 export const OverlayStatusWrap = styled(Overlay)`
@@ -56,9 +56,27 @@ export const OverlayFullScreenWrap = styled(Overlay)`
   ${primaryColorHover};
 `;
 
-export const StyledCheckbox = styled(Checkbox).attrs(
-  () => ({})
-)<CheckboxProps>``;
+export const StyledCheckbox = styled(Checkbox).attrs(() => ({
+  size: "large",
+}))<CheckboxProps>`
+  ${({ theme }) => css`
+    .ant-checkbox-inner {
+      border: 2px solid ${theme.color.white} !important;
+      background-color: transparent !important;
+      &::after {
+        width: 9px;
+        height: 12px;
+      }
+    }
+
+    .ant-checkbox-checked .ant-checkbox-inner {
+      border: 2px solid ${theme.color.primary} !important;
+      &::after {
+        border-color: ${theme.color.primary};
+      }
+    }
+  `};
+`;
 
 export const StyledCollectionStatus = styled(
   CollectionStatus
