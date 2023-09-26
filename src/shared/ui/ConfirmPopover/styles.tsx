@@ -14,6 +14,7 @@ export const StyledPopover = styled(Popover)<PopoverProps>``;
 export const ContentWrap = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 300px;
 `;
 
 export const ButtonsWrap = styled.div`
