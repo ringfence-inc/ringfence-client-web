@@ -10,9 +10,16 @@ import _CollectionImagesTable, {
 } from "../../layouts/CollectionImagesTable";
 import _PicturesGrid, { PicturesGridProps } from "../../layouts/PicturesGrid";
 import _Spin, { SpinProps } from "@/shared/ui/Spin";
+import _UploadCollectionImages, {
+  UploadCollectionImagesProps,
+} from "../../layouts/UploadCollectionImages";
 
 // Re export types
-export type { CollectionHeaderProps, CollectionImagesTableProps };
+export type {
+  CollectionHeaderProps,
+  CollectionImagesTableProps,
+  UploadCollectionImagesProps,
+};
 
 // Styled components
 export const Wrap = styled.div`
@@ -34,5 +41,9 @@ export const CollectionImagesTable = styled(
 export const Spin = styled(_Spin).attrs(() => ({
   size: "large",
 }))<SpinProps>``;
+
+export const UploadCollectionImages = styled(
+  _UploadCollectionImages
+)<UploadCollectionImagesProps>``;
 
 export const PicturesGrid = styled(_PicturesGrid)<PicturesGridProps>``;

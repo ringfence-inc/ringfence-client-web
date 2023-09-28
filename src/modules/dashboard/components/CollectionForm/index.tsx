@@ -1,3 +1,5 @@
+import { HtmlHTMLAttributes } from "react";
+
 // Styles
 import {
   FormWrap,
@@ -16,7 +18,6 @@ import {
   PriceWrap,
   PriceTitle,
   PriceText,
-  FormWrapProps,
 } from "./styles";
 
 // Components
@@ -27,7 +28,8 @@ import type { UseMutationResult } from "@tanstack/react-query";
 import type { UseFormReturn } from "react-hook-form";
 
 // Types
-export interface CollectionFormProps extends FormWrapProps {
+export interface CollectionFormProps
+  extends HtmlHTMLAttributes<HTMLFormElement> {
   form: UseFormReturn<any>;
   mutation: UseMutationResult<any, any, any, any>;
   showClose?: boolean;

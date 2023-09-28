@@ -1,4 +1,4 @@
-import { HtmlHTMLAttributes } from "react";
+import { useMemo } from "react";
 
 // Styles
 import {
@@ -18,16 +18,24 @@ import { usePathname } from "next/navigation";
 // Types
 export interface SideMenuProps extends SiderProps {}
 
+// Constants
+export const dashboardPath = "/dashboard";
+export const generatePath = "/dashboard/generate";
+export const collectionsPath = "/dashboard/collections";
+
+export const keyPaths = [collectionsPath, generatePath, dashboardPath];
+
 export const SideMenu = ({ ...props }: SideMenuProps) => {
   const pathname = usePathname();
 
-  const dashboardPath = "/dashboard";
-  const generatePath = "/dashboard/generate";
-  const collectionsPath = "/dashboard/collections";
+  const selectedKey = useMemo(
+    () => keyPaths.find((keyPath) => pathname.startsWith(keyPath)) as string,
+    [pathname, keyPaths]
+  );
 
   return (
     <Sider {...props}>
-      <StyledMenu selectedKeys={[pathname]} mode="inline">
+      <StyledMenu selectedKeys={[selectedKey]} mode="inline">
         <MenuItem icon={<HomeIcon />} key={dashboardPath}>
           <Link href={dashboardPath}>Home</Link>
         </MenuItem>

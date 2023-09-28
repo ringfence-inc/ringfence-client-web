@@ -17,8 +17,8 @@ export const fakeGetImages = ({
   for (let i = (page - 1) * limit; i < page * limit; i++) {
     const image: GetImagesImage = {
       id: i + 1,
-      src: faker.image.urlPicsumPhotos({ width: 320, height: 320 }),
-      thumbnail: faker.image.urlPicsumPhotos({ width: 160, height: 160 }),
+      src: faker.image.urlPicsumPhotos({ width: 1000, height: 1000 }),
+      thumbnail: faker.image.urlPicsumPhotos({ width: 320, height: 320 }),
     };
     images.push(image);
   }

@@ -1,5 +1,5 @@
 // Styles
-import { Wrap, Dot, WrapProps, TCollectionStatus } from "./styles";
+import { Wrap, Text, Dot, WrapProps, TCollectionStatus } from "./styles";
 
 export const statusesText: Record<TCollectionStatus, string> = {
   checked: "Checked",
@@ -9,10 +9,10 @@ export const statusesText: Record<TCollectionStatus, string> = {
 };
 
 // Types
-import type { GetCollectionsCollection } from "../../api/apiGetCollections";
+import type { TCollection } from "../../api/apiGetCollections";
 import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 export interface CollectionStatusProps extends WrapProps {
-  data?: GetCollectionsCollection | TCollectionImage;
+  data?: TCollection | TCollectionImage;
 }
 
 export const CollectionStatus = ({ data, ...props }: CollectionStatusProps) => {
@@ -21,7 +21,7 @@ export const CollectionStatus = ({ data, ...props }: CollectionStatusProps) => {
   return (
     <Wrap $status={status} {...props}>
       <Dot />
-      {statusesText[status as TCollectionStatus] || "No status"}
+      <Text>{statusesText[status as TCollectionStatus] || "No status"}</Text>
       {props.children}
     </Wrap>
   );

@@ -12,6 +12,7 @@ import type { CollectionImagesTableProps } from "../layouts/CollectionImagesTabl
 
 // Components
 import CollectionStatus from "../components/CollectionStatus";
+import CollectionNameThumbnail from "../components/CollectionNameThumbnail";
 
 // Types
 export interface UseCollectionImagesTableReturn
@@ -20,6 +21,8 @@ export interface UseCollectionImagesTableReturn
   data: GetCollectionImagesResponse;
   hasSelected?: boolean;
   hasData?: boolean;
+  selectedRowKeys: React.Key[];
+  setSelectedRowKeys: React.Dispatch<React.SetStateAction<React.Key[]>>;
 }
 
 export interface UseCollectionImagesTableProps {
@@ -40,6 +43,7 @@ export const useCollectionImagesTable = ({
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (text, record) => <CollectionNameThumbnail data={record} />,
     },
     {
       title: "Created At",
@@ -79,6 +83,8 @@ export const useCollectionImagesTable = ({
     loading: isLoading,
     hasSelected: selectedRowKeys?.length > 0,
     hasData: !!data?.data?.length,
+    selectedRowKeys,
+    setSelectedRowKeys,
   };
 };
 

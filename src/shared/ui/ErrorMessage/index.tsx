@@ -36,13 +36,7 @@ export const ErrorMessage = ({
     );
   };
 
-  return (
-    <HookFormErrorMessage
-      name={name}
-      render={errorRender}
-      {...{ as, errors, key, message }}
-    />
-  );
+  return <HookFormErrorMessage name={name} render={errorRender} />;
 };
 
 export default ErrorMessage;
