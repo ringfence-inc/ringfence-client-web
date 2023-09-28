@@ -2,7 +2,7 @@
 import fakeGetImages from "./images/fakeGetImages";
 
 // Collections api
-import fakeGetCollections from "./collections/fakeGetImages";
+import fakeGetCollections from "./collections/fakeGetCollections";
 import fakeCreateCollection from "./collections/fakeCreateCollection";
 import fakeGetCollectionImages from "./collections/fakeGetColletionImages";
 

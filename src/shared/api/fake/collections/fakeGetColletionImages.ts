@@ -25,8 +25,8 @@ export const fakeGetCollectionImages = ({
         "in_progress",
         "checked",
       ]),
-      src: faker.image.urlPicsumPhotos({ width: 320, height: 320 }),
-      thumbnail: faker.image.urlPicsumPhotos({ width: 160, height: 160 }),
+      src: faker.image.urlPicsumPhotos({ width: 1000, height: 1000 }),
+      thumbnail: faker.image.urlPicsumPhotos({ width: 320, height: 320 }),
     };
     images.push(collection);
   }

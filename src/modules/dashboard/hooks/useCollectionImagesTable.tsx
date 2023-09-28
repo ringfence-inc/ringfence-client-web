@@ -31,7 +31,7 @@ export const useCollectionImagesTable = ({
   collectionId,
 }: UseCollectionImagesTableProps): UseCollectionImagesTableReturn => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
+  console.log("collection images selected", selectedRowKeys);
   const { data, isLoading } = useGetCollectionImages({
     collectionId,
   });

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 // Components
-import _FormWrap, { FormWrapProps } from "../FormWrap";
 import _Input, { InputProps } from "../Input";
 import _Select, { SelectProps } from "../Select";
 import _TextArea, { TextAreaProps } from "../TextArea";
@@ -10,10 +9,16 @@ import _CloseButton, { CloseButtonProps } from "../CloseButton";
 import Typography from "@/shared/ui/Typography";
 
 // Re export types
-export type { FormWrapProps, InputProps, TextAreaProps, SubmitButtonProps };
+export type { InputProps, TextAreaProps, SubmitButtonProps };
 
 // Styled components
-export const FormWrap = styled(_FormWrap)<FormWrapProps>``;
+export const FormWrap = styled.form`
+  max-width: 558px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
 export const Input = styled(_Input)<InputProps>`
   width: 100%;
 `;

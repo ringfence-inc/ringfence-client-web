@@ -12,12 +12,11 @@ import Checkbox, { CheckboxProps } from "@/shared/ui/Checkbox";
 import CollectionStatus, { CollectionStatusProps } from "../CollectionStatus";
 import ImagePreview, { ImagePreviewProps } from "@/shared/ui/ImagePreview";
 
+// Keyframes
+import fadeIn from "@/shared/keyframes/fadeIn";
+
 // Re export types
 export type { ImageProps };
-
-export const Wrap = styled.div`
-  position: relative;
-`;
 
 export const StyledImagePreview = styled(ImagePreview)<ImagePreviewProps>``;
 
@@ -96,4 +95,47 @@ export const StyledImage = styled(Image)<ImageProps>`
 export const ExpandIcon = styled(ExpandSvg)`
   width: 24px;
   height: 24px;
+`;
+
+export const Wrap = styled.div`
+  position: relative;
+
+  ${({ theme }) => css`
+    border-radius: ${theme.radius.xs};
+    transition: border-color 0.3s ease-in-out;
+
+    &[data-disabled="false"] {
+      cursor: pointer;
+
+      &:hover {
+        border: 2px solid ${theme.color.primary};
+      }
+    }
+
+    &[data-selected="true"] {
+      border: 2px solid ${theme.color.primary};
+    }
+
+    &[data-stash-actions="true"] {
+      ${OverlayCheckboxWrap} {
+        display: none;
+      }
+
+      ${OverlayFullScreenWrap} {
+        display: none;
+      }
+
+      &:hover {
+        ${OverlayCheckboxWrap} {
+          display: flex;
+          animation: ${fadeIn} 0.3s ease-in-out;
+        }
+
+        ${OverlayFullScreenWrap} {
+          display: flex;
+          animation: ${fadeIn} 0.3s ease-in-out;
+        }
+      }
+    }
+  `};
 `;

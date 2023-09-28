@@ -10,7 +10,7 @@ export const DashboardHomePage = () => {
   return (
     <>
       <HomeHeader />
-      <PicturesGrid items={data} />
+      <PicturesGrid items={data} pictureProps={{ disabled: true }} />
     </>
   );
 };

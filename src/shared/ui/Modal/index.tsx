@@ -6,7 +6,7 @@ export interface ModalProps extends AntdModalProps {}
 
 export const Modal = ({ footer = null, ...props }: ModalProps) => {
   return (
-    <StyledModal footer={footer} {...props}>
+    <StyledModal closable footer={footer} {...props}>
       {props.children}
     </StyledModal>
   );
