@@ -12,6 +12,12 @@ export type { CollectionThumbnailProps };
 export const Wrap = styled.div`
   display: flex;
   align-items: center;
+  ${({ theme }) => css`
+    cursor: pointer;
+    &:hover {
+      color: ${theme.color.primary};
+    }
+  `};
 `;
 
 export const Text = styled.span`

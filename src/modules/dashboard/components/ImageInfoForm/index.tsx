@@ -10,6 +10,7 @@ import {
   InfoItem,
   InfoTable,
   Image,
+  DeleteButton,
   InfoItemProps,
   InfoTableProps,
 } from "./styles";
@@ -51,6 +52,11 @@ export const ImageInfoForm = ({ data = {}, ...props }: ImageInfoFormProps) => {
         <Image src={src} alt={`image ${name}`} />
         <RightWrap>
           <InfoTable items={tableItems} />
+          <InfoItem
+            label="Prompt"
+            value="A dystopian landscape showing a close up glowing jar of honey, with a man standing in front."
+          />
+          <DeleteButton>Delete Image</DeleteButton>
         </RightWrap>
       </SubWrap>
     </FormWrap>

@@ -26,7 +26,7 @@ export interface PictureProps extends ImageProps {
   disabled?: boolean;
   selected?: boolean;
   onImageClick?: (e: any) => void;
-  onCheckboxClick?: (e: any) => void;
+  onCheckboxClick?: (e: any, data: TCollectionImage) => void;
   onPreviewClick?: (e: any) => void;
 }
 
@@ -56,7 +56,7 @@ export const Picture = ({
     }
   };
 
-  const { thumbnail, src } = data || {};
+  const { id, thumbnail, src } = data || {};
 
   const handleImageClick = (e: any) => {
     if (disabled) return;
@@ -73,6 +73,10 @@ export const Picture = ({
     onPreviewClick?.(e);
   };
 
+  const handleCheckboxClick = (e: any) => {
+    onCheckboxClick?.(e, data as TCollectionImage);
+  };
+
   return (
     <>
       <Wrap
@@ -83,8 +87,8 @@ export const Picture = ({
       >
         {overlayVisible && (
           <>
-            <OverlayCheckboxWrap onClick={onCheckboxClick}>
-              <StyledCheckbox />
+            <OverlayCheckboxWrap onClick={handleCheckboxClick}>
+              <StyledCheckbox checked={selected} />
             </OverlayCheckboxWrap>
             <OverlayStatusWrap>
               <StyledCollectionStatus data={data as TCollectionImage} />

@@ -97,6 +97,19 @@ export const ExpandIcon = styled(ExpandSvg)`
   height: 24px;
 `;
 
+// Styled css
+export const actionsVisibleCss = css`
+  ${OverlayCheckboxWrap} {
+    display: flex;
+    animation: ${fadeIn} 0.3s ease-in-out;
+  }
+
+  ${OverlayFullScreenWrap} {
+    display: flex;
+    animation: ${fadeIn} 0.3s ease-in-out;
+  }
+`;
+
 export const Wrap = styled.div`
   position: relative;
 
@@ -112,10 +125,6 @@ export const Wrap = styled.div`
       }
     }
 
-    &[data-selected="true"] {
-      border: 2px solid ${theme.color.primary};
-    }
-
     &[data-stash-actions="true"] {
       ${OverlayCheckboxWrap} {
         display: none;
@@ -126,16 +135,13 @@ export const Wrap = styled.div`
       }
 
       &:hover {
-        ${OverlayCheckboxWrap} {
-          display: flex;
-          animation: ${fadeIn} 0.3s ease-in-out;
-        }
-
-        ${OverlayFullScreenWrap} {
-          display: flex;
-          animation: ${fadeIn} 0.3s ease-in-out;
-        }
+        ${actionsVisibleCss};
       }
+    }
+
+    &[data-selected="true"] {
+      border: 2px solid ${theme.color.primary};
+      ${actionsVisibleCss};
     }
   `};
 `;

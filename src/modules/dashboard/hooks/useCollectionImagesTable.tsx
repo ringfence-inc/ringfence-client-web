@@ -21,6 +21,8 @@ export interface UseCollectionImagesTableReturn
   data: GetCollectionImagesResponse;
   hasSelected?: boolean;
   hasData?: boolean;
+  selectedRowKeys: React.Key[];
+  setSelectedRowKeys: React.Dispatch<React.SetStateAction<React.Key[]>>;
 }
 
 export interface UseCollectionImagesTableProps {
@@ -31,7 +33,7 @@ export const useCollectionImagesTable = ({
   collectionId,
 }: UseCollectionImagesTableProps): UseCollectionImagesTableReturn => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  console.log("collection images selected", selectedRowKeys);
+
   const { data, isLoading } = useGetCollectionImages({
     collectionId,
   });
@@ -81,6 +83,8 @@ export const useCollectionImagesTable = ({
     loading: isLoading,
     hasSelected: selectedRowKeys?.length > 0,
     hasData: !!data?.data?.length,
+    selectedRowKeys,
+    setSelectedRowKeys,
   };
 };
 

@@ -20,31 +20,61 @@ export type {
   TablePaginationConfig,
 };
 
-// Components
-export const StyledTable = styled(Table)<TableProps<any>>`
+// Types
+export interface StyledTableProps extends TableProps<any> {
+  $rowHeight?: number;
+  $pageSize?: number;
+  $baseHeight?: number;
+}
+
+// Styled css
+
+export const selectedRowCss = css`
   ${({ theme }) => css`
+    td {
+      background: rgba(74, 220, 140, 0.1) !important;
+      border: 1px solid ${theme.color.midGrey} !important;
+      border-color: ${theme.color.primary} !important;
+      border-style: solid none solid none !important;
+
+      &:last-child {
+        border-top-right-radius: ${theme.radius.xss};
+        border-bottom-right-radius: ${theme.radius.xss};
+        border-right-style: solid !important;
+      }
+      &:first-child {
+        border-top-left-radius: ${theme.radius.xss};
+        border-bottom-left-radius: ${theme.radius.xss};
+        border-left-style: solid !important;
+      }
+    }
+  `};
+`;
+
+// Components
+export const StyledTable = styled(Table)<StyledTableProps>`
+  ${({ theme, $rowHeight, $pageSize, $baseHeight = 0 }) => css`
     .ant-table {
       background: transparent;
 
-      .ant-table-content {
-        table {
-          tbody {
-            tr {
-              border-radius: ${theme.radius.xss};
-              td {
-              }
-            }
-          }
-        }
-      }
+      ${$rowHeight &&
+      $pageSize &&
+      css`
+        min-height: ${$rowHeight * $pageSize + $baseHeight}px;
+      `};
     }
 
     .ant-table-row {
-      &:hover {
-        td {
-          background: rgba(74, 220, 140, 0.1) !important;
-        }
+      td {
+        border-color: transparent;
       }
+      &:hover {
+        ${selectedRowCss};
+      }
+    }
+
+    .ant-table-row-selected {
+      ${selectedRowCss};
     }
 
     .ant-table-thead {

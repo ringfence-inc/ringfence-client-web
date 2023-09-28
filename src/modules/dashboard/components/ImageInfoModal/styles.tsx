@@ -8,6 +8,9 @@ import _ImageInfoForm, { ImageInfoFormProps } from "../ImageInfoForm";
 export type { ModalProps, ImageInfoFormProps };
 
 // Styled components
-export const Modal = styled(_Modal)<ModalProps>``;
+export const Modal = styled(_Modal)<ModalProps>`
+  width: 100% !important;
+  max-width: 818px !important;
+`;
 
 export const ImageInfoForm = styled(_ImageInfoForm)<ImageInfoFormProps>``;
