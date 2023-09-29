@@ -21,7 +21,13 @@ export interface UploadDraggerProps extends AntdDraggerProps {
 
 export const UploadDragger = forwardRef(
   (
-    { value, fileList = value, onChange, ...props }: UploadDraggerProps,
+    {
+      value,
+      fileList = value,
+      onChange,
+      listType = "picture",
+      ...props
+    }: UploadDraggerProps,
     ref
   ) => {
     console.log("upload drag file value", value);
@@ -33,12 +39,19 @@ export const UploadDragger = forwardRef(
       console.log("handle drag file change", file);
     };
 
+    const handleBeforeUpload = () => {
+      return;
+    };
+
     const handleRemove = (...args: any) => {};
 
     return (
       <StyledDragger
+        openFileDialogOnClick={false}
+        listType={listType}
         onChange={handleChange}
         customRequest={handleCustomRequest}
+        beforeUpload={handleBeforeUpload}
         ref={ref as any}
         fileList={fileList}
         {...props}

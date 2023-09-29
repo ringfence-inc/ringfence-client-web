@@ -26,7 +26,7 @@ export type {
 // Styled components
 export const StyledDragger = styled(Dragger)`
   ${({ theme }) => css`
-    background-color: ${theme.color.grey} !important;
+    display: block;
   `};
 `;
 

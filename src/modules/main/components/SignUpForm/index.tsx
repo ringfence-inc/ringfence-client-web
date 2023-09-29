@@ -36,11 +36,9 @@ export const SignUpForm = ({ ...props }: SignUpFormProps) => {
         placeholder="Email"
       />
       <StyledInput size="large" name="country" placeholder="Country" />
-      <SubmitButton size="large">
-        <StyledLink href={`/auth/sign-up${hrefParamsSuffix}`}>
-          SIGN UP
-        </StyledLink>
-      </SubmitButton>
+      <StyledLink href={`/auth/sign-up${hrefParamsSuffix}`}>
+        <SubmitButton size="large">SIGN UP</SubmitButton>
+      </StyledLink>
     </Wrap>
   );
 };

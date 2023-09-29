@@ -7,9 +7,7 @@ import queryClient from "@/shared/libs/query";
 export const QUERY_KEY_LOGOUT = "/auth/logout";
 
 // Types
-export interface LogoutRequest {
-  user_id: string;
-}
+export interface LogoutRequest {}
 
 export interface LogoutResponse {
   success: boolean;
@@ -21,11 +19,7 @@ export const apiLogout = async (
 ): Promise<LogoutResponse> => {
   let response = {} as LogoutResponse;
   try {
-    const response = await rest.post(
-      QUERY_KEY_LOGOUT,
-      false,
-      objToFormData(params)
-    );
+    const response = await rest.get(QUERY_KEY_LOGOUT, true, {});
   } catch (error) {}
 
   rest.removeTokens();
