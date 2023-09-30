@@ -37,10 +37,14 @@ export const UploadDragger = forwardRef(
       return options?.onSuccess?.({}, options?.file);
     };
 
-    const handleChange = (file: UploadChangeParam<UploadFile<any>> | any) => {
-      console.log("handle drag file change", file);
-      if (file?.status === "done") {
-        onChange?.(file?.fileList);
+    const handleChange = ({
+      file,
+      fileList,
+    }: UploadChangeParam<UploadFile<any>> | any = {}) => {
+      console.log("handle drag file change", file, fileList);
+      if (file?.status === "done" || file?.status === "removed") {
+        console.log("file status done");
+        onChange?.(fileList);
       }
     };
 
