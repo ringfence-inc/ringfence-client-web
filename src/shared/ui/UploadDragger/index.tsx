@@ -12,6 +12,8 @@ import {
   PrimaryText,
   AntdDraggerProps,
   UploadFile,
+  RcFile,
+  UploadChangeParam,
 } from "./styles";
 
 // Types
@@ -35,11 +37,15 @@ export const UploadDragger = forwardRef(
       return options?.onSuccess?.({}, options?.file);
     };
 
-    const handleChange = (file: any) => {
+    const handleChange = (file: UploadChangeParam<UploadFile<any>> | any) => {
       console.log("handle drag file change", file);
+      if (file?.status === "done") {
+        onChange?.(file?.fileList);
+      }
     };
 
-    const handleBeforeUpload = () => {
+    const handleBeforeUpload = (file: RcFile, fileList: RcFile[]) => {
+      console.log("handle drag file before upload", file, fileList);
       return;
     };
 
@@ -52,11 +58,10 @@ export const UploadDragger = forwardRef(
         onChange={handleChange}
         customRequest={handleCustomRequest}
         beforeUpload={handleBeforeUpload}
-        ref={ref as any}
         fileList={fileList}
         {...props}
       >
-        <SubWrap>
+        <SubWrap ref={ref as any}>
           <CloudUploadIcon />
           <TextWrap>
             <Description>Drag and drop your files</Description>

@@ -37,7 +37,8 @@ export const useUploadCollectionImagesForm = ({
   const { handleSubmit } = form;
 
   const onSubmit = handleSubmit(async (values: CollectionImagesFormValues) => {
-    await mutate(values);
+    console.log("upload collection images submit", values);
+    // await mutate(values);
   });
 
   return {

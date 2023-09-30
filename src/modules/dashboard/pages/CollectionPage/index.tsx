@@ -97,6 +97,7 @@ export const CollectionPage = () => {
               items={data?.items || []}
               selectedKeys={selectedRowKeys}
               pictureProps={pictureProps}
+              loading={loading}
             />
           ) : (
             <CollectionImagesTable table={table} />
