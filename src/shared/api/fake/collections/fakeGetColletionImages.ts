@@ -11,10 +11,10 @@ import type {
 export const fakeGetCollectionImages = ({
   body = {},
 }: RestRequestConfig): GetCollectionImagesResponse => {
-  const { page = 1, limit = 12 } = (body as GetCollectionImagesRequest) || {};
+  const { page = 1, take = 12 } = (body as GetCollectionImagesRequest) || {};
   const images: TCollectionImage[] = [];
 
-  for (let i = (page - 1) * limit; i < page * limit; i++) {
+  for (let i = (page - 1) * take; i < page * take; i++) {
     const collection: TCollectionImage = {
       id: i + 1,
       name: faker.lorem.words(3),
@@ -32,12 +32,10 @@ export const fakeGetCollectionImages = ({
   }
 
   return {
-    data: images,
-    meta: {
-      total: 100,
-      page,
-      limit,
-    },
+    items: images,
+    itemCount: 100,
+    page,
+    take,
   };
 };
 

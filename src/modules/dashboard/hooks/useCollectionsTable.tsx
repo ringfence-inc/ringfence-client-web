@@ -2,6 +2,9 @@
 import { useState } from "react";
 import useGetCollections from "../api/hooks/useGetCollections";
 
+// Utils
+import isResponseHasItems from "@/shared/utils/isResponseHasItems";
+
 // Types
 import type { ColumnType } from "@/shared/ui/Table";
 import type { GetCollectionsResponse } from "@/modules/dashboard/api/apiGetCollections";
@@ -29,11 +32,11 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
   const columns: Array<ColumnType<TCollection>> = [
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "title",
+      key: "title",
       render: (text, record) => (
         <Link
-          href={`/dashboard/collections/${record?.id}?title=${record?.name}`}
+          href={`/dashboard/collections/${record?.id}?title=${record?.title}`}
         >
           {text}
         </Link>
@@ -46,8 +49,8 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
     },
     {
       title: "Created Count",
-      dataIndex: "createdCount",
-      key: "createdCount",
+      dataIndex: "count_generated_images",
+      key: "count_generated_images",
     },
     {
       title: "Status",
@@ -70,7 +73,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
   const mapData = (data: TCollection[]) => {
     return data.map((collection) => ({
       ...collection,
-      key: collection.id,
+      key: String(collection.id),
     }));
   };
 
@@ -81,7 +84,7 @@ export const useCollectionsTable = (): UseCollectionsTableReturn => {
     mapData,
     loading: isLoading,
     hasSelected: selectedRowKeys?.length > 0,
-    hasData: !!data?.data?.length,
+    hasData: isResponseHasItems(data),
   };
 };
 

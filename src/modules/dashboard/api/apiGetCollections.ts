@@ -1,41 +1,53 @@
 // Utils
-import { fakeRest } from "@/shared/api";
+import rest from "@/shared/api";
 
 // Constants
-export const QUERY_KEY_GET_COLLECTIONS = "/collections";
+export const QUERY_KEY_GET_COLLECTIONS = "/org/collections";
 
 // Types
-import type { ResponseMeta } from "@/shared/api/types";
+import type { PaginationResponse, PaginationRequest } from "@/shared/api/types";
 
-export interface GetCollectionsRequest {
-  page?: number;
-  limit?: number;
-}
+export interface GetCollectionsRequest extends PaginationRequest {}
 
-export type TCollectionStatus =
-  | "not_checked"
+export type TCollectionStatusTitle =
+  | "not checked"
   | "detected"
-  | "in_progress"
+  | "in progress"
+  | "not checked"
   | "checked";
 
-export interface TCollection {
-  id: number;
-  name: string;
-  created_at: string;
-  createdCount: number;
-  status: TCollectionStatus;
-}
+export type TCollectionStatus = {
+  id?: number;
+  version?: string;
+  created_at?: string;
+  updated_at?: string;
+  title?: string;
+  description?: string;
+};
 
-export interface GetCollectionsResponse {
-  data?: TCollection[];
-  meta?: ResponseMeta;
+export type TCollectionUser = {
+  id?: number;
+};
+
+export type TCollection = {
+  id?: number;
+  title?: string;
+  detected_comment?: string;
+  count_generated_images?: number;
+  count_uploaded_images?: number;
+  status?: TCollectionStatus;
+  user?: TCollectionUser;
+};
+
+export interface GetCollectionsResponse extends PaginationResponse {
+  items?: TCollection[];
 }
 
 // Api function
 export const apiGetCollections = async (
-  data: GetCollectionsRequest
+  params: GetCollectionsRequest
 ): Promise<GetCollectionsResponse> => {
-  return await fakeRest.get(QUERY_KEY_GET_COLLECTIONS, true, {});
+  return await rest.get(QUERY_KEY_GET_COLLECTIONS, true, {});
 };
 
 export default apiGetCollections;

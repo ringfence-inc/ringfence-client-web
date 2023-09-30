@@ -37,7 +37,7 @@ export const CollectionPage = () => {
   const { collectionId } = useParams();
   const numCollectionId = Number(collectionId);
 
-  const [showUpload, setShowUpload] = useState<boolean>(false);
+  const [stateShowUpload, setStateShowUpload] = useState<boolean>(false);
 
   const table = useCollectionImagesTable({
     collectionId: numCollectionId,
@@ -45,8 +45,9 @@ export const CollectionPage = () => {
   const { data, loading, hasData, selectedRowKeys, setSelectedRowKeys } = table;
 
   const handleAddImagesClick = () => {
-    setShowUpload(true);
+    setStateShowUpload(true);
   };
+  console.log("collection page table", table);
 
   const handleCheckboxClick = (e: any, data: TCollectionImage) => {
     const { id } = data;
@@ -62,7 +63,7 @@ export const CollectionPage = () => {
     if (removed) {
       setSelectedRowKeys(filteredKeys);
     } else {
-      setSelectedRowKeys([...selectedRowKeys, id]);
+      setSelectedRowKeys([...selectedRowKeys, id as React.Key]);
     }
   };
 
@@ -72,20 +73,20 @@ export const CollectionPage = () => {
     onCheckboxClick: handleCheckboxClick,
   };
 
+  const showUpload = stateShowUpload || (!loading && !hasData);
+
   return (
     <Wrap>
       {loading && <Spin />}
 
-      {!loading && hasData && (
+      {!loading && (
         <>
-          {(showUpload || (!loading && !hasData)) && (
-            <UploadCollectionImages
-              show={showUpload}
-              setShow={setShowUpload}
-              collectionId={numCollectionId}
-              showClose={hasData}
-            />
-          )}
+          <UploadCollectionImages
+            show={showUpload}
+            setShow={setStateShowUpload}
+            collectionId={numCollectionId}
+            showClose={hasData}
+          />
           <CollectionHeader
             onAddImagesClick={handleAddImagesClick}
             disableAdd={showUpload}
@@ -93,7 +94,7 @@ export const CollectionPage = () => {
           <Title>{title as string}</Title>
           {isGridView ? (
             <PicturesGrid
-              items={data?.data || []}
+              items={data?.items || []}
               selectedKeys={selectedRowKeys}
               pictureProps={pictureProps}
             />

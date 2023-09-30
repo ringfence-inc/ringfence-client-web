@@ -11,10 +11,10 @@ import type {
 export const fakeGetImages = ({
   body = {},
 }: RestRequestConfig): GetImagesResponse => {
-  const { page = 1, limit = 12 } = (body as GetImagesRequest) || {};
+  const { page = 1, take = 12 } = (body as GetImagesRequest) || {};
   const images: GetImagesImage[] = [];
 
-  for (let i = (page - 1) * limit; i < page * limit; i++) {
+  for (let i = (page - 1) * take; i < page * take; i++) {
     const image: GetImagesImage = {
       id: i + 1,
       src: faker.image.urlPicsumPhotos({ width: 1000, height: 1000 }),
@@ -24,12 +24,10 @@ export const fakeGetImages = ({
   }
 
   return {
-    data: images,
-    meta: {
-      total: 100,
-      page,
-      limit,
-    },
+    items: images,
+    itemCount: 100,
+    page,
+    take,
   };
 };
 
