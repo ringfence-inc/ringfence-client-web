@@ -21,6 +21,7 @@ import ImageInfoModal, { ImageInfoModalProps } from "../ImageInfoModal";
 import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 export interface PictureProps extends ImageProps {
   data?: Partial<TCollectionImage>;
+  collectionId?: number;
   showOverlay?: boolean;
   stashActions?: boolean;
   disabled?: boolean;
@@ -36,6 +37,7 @@ export const Picture = ({
   stashActions = true,
   disabled = false,
   selected = false,
+  collectionId,
   onClick,
   onImageClick,
   onCheckboxClick,
@@ -120,6 +122,7 @@ export const Picture = ({
         data={data}
         open={showInfoModal}
         onCancel={handleCancel}
+        collectionId={collectionId}
       />
     </>
   );

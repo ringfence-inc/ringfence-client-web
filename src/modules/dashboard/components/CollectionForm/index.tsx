@@ -35,7 +35,7 @@ export const CollectionForm = ({
   onClose,
   ...props
 }: CollectionFormProps) => {
-  const { form, mutation } = props;
+  const { form } = props;
   const {
     formState: { isSubmitting },
   } = form;

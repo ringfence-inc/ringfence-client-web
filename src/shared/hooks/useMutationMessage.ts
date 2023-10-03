@@ -39,13 +39,30 @@ export const useMutationMessage = ({
     ? successMessage || defaultSuccessMessage
     : undefined;
 
+  console.log("use mutation message", {
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+    mutationStatusType,
+    errorMessageFromData,
+    message,
+  });
+
   useEffect(() => {
+    console.log("use effect message", message);
     if (message) {
       const method =
         messageApi?.[mutationStatusType as "error" | "success"] || (() => {});
+      console.log(
+        "use effect message method",
+        messageApi?.[mutationStatusType as "error" | "success"]
+      );
       method(message);
     }
   }, [message]);
+
+  return { messageApi };
 };
 
 export default useMutationMessage;

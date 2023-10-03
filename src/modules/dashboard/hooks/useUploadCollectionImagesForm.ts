@@ -3,6 +3,7 @@ import useUploadCollectionImages from "../api/hooks/useUploadCollectionImages";
 import useGetCollectionImages from "../api/hooks/useGetCollectionImages";
 import { useForm } from "react-hook-form";
 import useYupResolver from "@/shared/hooks/useYupResolver";
+import useMutationMessage from "@/shared/hooks/useMutationMessage";
 
 // Utils
 import * as yup from "yup";
@@ -23,6 +24,10 @@ export const useUploadCollectionImagesForm = ({
   const queryGet = useGetCollectionImages({ collection_id: collectionId });
   const { refetch } = queryGet;
   const { mutateAsync } = mutation;
+  useMutationMessage({
+    mutation,
+    defaultSuccessMessage: "Images uploaded successfully",
+  });
 
   const schema = yup.object().shape({
     images: yup
@@ -38,14 +43,17 @@ export const useUploadCollectionImagesForm = ({
     shouldUnregister: true,
   });
 
-  const { handleSubmit } = form;
+  const { handleSubmit, reset } = form;
 
   const onSubmit = handleSubmit(async (values: CollectionImagesFormValues) => {
     try {
       const images = values.images.map((image: any) => image?.originFileObj);
       console.log("upload collection images submit", values, images);
-      await mutateAsync({ images, collection_id: collectionId });
-      await refetch();
+      try {
+        await mutateAsync({ images, collection_id: collectionId });
+        await refetch();
+        reset();
+      } catch (e) {}
     } catch (e) {
       console.log(e);
     }

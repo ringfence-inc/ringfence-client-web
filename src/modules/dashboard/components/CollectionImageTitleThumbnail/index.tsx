@@ -11,10 +11,12 @@ import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 export interface CollectionImageTitleThumbnailProps
   extends HtmlHTMLAttributes<HTMLDivElement> {
   data?: Partial<TCollectionImage>;
+  collectionId?: number;
 }
 
 export const CollectionImageTitleThumbnail = ({
   data = {},
+  collectionId,
   ...props
 }: CollectionImageTitleThumbnailProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -38,6 +40,7 @@ export const CollectionImageTitleThumbnail = ({
         open={showModal}
         data={data}
         onCancel={handleCancelModal}
+        collectionId={collectionId}
       />
     </>
   );

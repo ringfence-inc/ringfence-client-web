@@ -47,7 +47,6 @@ export const CollectionPage = () => {
   const handleAddImagesClick = () => {
     setStateShowUpload(true);
   };
-  console.log("collection page table", table);
 
   const handleCheckboxClick = (e: any, data: TCollectionImage) => {
     const { id } = data;
@@ -98,6 +97,7 @@ export const CollectionPage = () => {
               selectedKeys={selectedRowKeys}
               pictureProps={pictureProps}
               loading={loading}
+              collectionId={numCollectionId}
             />
           ) : (
             <CollectionImagesTable table={table} />

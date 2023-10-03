@@ -3,6 +3,7 @@ import useCreateCollection from "../api/hooks/useCreateCollection";
 import useGetCollections from "../api/hooks/useGetCollections";
 import { useForm } from "react-hook-form";
 import useYupResolver from "@/shared/hooks/useYupResolver";
+import useMutationMessage from "@/shared/hooks/useMutationMessage";
 
 // Utils
 import * as yup from "yup";
@@ -15,7 +16,11 @@ export type CollectionFormValues = {
 export const useCreateCollectionForm = () => {
   const mutation = useCreateCollection();
   const { refetch } = useGetCollections();
-  const { mutate } = mutation;
+  const { mutateAsync } = mutation;
+  useMutationMessage({
+    mutation,
+    defaultSuccessMessage: "Collection created successfully",
+  });
 
   const schema = yup.object().shape({
     title: yup.string().required("Name is required"),
@@ -27,13 +32,17 @@ export const useCreateCollectionForm = () => {
     resolver,
   });
 
-  const { handleSubmit } = form;
+  const { reset, handleSubmit } = form;
 
   const onSubmit = handleSubmit(async (values: CollectionFormValues) => {
     console.log("useCreateCollectionForm values", values);
 
-    await mutate(values);
-    await refetch();
+    try {
+      await mutateAsync(values);
+      await refetch();
+
+      reset();
+    } catch (e) {}
   });
 
   return {

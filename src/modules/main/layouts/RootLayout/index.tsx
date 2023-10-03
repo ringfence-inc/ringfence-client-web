@@ -30,8 +30,6 @@ export const metadata = {
 };
 
 export const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { contextHolder } = useMessage();
-
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -39,10 +37,7 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
           <StyledRegistry>
             <QueryClientProvider client={queryClient}>
               <Theme>
-                <GlobalStyled>
-                  {contextHolder}
-                  {children}
-                </GlobalStyled>
+                <GlobalStyled>{children}</GlobalStyled>
               </Theme>
             </QueryClientProvider>
           </StyledRegistry>

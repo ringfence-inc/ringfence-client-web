@@ -3,7 +3,7 @@ import rest from "@/shared/api";
 import objToFormData from "@/shared/utils/objToFormData";
 
 // Constants
-export const QUERY_KEY_CREATE_COLLECTION = "/collection";
+export const QUERY_KEY_CREATE_COLLECTION = "/org/collections";
 
 // Types
 export interface CreateCollectionRequest {
@@ -20,7 +20,7 @@ export const apiCreateCollection = async (
 ): Promise<CreateCollectionResponse> => {
   const response = await rest.post(
     QUERY_KEY_CREATE_COLLECTION,
-    false,
+    true,
     objToFormData(params)
   );
 

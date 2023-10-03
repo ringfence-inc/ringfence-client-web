@@ -1,9 +1,7 @@
 // Hooks
-import useAntdMessage from "antd/lib/message/useMessage";
+import message, { ArgsProps } from "antd/lib/message";
 
 // Types
-import type { ArgsProps } from "antd/lib/message";
-
 export interface MessageOptions extends Partial<ArgsProps> {}
 
 export interface UseMessageProps {
@@ -17,7 +15,7 @@ export interface UseMessageProps {
 
 // Constants
 const commonConfig: MessageOptions = {
-  duration: 3,
+  duration: 5,
 };
 
 export const useMessage = (props: UseMessageProps = {}) => {
@@ -31,7 +29,6 @@ export const useMessage = (props: UseMessageProps = {}) => {
   } = props;
   const commonOptions = { ...commonConfig, ...propCommonOptions };
 
-  const [message, contextHolder] = useAntdMessage();
   const customMessage = {
     ...message,
     success: (content: string, options: MessageOptions = {}) => {
@@ -76,7 +73,7 @@ export const useMessage = (props: UseMessageProps = {}) => {
     },
   };
 
-  return { messageApi: customMessage, contextHolder };
+  return { messageApi: customMessage };
 };
 
 export default useMessage;

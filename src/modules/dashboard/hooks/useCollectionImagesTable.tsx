@@ -46,7 +46,12 @@ export const useCollectionImagesTable = ({
       title: "Name",
       dataIndex: "title",
       key: "title",
-      render: (text, record) => <CollectionImageTitleThumbnail data={record} />,
+      render: (text, record) => (
+        <CollectionImageTitleThumbnail
+          data={record}
+          collectionId={collectionId}
+        />
+      ),
     },
     {
       title: "Created At",

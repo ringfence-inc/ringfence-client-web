@@ -12,6 +12,7 @@ export interface PicturesGridProps extends HtmlHTMLAttributes<HTMLDivElement> {
   pictureProps?: Partial<PictureProps>;
   selectedKeys?: React.Key[];
   loading?: boolean;
+  collectionId?: number;
 }
 
 export const PicturesGrid = ({
@@ -19,6 +20,7 @@ export const PicturesGrid = ({
   pictureProps,
   selectedKeys,
   loading = false,
+  collectionId,
   ...props
 }: PicturesGridProps) => {
   console.log("pictures grid items", items);
@@ -38,6 +40,7 @@ export const PicturesGrid = ({
               key={id || index}
               data={item}
               selected={isSelected}
+              collectionId={collectionId}
               {...((pictureProps as any) || {})}
             />
           );
