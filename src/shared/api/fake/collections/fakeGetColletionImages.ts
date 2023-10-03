@@ -1,5 +1,8 @@
 import { faker } from "@faker-js/faker";
 
+// Utils
+import fakeCollectionStatus from "./fakeCollectionStatus";
+
 // Types
 import type { RestRequestConfig } from "@/shared/libs/rest";
 import type {
@@ -17,16 +20,10 @@ export const fakeGetCollectionImages = ({
   for (let i = (page - 1) * take; i < page * take; i++) {
     const collection: TCollectionImage = {
       id: i + 1,
-      name: faker.lorem.words(3),
+      title: faker.lorem.words(3),
       created_at: faker.date.past().toISOString(),
-      status: faker.helpers.arrayElement([
-        "not_checked",
-        "detected",
-        "in_progress",
-        "checked",
-      ]),
-      src: faker.image.urlPicsumPhotos({ width: 1000, height: 1000 }),
-      thumbnail: faker.image.urlPicsumPhotos({ width: 320, height: 320 }),
+      status: fakeCollectionStatus(),
+      s3_url: faker.image.urlPicsumPhotos({ width: 1000, height: 1000 }),
     };
     images.push(collection);
   }
