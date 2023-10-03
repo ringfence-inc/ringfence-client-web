@@ -15,6 +15,7 @@ export const Wrap = styled.div`
   justify-content: center;
 `;
 export const GridWrap = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;

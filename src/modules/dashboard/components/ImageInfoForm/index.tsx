@@ -23,7 +23,7 @@ export interface ImageInfoFormProps
 }
 
 export const ImageInfoForm = ({ data = {}, ...props }: ImageInfoFormProps) => {
-  const { name = "IMAGE NAME", src } = data;
+  const { title = "IMAGE NAME", s3_url } = data;
 
   const tableItems = useMemo(
     () => [
@@ -46,10 +46,10 @@ export const ImageInfoForm = ({ data = {}, ...props }: ImageInfoFormProps) => {
   return (
     <FormWrap {...props}>
       <TopWrap>
-        <Title>{name}</Title>
+        <Title>{title}</Title>
       </TopWrap>
       <SubWrap>
-        <Image src={src} alt={`image ${name}`} />
+        <Image src={s3_url} alt={`image - ${title}`} />
         <RightWrap>
           <InfoTable items={tableItems} />
           <InfoItem

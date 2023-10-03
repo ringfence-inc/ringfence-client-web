@@ -5,7 +5,10 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["picsum.photos"],
+    domains: [
+      "picsum.photos",
+      "ringfence-images-test.s3.eu-central-1.amazonaws.com",
+    ],
   },
   webpack: (config) => {
     config.module.rules.push({

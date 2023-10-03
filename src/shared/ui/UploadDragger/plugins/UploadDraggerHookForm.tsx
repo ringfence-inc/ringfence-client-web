@@ -38,7 +38,6 @@ export const UploadDraggerHookForm = ({
     rules,
     defaultValue,
   });
-  console.log("upload file dragger field", field);
 
   return (
     <WrapComponent

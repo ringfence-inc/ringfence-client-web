@@ -56,7 +56,7 @@ export const Picture = ({
     }
   };
 
-  const { id, thumbnail, src } = data || {};
+  const { id, s3_url } = data || {};
 
   const handleImageClick = (e: any) => {
     if (disabled) return;
@@ -97,7 +97,7 @@ export const Picture = ({
         )}
 
         <StyledImage
-          src={thumbnail}
+          src={s3_url}
           onError={handleError}
           onLoadingComplete={handleLoad}
           onClick={handleImageClick}
@@ -109,7 +109,7 @@ export const Picture = ({
               <ExpandIcon />
             </OverlayFullScreenWrap>
             <StyledImagePreview
-              src={src}
+              src={s3_url}
               visible={showPreview}
               setVisible={setShowPreview}
             />

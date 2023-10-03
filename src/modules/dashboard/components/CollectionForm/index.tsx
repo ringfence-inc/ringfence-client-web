@@ -5,12 +5,6 @@ import {
   FormWrap,
   Title,
   Input,
-  Select,
-  TextArea,
-  Description,
-  DullDescription,
-  DimensionsWrap,
-  DimensionsSubWrap,
   SubmitWrap,
   SubmitButtonsWrap,
   SubmitButton,
@@ -42,44 +36,19 @@ export const CollectionForm = ({
   ...props
 }: CollectionFormProps) => {
   const { form, mutation } = props;
+  const {
+    formState: { isSubmitting },
+  } = form;
   const { isLoading } = mutation || {};
 
   return (
     <FormProvider {...form}>
       <FormWrap {...props}>
         <Title>CREATE A COLLECTION</Title>
-        <Select
+        <Input
           label="Collection name"
-          name="name"
+          name="title"
           placeholder="Collection name"
-          disabled={isLoading}
-          options={[{ label: "Midjourney", value: "test" }]}
-        />
-
-        <DimensionsWrap>
-          <Description>Image dimensions</Description>
-          <DimensionsSubWrap>
-            <Input
-              label="Width"
-              name="width"
-              placeholder="Width"
-              disabled={isLoading}
-            />
-            <Input
-              label="Height"
-              name="height"
-              placeholder="Height"
-              disabled={isLoading}
-            />
-          </DimensionsSubWrap>
-          <DullDescription>
-            Short explainer of image resolution options
-          </DullDescription>
-        </DimensionsWrap>
-        <TextArea
-          label="Prompt"
-          name="prompt"
-          placeholder="Prompt"
           disabled={isLoading}
         />
 
@@ -90,7 +59,7 @@ export const CollectionForm = ({
           </PriceWrap>
           <SubmitButtonsWrap>
             {showClose && <CloseButton onClick={onClose}>Cancel</CloseButton>}
-            <SubmitButton>Run engine</SubmitButton>
+            <SubmitButton>Create collection</SubmitButton>
           </SubmitButtonsWrap>
         </SubmitWrap>
       </FormWrap>

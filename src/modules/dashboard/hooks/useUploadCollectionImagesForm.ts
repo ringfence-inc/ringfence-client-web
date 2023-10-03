@@ -32,13 +32,15 @@ export const useUploadCollectionImagesForm = ({
 
   const form = useForm<CollectionImagesFormValues>({
     resolver,
+    shouldUnregister: true,
   });
 
   const { handleSubmit } = form;
 
   const onSubmit = handleSubmit(async (values: CollectionImagesFormValues) => {
-    console.log("upload collection images submit", values);
-    // await mutate(values);
+    const images = values.images.map((image: any) => image?.originFileObj);
+    console.log("upload collection images submit", values, images);
+    await mutate({ images, collection_id: collectionId });
   });
 
   return {
