@@ -33,16 +33,18 @@ export const UploadImagesForm = ({
   form,
   ...props
 }: UploadImagesFormProps) => {
-  const { isLoading } = mutation || {};
+  const {
+    formState: { isSubmitting },
+  } = form || {};
 
   return (
     <FormProvider {...form}>
       <FormWrap onSubmit={onSubmit} {...props}>
         <StyledDragger name="images" />
         <SubmitWrap>
-          <SubmitButton loading={isLoading}>Upload Images</SubmitButton>
+          <SubmitButton loading={isSubmitting}>Upload Images</SubmitButton>
           {showClose && (
-            <CloseButton onClick={onClose} disabled={isLoading}>
+            <CloseButton onClick={onClose} disabled={isSubmitting}>
               Cancel
             </CloseButton>
           )}

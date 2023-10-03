@@ -39,7 +39,6 @@ export const CollectionForm = ({
   const {
     formState: { isSubmitting },
   } = form;
-  const { isLoading } = mutation || {};
 
   return (
     <FormProvider {...form}>
@@ -49,7 +48,7 @@ export const CollectionForm = ({
           label="Collection name"
           name="title"
           placeholder="Collection name"
-          disabled={isLoading}
+          disabled={isSubmitting}
         />
 
         <SubmitWrap>
@@ -58,8 +57,14 @@ export const CollectionForm = ({
             <PriceText>Free</PriceText>
           </PriceWrap>
           <SubmitButtonsWrap>
-            {showClose && <CloseButton onClick={onClose}>Cancel</CloseButton>}
-            <SubmitButton>Create collection</SubmitButton>
+            {showClose && (
+              <CloseButton onClick={onClose} disabled={isSubmitting}>
+                Cancel
+              </CloseButton>
+            )}
+            <SubmitButton loading={isSubmitting}>
+              Create collection
+            </SubmitButton>
           </SubmitButtonsWrap>
         </SubmitWrap>
       </FormWrap>

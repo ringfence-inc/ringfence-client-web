@@ -32,12 +32,8 @@ export const useMessage = (props: UseMessageProps = {}) => {
   const commonOptions = { ...commonConfig, ...propCommonOptions };
 
   const [message, contextHolder] = useAntdMessage();
-
   const customMessage = {
     ...message,
-    common: (content: string) => {
-      message.info({ content, ...commonOptions, ...infoOptions });
-    },
     success: (content: string, options: MessageOptions = {}) => {
       message.success({
         content,
@@ -82,3 +78,5 @@ export const useMessage = (props: UseMessageProps = {}) => {
 
   return { messageApi: customMessage, contextHolder };
 };
+
+export default useMessage;

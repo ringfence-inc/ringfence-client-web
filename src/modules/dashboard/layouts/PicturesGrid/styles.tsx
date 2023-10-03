@@ -12,7 +12,8 @@ export type { PictureProps, EmptyProps };
 export const Wrap = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 export const GridWrap = styled.div`
   width: 100%;
