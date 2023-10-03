@@ -21,6 +21,7 @@ import ImageInfoModal, { ImageInfoModalProps } from "../ImageInfoModal";
 import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 export interface PictureProps extends ImageProps {
   data?: Partial<TCollectionImage>;
+  collectionId?: number;
   showOverlay?: boolean;
   stashActions?: boolean;
   disabled?: boolean;
@@ -36,6 +37,7 @@ export const Picture = ({
   stashActions = true,
   disabled = false,
   selected = false,
+  collectionId,
   onClick,
   onImageClick,
   onCheckboxClick,
@@ -56,7 +58,7 @@ export const Picture = ({
     }
   };
 
-  const { id, thumbnail, src } = data || {};
+  const { id, s3_url } = data || {};
 
   const handleImageClick = (e: any) => {
     if (disabled) return;
@@ -97,7 +99,7 @@ export const Picture = ({
         )}
 
         <StyledImage
-          src={thumbnail}
+          src={s3_url}
           onError={handleError}
           onLoadingComplete={handleLoad}
           onClick={handleImageClick}
@@ -109,7 +111,7 @@ export const Picture = ({
               <ExpandIcon />
             </OverlayFullScreenWrap>
             <StyledImagePreview
-              src={src}
+              src={s3_url}
               visible={showPreview}
               setVisible={setShowPreview}
             />
@@ -120,6 +122,7 @@ export const Picture = ({
         data={data}
         open={showInfoModal}
         onCancel={handleCancel}
+        collectionId={collectionId}
       />
     </>
   );

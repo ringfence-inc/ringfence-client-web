@@ -20,10 +20,19 @@ import type { TCollectionImage } from "../../api/apiGetCollectionImages";
 export interface ImageInfoFormProps
   extends HtmlHTMLAttributes<HTMLFormElement> {
   data?: Partial<TCollectionImage>;
+  collectionId?: number;
+  onDeleteClick?: (...args: any[]) => void;
+  loading?: boolean;
 }
 
-export const ImageInfoForm = ({ data = {}, ...props }: ImageInfoFormProps) => {
-  const { name = "IMAGE NAME", src } = data;
+export const ImageInfoForm = ({
+  data = {},
+  collectionId,
+  loading,
+  onDeleteClick,
+  ...props
+}: ImageInfoFormProps) => {
+  const { title = "IMAGE NAME", s3_url } = data;
 
   const tableItems = useMemo(
     () => [
@@ -46,17 +55,19 @@ export const ImageInfoForm = ({ data = {}, ...props }: ImageInfoFormProps) => {
   return (
     <FormWrap {...props}>
       <TopWrap>
-        <Title>{name}</Title>
+        <Title>{title}</Title>
       </TopWrap>
       <SubWrap>
-        <Image src={src} alt={`image ${name}`} />
+        <Image src={s3_url} alt={`image - ${title}`} />
         <RightWrap>
           <InfoTable items={tableItems} />
           <InfoItem
             label="Prompt"
             value="A dystopian landscape showing a close up glowing jar of honey, with a man standing in front."
           />
-          <DeleteButton>Delete Image</DeleteButton>
+          <DeleteButton onClick={onDeleteClick} loading={loading}>
+            Delete Image
+          </DeleteButton>
         </RightWrap>
       </SubWrap>
     </FormWrap>

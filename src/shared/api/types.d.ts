@@ -1,5 +1,13 @@
-export interface ResponseMeta {
-  total?: number;
+export type PaginationResponse = {
   page?: number;
-  limit?: number;
-}
+  take?: number;
+  itemCount?: number;
+  pageCount?: number;
+  hasPreviousPage?: boolean;
+  hasNextPage?: boolean;
+};
+
+export type PaginationRequest = {
+  page?: number;
+  take?: number;
+};

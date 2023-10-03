@@ -1,11 +1,12 @@
 // Utils
-import { fakeRest } from "@/shared/api";
+import rest from "@/shared/api";
 
 // Constants
-export const QUERY_KEY_UPLOAD_COLLECTION_IMAGES = "/upload";
+export const QUERY_KEY_UPLOAD_COLLECTION_IMAGES =
+  "/org/upload-images/add-to-collection";
 
 export interface UploadCollectionImagesRequest {
-  collectionId: number;
+  collection_id: number;
   images: File[];
 }
 
@@ -15,9 +16,15 @@ export interface UploadCollectionImagesResponse {
 
 // Api function
 export const apiUploadCollectionImages = async (
-  data: UploadCollectionImagesRequest
+  params: UploadCollectionImagesRequest
 ): Promise<UploadCollectionImagesResponse> => {
-  return await fakeRest.post(QUERY_KEY_UPLOAD_COLLECTION_IMAGES, true, data);
+  const { collection_id, images = [] } = params || {};
+  const formData = new FormData();
+  formData.append("collection_id", collection_id.toString());
+  images.forEach((image) => {
+    formData.append("files", image);
+  });
+  return await rest.post(QUERY_KEY_UPLOAD_COLLECTION_IMAGES, true, formData);
 };
 
 export default apiUploadCollectionImages;

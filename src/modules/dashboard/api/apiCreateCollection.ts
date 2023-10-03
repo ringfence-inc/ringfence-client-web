@@ -3,14 +3,11 @@ import rest from "@/shared/api";
 import objToFormData from "@/shared/utils/objToFormData";
 
 // Constants
-export const QUERY_KEY_CREATE_COLLECTION = "/collection";
+export const QUERY_KEY_CREATE_COLLECTION = "/org/collections";
 
 // Types
 export interface CreateCollectionRequest {
-  name: string;
-  width: number;
-  height: number;
-  prompt: string;
+  title: string;
 }
 
 export interface CreateCollectionResponse {
@@ -19,12 +16,12 @@ export interface CreateCollectionResponse {
 
 // Api function
 export const apiCreateCollection = async (
-  data: CreateCollectionRequest
+  params: CreateCollectionRequest
 ): Promise<CreateCollectionResponse> => {
   const response = await rest.post(
     QUERY_KEY_CREATE_COLLECTION,
-    false,
-    objToFormData(data)
+    true,
+    objToFormData(params)
   );
 
   return response;

@@ -25,6 +25,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
+    "sharp": "^0.32.6",
     "styled-components": "^6.0.7",
     "typescript": "5.2.2",
     "yup": "^1.2.0"

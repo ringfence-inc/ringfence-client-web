@@ -48,7 +48,6 @@ export const MutationAlert = ({
     : isSuccess
     ? successMessage || defaultSuccessMessage
     : undefined;
-  console.log("mutation alert message", message);
 
   useEffect(() => {
     if (stateVisible !== visible) {

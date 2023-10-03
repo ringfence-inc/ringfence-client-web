@@ -5,12 +5,16 @@ import { HomeHeader, PicturesGrid } from "./styles";
 import useGetImages from "../../api/hooks/useGetImages";
 
 export const DashboardHomePage = () => {
-  const { data: { data } = {} } = useGetImages();
+  const { data: { items } = {}, isLoading } = useGetImages();
 
   return (
     <>
       <HomeHeader />
-      <PicturesGrid items={data} pictureProps={{ disabled: true }} />
+      <PicturesGrid
+        items={items}
+        pictureProps={{ disabled: true }}
+        loading={isLoading}
+      />
     </>
   );
 };

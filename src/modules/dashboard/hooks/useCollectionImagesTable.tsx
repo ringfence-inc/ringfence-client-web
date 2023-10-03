@@ -2,6 +2,9 @@
 import { useState } from "react";
 import useGetCollectionImages from "../api/hooks/useGetCollectionImages";
 
+// Utils
+import isResponseHasItems from "@/shared/utils/isResponseHasItems";
+
 // Types
 import type { ColumnType } from "@/shared/ui/Table";
 import type {
@@ -12,7 +15,7 @@ import type { CollectionImagesTableProps } from "../layouts/CollectionImagesTabl
 
 // Components
 import CollectionStatus from "../components/CollectionStatus";
-import CollectionNameThumbnail from "../components/CollectionNameThumbnail";
+import CollectionImageTitleThumbnail from "../components/CollectionImageTitleThumbnail";
 
 // Types
 export interface UseCollectionImagesTableReturn
@@ -35,15 +38,20 @@ export const useCollectionImagesTable = ({
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   const { data, isLoading } = useGetCollectionImages({
-    collectionId,
+    collection_id: collectionId,
   });
 
   const columns: Array<ColumnType<TCollectionImage>> = [
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text, record) => <CollectionNameThumbnail data={record} />,
+      dataIndex: "title",
+      key: "title",
+      render: (text, record) => (
+        <CollectionImageTitleThumbnail
+          data={record}
+          collectionId={collectionId}
+        />
+      ),
     },
     {
       title: "Created At",
@@ -71,7 +79,7 @@ export const useCollectionImagesTable = ({
   const mapData = (data: TCollectionImage[]) => {
     return data.map((collection) => ({
       ...collection,
-      key: collection.id,
+      key: String(collection.id),
     }));
   };
 
@@ -82,7 +90,7 @@ export const useCollectionImagesTable = ({
     mapData,
     loading: isLoading,
     hasSelected: selectedRowKeys?.length > 0,
-    hasData: !!data?.data?.length,
+    hasData: isResponseHasItems(data),
     selectedRowKeys,
     setSelectedRowKeys,
   };

@@ -5,11 +5,11 @@ import { fakeRest } from "@/shared/api";
 export const QUERY_KEY_GET_IMAGES = "/images";
 
 // Types
-import type { ResponseMeta } from "@/shared/api/types";
+import type { PaginationResponse } from "@/shared/api/types";
 
 export interface GetImagesRequest {
   page?: number;
-  limit?: number;
+  take?: number;
 }
 
 export interface GetImagesImage {
@@ -18,14 +18,13 @@ export interface GetImagesImage {
   thumbnail: string;
 }
 
-export interface GetImagesResponse {
-  data?: GetImagesImage[];
-  meta?: ResponseMeta;
+export interface GetImagesResponse extends PaginationResponse {
+  items?: GetImagesImage[];
 }
 
 // Api function
 export const apiGetImages = async (
-  data: GetImagesRequest
+  params: GetImagesRequest
 ): Promise<GetImagesResponse> => {
   return await fakeRest.get(QUERY_KEY_GET_IMAGES, true, {});
 };

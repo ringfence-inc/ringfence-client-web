@@ -11,9 +11,11 @@ export const fakeApi = {
   images: {
     get: fakeGetImages,
   },
-  collections: {
-    get: fakeGetCollections,
-    post: fakeCreateCollection,
+  org: {
+    collections: {
+      get: fakeGetCollections,
+      post: fakeCreateCollection,
+    },
   },
   collection: {
     get: fakeGetCollectionImages,

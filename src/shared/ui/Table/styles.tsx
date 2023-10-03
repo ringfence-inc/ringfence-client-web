@@ -54,9 +54,13 @@ export const selectedRowCss = css`
 // Components
 export const StyledTable = styled(Table)<StyledTableProps>`
   ${({ theme, $rowHeight, $pageSize, $baseHeight = 0 }) => css`
-    .ant-table {
-      background: transparent;
+    .ant-table,
+    .ant-table-cell,
+    .ant-table-placeholder {
+      background: transparent !important;
+    }
 
+    .ant-table {
       ${$rowHeight &&
       $pageSize &&
       css`

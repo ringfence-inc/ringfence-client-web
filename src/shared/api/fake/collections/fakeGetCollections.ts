@@ -1,5 +1,8 @@
 import { faker } from "@faker-js/faker";
 
+// Utils
+import fakeCollectionStatus from "./fakeCollectionStatus";
+
 // Types
 import type { RestRequestConfig } from "@/shared/libs/rest";
 import type {
@@ -11,32 +14,25 @@ import type {
 export const fakeGetCollections = ({
   body = {},
 }: RestRequestConfig): GetCollectionsResponse => {
-  const { page = 1, limit = 12 } = (body as GetCollectionsRequest) || {};
+  const { page = 1, take = 12 } = (body as GetCollectionsRequest) || {};
   const collections: TCollection[] = [];
 
-  for (let i = (page - 1) * limit; i < page * limit; i++) {
+  for (let i = (page - 1) * take; i < page * take; i++) {
     const collection: TCollection = {
       id: i + 1,
-      name: faker.lorem.words(3),
-      created_at: faker.date.past().toISOString(),
-      createdCount: faker.number.int(100),
-      status: faker.helpers.arrayElement([
-        "not_checked",
-        "detected",
-        "in_progress",
-        "checked",
-      ]),
+      title: faker.lorem.words(3),
+      count_generated_images: faker.number.int({ max: 100 }),
+      count_uploaded_images: faker.number.int({ max: 100 }),
+      status: fakeCollectionStatus(),
     };
     collections.push(collection);
   }
 
   return {
-    data: collections,
-    meta: {
-      total: 100,
-      page,
-      limit,
-    },
+    items: collections,
+    itemCount: 100,
+    page,
+    take,
   };
 };
 

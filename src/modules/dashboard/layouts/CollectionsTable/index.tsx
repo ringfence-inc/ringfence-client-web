@@ -15,7 +15,7 @@ export const CollectionsTable = ({
   const {
     rowSelection = {},
     mapData = () => [],
-    data = { data: [] },
+    data = { items: [] },
     loading = false,
     columns = [],
   } = table || {};
@@ -24,7 +24,7 @@ export const CollectionsTable = ({
     <StyledTable
       {...props}
       rowSelection={rowSelection}
-      dataSource={mapData(data?.data || [])}
+      dataSource={mapData(data?.items || [])}
       loading={loading}
       columns={columns}
     />

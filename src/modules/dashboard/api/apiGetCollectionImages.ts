@@ -1,43 +1,65 @@
 // Utils
-import { fakeRest } from "@/shared/api";
+import rest from "@/shared/api";
 
 // Constants
-export const QUERY_KEY_GET_COLLECTION_IMAGES = "/collection";
+export const QUERY_KEY_GET_COLLECTION_IMAGES = "/org/upload-images";
 
 // Types
-import type { ResponseMeta } from "@/shared/api/types";
+import type { PaginationResponse, PaginationRequest } from "@/shared/api/types";
+import type {
+  TCollection,
+  TCollectionStatus,
+  TCollectionUser,
+} from "./apiGetCollections";
 
-export interface GetCollectionImagesRequest {
-  collectionId: number;
+// Re export types
+export type { TCollectionStatus, TCollectionUser };
+
+// Types
+export interface GetCollectionImagesRequest extends PaginationRequest {
+  collection_id: number;
   page?: number;
-  limit?: number;
+  take?: number;
 }
 
-export type TCollectionImageStatus =
-  | "not_checked"
-  | "detected"
-  | "in_progress"
-  | "checked";
+export type TImageCollection = {
+  id?: number;
+  version?: string;
+  created_at?: string;
+  updated_at?: string;
+  collection?: Omit<TCollection, "user" | "status">;
+};
 
-export interface TCollectionImage {
-  id: number;
-  name: string;
-  created_at: string;
-  status: TCollectionImageStatus;
-  src: string;
-  thumbnail: string;
-}
+export type TCollectionImage = {
+  id?: number;
+  version?: string;
+  created_at?: string;
+  updated_at?: string;
+  count_urls?: number;
+  count_brands?: number;
+  s3_url?: string;
+  title?: string;
+  key?: string;
+  user?: TCollectionUser;
+  status?: TCollectionStatus;
+  collections?: TImageCollection[];
+};
 
-export interface GetCollectionImagesResponse {
-  data?: TCollectionImage[];
-  meta?: ResponseMeta;
+export interface GetCollectionImagesResponse extends PaginationResponse {
+  items?: TCollectionImage[];
 }
 
 // Api function
 export const apiGetCollectionImages = async (
-  data: GetCollectionImagesRequest
+  params: GetCollectionImagesRequest
 ): Promise<GetCollectionImagesResponse> => {
-  return await fakeRest.get(QUERY_KEY_GET_COLLECTION_IMAGES, true, {});
+  const { collection_id, page = 1, take = 12 } = params || {};
+
+  return await rest.get(QUERY_KEY_GET_COLLECTION_IMAGES, true, {
+    collection_id,
+    page,
+    take,
+  });
 };
 
 export default apiGetCollectionImages;

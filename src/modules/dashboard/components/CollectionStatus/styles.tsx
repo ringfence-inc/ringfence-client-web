@@ -6,19 +6,19 @@ import styled, { css } from "styled-components";
 import Typography, { TypographyProps } from "@/shared/ui/Typography";
 
 // Types
-import { TCollectionStatus } from "../../api/apiGetCollections";
+import { TCollectionStatusTitle } from "../../api/apiGetCollections";
 
 // Re export types
-export type { TCollectionStatus };
+export type { TCollectionStatusTitle };
 
 export interface WrapProps extends HtmlHTMLAttributes<HTMLDivElement> {
-  $status?: TCollectionStatus;
+  $status?: TCollectionStatusTitle;
 }
 
-export const statusesColors: Record<TCollectionStatus, string> = {
-  not_checked: "#446DFF",
+export const statusesColors: Record<TCollectionStatusTitle, string> = {
+  "not checked": "#446DFF",
   detected: "#F44",
-  in_progress: "#FF9344",
+  "in progress": "#FF9344",
   checked: "#4ADC8C",
 };
 
@@ -38,8 +38,8 @@ export const Wrap = styled.div<WrapProps>`
   ${({ theme, $status }) => css`
     ${Dot} {
       background-color: ${$status &&
-      statusesColors[$status as TCollectionStatus]
-        ? statusesColors[$status as TCollectionStatus]
+      statusesColors[$status as TCollectionStatusTitle]
+        ? statusesColors[$status as TCollectionStatusTitle]
         : theme.color.grey};
     }
   `};
