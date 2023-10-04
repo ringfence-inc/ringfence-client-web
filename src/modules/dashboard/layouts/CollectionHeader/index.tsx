@@ -11,6 +11,7 @@ import AddImagesButton from "./components/AddImagesButton";
 import type { UseCollectionsTableReturn } from "../../hooks/useCollectionsTable";
 export interface CollectionHeaderProps
   extends HtmlHTMLAttributes<HTMLDivElement> {
+  collectionId?: number;
   table?: UseCollectionsTableReturn;
   disableAdd?: boolean;
   onAddImagesClick?: () => void;
@@ -19,6 +20,7 @@ export interface CollectionHeaderProps
 export const CollectionHeader = ({
   table,
   disableAdd = false,
+  collectionId,
   onAddImagesClick,
   ...props
 }: CollectionHeaderProps) => {
@@ -27,7 +29,7 @@ export const CollectionHeader = ({
   return (
     <Wrap {...props}>
       <ViewSwitch />
-      {hasSelected ? <Actions /> : <div />}
+      {hasSelected ? <Actions {...{ table, collectionId }} /> : <div />}
       <AddImagesButton onClick={onAddImagesClick} disabled={disableAdd} />
     </Wrap>
   );
