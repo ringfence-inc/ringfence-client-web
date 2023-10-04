@@ -37,7 +37,9 @@ export const PenIcon = styled(PenSvg)`
   ${iconCss};
 `;
 
-export const FolderIcon = styled(FolderSvg)``;
+export const FolderIcon = styled(FolderSvg)`
+  ${iconCss};
+`;
 
 export const TrashIcon = styled(TrashSvg)`
   ${iconCss};

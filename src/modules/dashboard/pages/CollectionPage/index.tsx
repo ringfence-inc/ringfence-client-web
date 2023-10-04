@@ -87,8 +87,10 @@ export const CollectionPage = () => {
             showClose={hasData}
           />
           <CollectionHeader
+            table={table}
             onAddImagesClick={handleAddImagesClick}
             disableAdd={showUpload}
+            collectionId={numCollectionId}
           />
           <Title>{title as string}</Title>
           {isGridView ? (

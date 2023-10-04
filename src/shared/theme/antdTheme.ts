@@ -2,13 +2,21 @@
 import type { ThemeConfig } from "antd";
 import type { ThemeType } from "./types";
 
+// Fonts
+import { inter } from "../styles/fonts";
+
 // Antd Theme
 import { theme } from "antd";
 const { darkAlgorithm, defaultAlgorithm } = theme;
 
+export const antdCommonTheme: ThemeConfig["token"] = {
+  fontFamily: inter.style.fontFamily,
+};
+
 export const antdDarkTheme: ThemeConfig = {
   algorithm: darkAlgorithm,
   token: {
+    ...antdCommonTheme,
     colorBgBase: "#000",
     colorPrimary: "#4ADC8C",
     colorBgContainer: "#363837",
@@ -19,6 +27,7 @@ export const antdDarkTheme: ThemeConfig = {
 export const antdLightTheme: ThemeConfig = {
   algorithm: defaultAlgorithm,
   token: {
+    ...antdCommonTheme,
     colorBgBase: "#fff",
     colorPrimary: "#4ADC8C",
     colorBgContainer: "#fff",

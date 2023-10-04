@@ -14,7 +14,7 @@ import {
 
 // Request hook
 export const useDeleteCollectionImages = (
-  defParams?: DeleteCollectionImagesRequest,
+  defParams?: Partial<DeleteCollectionImagesRequest>,
   options?: UseMutationOptions<
     DeleteCollectionImagesResponse,
     RequestError,
