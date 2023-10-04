@@ -27,7 +27,13 @@ export type {
 // Styled components
 export const Link = styled(_Link)<LinkProps>``;
 
-export const Sider = styled(_Sider)<SiderProps>``;
+export const Sider = styled(_Sider)<SiderProps>`
+  ${({ theme }) => css`
+    padding: 24px !important;
+    min-height: calc(100vh - 49px) !important;
+    border-right: 1px solid ${theme.color.midGrey};
+  `};
+`;
 
 export const StyledMenu = styled(Menu)<MenuProps>`
   ${({ theme }) => css`
@@ -35,7 +41,21 @@ export const StyledMenu = styled(Menu)<MenuProps>`
   `};
 `;
 
-export const MenuItem = styled(_MenuItem)<MenuItemProps>``;
+export const MenuItem = styled(_MenuItem)<MenuItemProps>`
+  height: 48px !important;
+  width: 100% !important;
+  padding: 12px !important;
+  ${({ theme }) => css`
+    border-radius: ${theme.radius.xss} !important;
+    margin: 0 !important;
+
+    &.ant-menu-item-selected {
+      background-color: ${theme.color.primary} !important;
+      color: ${theme.color.black} !important;
+      font-weight: ${theme.weight.semiBold} !important;
+    }
+  `};
+`;
 
 // Styled icon components
 export const iconsCss = css`
