@@ -34,7 +34,7 @@ export const SideMenu = ({ ...props }: SideMenuProps) => {
   );
 
   return (
-    <Sider {...props}>
+    <Sider width={252} {...props}>
       <StyledMenu selectedKeys={[selectedKey]} mode="inline">
         <MenuItem icon={<HomeIcon />} key={dashboardPath}>
           <Link href={dashboardPath}>Home</Link>
