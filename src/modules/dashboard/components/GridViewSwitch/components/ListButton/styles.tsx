@@ -15,6 +15,7 @@ export type { IconButtonProps };
 // Styled components
 export const StyledButton = styled(IconButton).attrs(() => ({
   type: "text",
+  size: "middle",
 }))<IconButtonProps>`
   ${buttonCss};
 `;

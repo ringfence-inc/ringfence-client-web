@@ -10,6 +10,7 @@ export const ButtonWrap = styled.div`
   ${({ theme }) => css`
     border: 1px solid ${theme.color.midGrey};
     border-radius: ${theme.radius.xss};
+    padding: 0 1.5px;
 
     &:last-child {
       border-top-left-radius: 0;
