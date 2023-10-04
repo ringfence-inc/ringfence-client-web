@@ -14,12 +14,14 @@ export type { IconButtonLinkProps };
 // Styled icon components
 export const StyledButton = styled(_IconButtonLink).attrs(() => ({
   type: "text",
-  size: "middle",
+  size: "mini",
 }))<IconButtonLinkProps>``;
 
 export const SettingsIcon = styled(SettingsSvg)`
   width: 24px;
   height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   ${({ theme }) => css`
     color: ${theme.color.text};
   `};

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 // Types
-export type SizeType = "small" | "middle" | "large";
+export type SizeType = "mini" | "small" | "middle" | "large";
 
 export type SizeProps = {
   $size?: SizeType;
@@ -36,6 +36,7 @@ export const selectSizeCss = css<SizeProps>`
   ${commonSizeCss};
 `;
 
+// Button
 export const buttonSizeCss = css<SizeProps>`
   ${({ theme, size = "large", $size = size }) => css`
     ${$size === "large" &&
@@ -55,6 +56,37 @@ export const buttonSizeCss = css<SizeProps>`
   `};
 `;
 
+// Icon Button
+export const iconButtonSizeCss = css<SizeProps>`
+  ${({ theme, size = "large", $size = size }) => css`
+    ${$size === "large" &&
+    css`
+      width: 44px !important;
+      height: 44px !important;
+    `};
+
+    ${$size === "middle" &&
+    css`
+      width: 36px !important;
+      height: 36px !important;
+    `};
+
+    ${$size === "small" &&
+    css`
+      width: 32px !important;
+      height: 32px !important;
+    `};
+
+    ${$size === "mini" &&
+    css`
+      min-width: 24px !important;
+      width: 24px !important;
+      height: 24px !important;
+    `};
+  `};
+`;
+
+// Checkbox
 export const checkboxSizeCss = css<SizeProps>`
   ${({ theme, size = "small", $size = size }) => css`
     ${$size === "large" &&

@@ -6,7 +6,7 @@ import type { ThemeType } from "./types";
 import { inter } from "../styles/fonts";
 
 // Antd Theme
-import { theme } from "antd";
+import theme from "antd/lib/theme";
 const { darkAlgorithm, defaultAlgorithm } = theme;
 
 export const antdCommonTheme: ThemeConfig["token"] = {

@@ -245,9 +245,11 @@ export class Rest implements RestConfig {
     } catch (error: any) {
       if (refreshTokenEnabled && error?.status === UNAUTHORIZED_CODE) {
         const tokens = await executeTokenRefresh();
+        console.log("token refresh", tokens);
 
         if (tokens) {
           headers.set("Authorization", `Bearer ${tokens.token}`);
+          console.log("new request execution");
           return await executeRequest();
         }
       }

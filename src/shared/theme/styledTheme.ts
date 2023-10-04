@@ -125,7 +125,6 @@ export const extendAntdTheme = (
     ...styledCommonTheme,
     color: {
       ...color,
-      primary: token.colorPrimary,
     },
     m: {
       ...m,

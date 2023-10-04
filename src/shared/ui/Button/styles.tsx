@@ -22,7 +22,10 @@ export const commonButtonCss = css`
 
 export const primaryButtonCss = css`
   ${({ theme }) => css`
-    color: ${theme.color.black} !important;
+    && {
+      background-color: ${theme.color.primary};
+      color: ${theme.color.black};
+    }
   `};
 `;
 
