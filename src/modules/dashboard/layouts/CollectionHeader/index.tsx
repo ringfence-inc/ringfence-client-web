@@ -8,11 +8,11 @@ import Actions from "./components/Actions";
 import AddImagesButton from "./components/AddImagesButton";
 
 // Types
-import type { UseCollectionsTableReturn } from "../../hooks/useCollectionsTable";
+import type { UseCollectionImagesTableReturn } from "../../hooks/useCollectionImagesTable";
 export interface CollectionHeaderProps
   extends HtmlHTMLAttributes<HTMLDivElement> {
   collectionId?: number;
-  table?: UseCollectionsTableReturn;
+  table?: UseCollectionImagesTableReturn;
   disableAdd?: boolean;
   onAddImagesClick?: () => void;
 }

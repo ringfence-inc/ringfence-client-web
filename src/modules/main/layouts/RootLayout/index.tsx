@@ -2,9 +2,6 @@
 
 import React from "react";
 
-// Components
-import { Inter } from "next/font/google";
-
 // Styles
 import "antd/dist/reset.css";
 
@@ -12,17 +9,14 @@ import "antd/dist/reset.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "@/shared/libs/query";
 
-// Hooks
-import { useMessage } from "@/shared/hooks/useMessage";
+// Fonts
+import { inter } from "@/shared/styles/fonts";
 
 // Layouts
 import AntdRegistry from "../AntdRegistry";
 import StyledRegistry from "../StyledRegistry";
 import Theme from "@/shared/ui/Theme";
 import GlobalStyled from "@/shared/ui/GlobalStyled";
-
-// Font connection
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",

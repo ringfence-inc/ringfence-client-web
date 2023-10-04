@@ -31,11 +31,16 @@ export const Layout = styled(_Layout)<LayoutProps>`
 export const SubLayout = styled(_Layout)<LayoutProps>``;
 
 export const Header = styled(_Header)<HeaderProps>`
-  height: 48px;
+  height: 48px !important;
+  line-height: initial !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: transparent !important;
+  padding-inline: 24px !important;
+  ${({ theme }) => css`
+    border-bottom: 1px solid ${theme.color.midGrey};
+  `};
 `;
 
 export const LeftWrap = styled.div`

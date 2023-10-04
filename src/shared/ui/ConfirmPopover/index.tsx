@@ -42,10 +42,13 @@ export const ConfirmPopover = ({
   trigger = "click",
   ...props
 }: ConfirmPopoverProps) => {
+  const [stateLoading, setStateLoading] = useState(false);
   const [stateOpen, setStateOpen] = useState(false);
 
   const handleConfirmClick = async () => {
+    setStateLoading(true);
     await onConfirm?.();
+    setStateLoading(false);
     cancelOnConfirm && setStateOpen(false);
   };
 
@@ -58,11 +61,14 @@ export const ConfirmPopover = ({
     <ContentWrapComponent>
       <Text>{text}</Text>
       <ButtonsWrap>
-        <CancelButton onClick={handleCancelClick}>{noText}</CancelButton>
+        <CancelButton onClick={handleCancelClick} disabled={stateLoading}>
+          {noText}
+        </CancelButton>
         <ConfirmButton
           onClick={handleConfirmClick}
           type="primary"
           danger={danger}
+          loading={stateLoading}
         >
           {yesText}
         </ConfirmButton>

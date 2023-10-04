@@ -14,6 +14,7 @@ export const Wrap = styled.div`
 
 export const Text = styled.span`
   margin-left: 8px;
+  font-weight: 500;
 `;
 
 export const WalletIcon = styled(WalletSvg)`
