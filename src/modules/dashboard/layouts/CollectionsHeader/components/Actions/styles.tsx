@@ -12,6 +12,9 @@ import _ButtonsTable, {
   TdButtonProps,
   ButtonsTableItem,
 } from "../../../../components/ButtonsTable";
+import ConfirmPopover, {
+  ConfirmPopoverProps,
+} from "@/shared/ui/ConfirmPopover";
 
 // Re export types
 export type { ButtonsTableProps, TdButtonProps, ButtonsTableItem };
@@ -20,6 +23,14 @@ export type { ButtonsTableProps, TdButtonProps, ButtonsTableItem };
 export const ButtonsTable = styled(_ButtonsTable)<ButtonsTableProps>``;
 
 export const Button = styled(TdButton)``;
+
+export const FundsPopover = styled(ConfirmPopover)<ConfirmPopoverProps>`
+  max-width: 216px;
+`;
+
+export const DeletePopover = styled(ConfirmPopover)<ConfirmPopoverProps>`
+  max-width: 200px;
+`;
 
 // Styled icons css
 export const iconCss = css`
