@@ -244,7 +244,7 @@ export class Rest implements RestConfig {
       return await executeRequest();
     } catch (error: any) {
       if (refreshTokenEnabled && error?.status === UNAUTHORIZED_CODE) {
-        const tokens = await executeTokenRefresh();
+        const tokens = await executeTokenRefresh.call(this);
         console.log("token refresh", tokens);
 
         if (tokens) {
@@ -304,7 +304,7 @@ export class Rest implements RestConfig {
     if (!refreshToken) return onTokenRefreshError();
 
     try {
-      const response = await this.post(
+      const response = await this.get(
         refreshTokenEndpoint,
         true,
         { refresh_token: refreshToken },
