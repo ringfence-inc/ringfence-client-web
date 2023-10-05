@@ -38,20 +38,20 @@ export const selectSizeCss = css<SizeProps>`
 
 // Button
 export const buttonSizeCss = css<SizeProps>`
-  ${({ theme, size = "large", $size = size }) => css`
+  ${({ theme, size = "middle", $size = size }) => css`
     ${$size === "large" &&
     css`
-      height: 44px;
+      height: 44px !important;
     `};
 
     ${$size === "middle" &&
     css`
-      height: 36px;
+      height: 36px !important;
     `};
 
     ${$size === "small" &&
     css`
-      height: 32px;
+      height: 32px !important;
     `};
   `};
 `;

@@ -11,6 +11,7 @@ const { darkAlgorithm, defaultAlgorithm } = theme;
 
 export const antdCommonTheme: ThemeConfig["token"] = {
   fontFamily: inter.style.fontFamily,
+  borderRadius: 4,
 };
 
 export const antdDarkTheme: ThemeConfig = {

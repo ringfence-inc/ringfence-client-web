@@ -6,12 +6,9 @@ import {
   WalletIcon,
   PenIcon,
   TrashIcon,
+  FundsPopover,
+  DeletePopover,
 } from "./styles";
-
-// Components
-import ConfirmPopover, {
-  ConfirmPopoverProps,
-} from "@/shared/ui/ConfirmPopover";
 
 // Types
 export interface Actions extends ButtonsTableProps {}
@@ -19,23 +16,23 @@ export interface Actions extends ButtonsTableProps {}
 export const Actions = ({ ...props }) => {
   return (
     <ButtonsTable {...props}>
-      <ConfirmPopover
+      <FundsPopover
         text="5 credits are required to complete the copyright check. Would you like to top-up?"
         danger={false}
       >
         <Button icon={<WalletIcon />} rounded danger>
           Funds needed
         </Button>
-      </ConfirmPopover>
+      </FundsPopover>
       <Button space="16px" />
       <Button icon={<PenIcon />} roundedLeft>
         Generate
       </Button>
-      <ConfirmPopover text="Are you sure you want to delete this collection?">
+      <DeletePopover text="Are you sure you want to delete this collection?">
         <Button icon={<TrashIcon />} roundedRight>
           Delete
         </Button>
-      </ConfirmPopover>
+      </DeletePopover>
     </ButtonsTable>
   );
 };

@@ -10,7 +10,6 @@ import {
   Text,
   PopoverProps,
 } from "./styles";
-import { set } from "react-hook-form";
 
 // Types
 export interface ConfirmPopoverProps extends PopoverProps {
@@ -40,6 +39,7 @@ export const ConfirmPopover = ({
   danger = true,
   disabled = false,
   trigger = "click",
+  className,
   ...props
 }: ConfirmPopoverProps) => {
   const [stateLoading, setStateLoading] = useState(false);
@@ -58,7 +58,7 @@ export const ConfirmPopover = ({
   };
 
   const content = (
-    <ContentWrapComponent>
+    <ContentWrapComponent className={className}>
       <Text>{text}</Text>
       <ButtonsWrap>
         <CancelButton onClick={handleCancelClick} disabled={stateLoading}>

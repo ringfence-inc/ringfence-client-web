@@ -15,6 +15,7 @@ export const ContentWrap = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 300px;
+  padding: 0 4px;
 `;
 
 export const ButtonsWrap = styled.div`
@@ -22,12 +23,18 @@ export const ButtonsWrap = styled.div`
   gap: 16px;
 `;
 
-export const Text = styled(Typography.SmallP)``;
+export const Text = styled(Typography.SmallP)`
+  margin-bottom: 12px;
+`;
 
 export const ConfirmButton = styled(Button).attrs(() => ({
-  size: "middle",
-}))<ButtonProps>``;
+  size: "small",
+}))<ButtonProps>`
+  min-width: 57px;
+`;
 
 export const CancelButton = styled(Button).attrs(() => ({
-  size: "middle",
-}))<ButtonProps>``;
+  size: "small",
+}))<ButtonProps>`
+  min-width: 51px;
+`;
