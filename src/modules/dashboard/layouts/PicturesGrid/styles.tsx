@@ -19,7 +19,7 @@ export const GridWrap = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 20px;
 `;
 
 export const Picture = styled(_Picture)<PictureProps>``;

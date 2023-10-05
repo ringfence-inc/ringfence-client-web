@@ -8,7 +8,9 @@ import ExpandSvg from "public/icons/expand.svg";
 
 // Components
 import Image, { ImageProps } from "@/shared/ui/Image";
-import Checkbox, { CheckboxProps } from "@/shared/ui/Checkbox";
+import BorderedCheckbox, {
+  BorderedCheckboxProps,
+} from "@/shared/ui/BorderedCheckbox";
 import CollectionStatus, { CollectionStatusProps } from "../CollectionStatus";
 import ImagePreview, { ImagePreviewProps } from "@/shared/ui/ImagePreview";
 
@@ -33,8 +35,8 @@ export const Overlay = styled.label`
 `;
 
 export const OverlayCheckboxWrap = styled(Overlay)`
-  left: 2px;
-  top: 2px;
+  left: 0;
+  top: 0;
   padding: 8px;
 `;
 
@@ -55,27 +57,9 @@ export const OverlayFullScreenWrap = styled(Overlay)`
   ${primaryColorHover};
 `;
 
-export const StyledCheckbox = styled(Checkbox).attrs(() => ({
+export const StyledCheckbox = styled(BorderedCheckbox).attrs(() => ({
   size: "large",
-}))<CheckboxProps>`
-  ${({ theme }) => css`
-    .ant-checkbox-inner {
-      border: 2px solid ${theme.color.white} !important;
-      background-color: transparent !important;
-      &::after {
-        width: 9px;
-        height: 12px;
-      }
-    }
-
-    .ant-checkbox-checked .ant-checkbox-inner {
-      border: 2px solid ${theme.color.primary} !important;
-      &::after {
-        border-color: ${theme.color.primary};
-      }
-    }
-  `};
-`;
+}))<BorderedCheckboxProps>``;
 
 export const StyledCollectionStatus = styled(
   CollectionStatus
@@ -86,6 +70,8 @@ export const StyledImage = styled(Image)<ImageProps>`
     width: 100%;
     height: 100%;
     img {
+      object-fit: cover;
+      height: 100% !important;
       border-radius: ${theme.radius.xss};
     }
   `};
@@ -114,15 +100,12 @@ export const Wrap = styled.div`
   position: relative;
 
   ${({ theme }) => css`
-    border-radius: ${theme.radius.xs};
+    border: 2px solid transparent;
+    border-radius: ${theme.radius.xss};
     transition: border-color 0.3s ease-in-out;
 
     &[data-disabled="false"] {
       cursor: pointer;
-
-      &:hover {
-        border: 2px solid ${theme.color.primary};
-      }
     }
 
     &[data-stash-actions="true"] {
@@ -142,6 +125,10 @@ export const Wrap = styled.div`
     &[data-selected="true"] {
       border: 2px solid ${theme.color.primary};
       ${actionsVisibleCss};
+      ${OverlayCheckboxWrap} {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
     }
   `};
 `;

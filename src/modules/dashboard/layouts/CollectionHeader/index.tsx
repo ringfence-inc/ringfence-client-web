@@ -1,7 +1,7 @@
 import { HtmlHTMLAttributes } from "react";
 
 // Styles
-import { Wrap, ViewSwitch } from "./styles";
+import { Wrap, LeftWrap, ViewSwitch } from "./styles";
 
 // Components
 import Actions from "./components/Actions";
@@ -28,8 +28,10 @@ export const CollectionHeader = ({
 
   return (
     <Wrap {...props}>
-      <ViewSwitch />
-      {hasSelected ? <Actions {...{ table, collectionId }} /> : <div />}
+      <LeftWrap>
+        <ViewSwitch />
+        {hasSelected ? <Actions {...{ table, collectionId }} /> : <div />}
+      </LeftWrap>
       <AddImagesButton onClick={onAddImagesClick} disabled={disableAdd} />
     </Wrap>
   );
