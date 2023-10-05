@@ -28,7 +28,7 @@ export interface TableProps<RecordType> extends AntdTableProps<RecordType> {
 
 export const Table = <RecordType extends object>({
   fixedHeight = true,
-  rowHeight = 57,
+  rowHeight = 48,
   baseHeight = 55,
   pagination = {},
   ...props

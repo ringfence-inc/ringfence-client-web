@@ -72,7 +72,7 @@ export const SignUpForm = ({
             inputType="password"
           />
 
-          <SubmitButton loading={isLoading}>SIGN UP</SubmitButton>
+          <SubmitButton loading={isLoading}>Sign Up</SubmitButton>
           <MutationAlert
             successMessage="A registration confirmation email has been sent to the email address provided"
             mutation={mutation}

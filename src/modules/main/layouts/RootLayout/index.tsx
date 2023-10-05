@@ -10,7 +10,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "@/shared/libs/query";
 
 // Fonts
-import { inter } from "@/shared/styles/fonts";
+import { inter, newsGothicStd } from "@/shared/styles/fonts";
 
 // Layouts
 import AntdRegistry from "../AntdRegistry";
@@ -26,7 +26,7 @@ export const metadata = {
 export const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className}`}>
         <AntdRegistry>
           <StyledRegistry>
             <QueryClientProvider client={queryClient}>

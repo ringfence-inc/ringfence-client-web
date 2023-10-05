@@ -1,5 +1,11 @@
 import styled, { css } from "styled-components";
 
+// Styles
+import {
+  borderedCheckboxCss,
+  borderedCheckboxMiddleCss,
+} from "../BorderedCheckbox/styles";
+
 // Components
 import Table, {
   TableProps,
@@ -60,6 +66,18 @@ export const StyledTable = styled(Table)<StyledTableProps>`
       background: transparent !important;
     }
 
+    .ant-table-thead {
+      tr {
+        th {
+          font-size: 12px !important;
+          font-weight: ${theme.weight.semiBold} !important;
+          &::before {
+            display: none !important;
+          }
+        }
+      }
+    }
+
     .ant-table {
       ${$rowHeight &&
       $pageSize &&
@@ -70,7 +88,24 @@ export const StyledTable = styled(Table)<StyledTableProps>`
 
     .ant-table-row {
       td {
-        border-color: transparent;
+        padding: 12px !important;
+        border: 1px solid ${theme.color.midGrey} !important;
+        border-color: transparent !important;
+        border-style: solid none solid none !important;
+        border-bottom: 1px solid ${theme.color.midGrey} !important;
+
+        &:last-child {
+          border-top-right-radius: ${theme.radius.xss};
+          border-bottom-right-radius: ${theme.radius.xss};
+          border-right-style: solid !important;
+        }
+
+        &:first-child {
+          border-top-left-radius: ${theme.radius.xss};
+          border-bottom-left-radius: ${theme.radius.xss};
+          border-left-style: solid !important;
+        }
+        border-bottom-style: solid !important;
       }
       &:hover {
         ${selectedRowCss};
@@ -89,6 +124,11 @@ export const StyledTable = styled(Table)<StyledTableProps>`
           color: ${theme.color.grey};
         }
       }
+    }
+
+    .ant-checkbox-wrapper {
+      ${borderedCheckboxCss};
+      ${borderedCheckboxMiddleCss};
     }
   `};
 `;

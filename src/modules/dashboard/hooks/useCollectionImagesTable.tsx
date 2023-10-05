@@ -4,6 +4,7 @@ import useGetCollectionImages from "../api/hooks/useGetCollectionImages";
 
 // Utils
 import isResponseHasItems from "@/shared/utils/isResponseHasItems";
+import tableDateRender from "@/shared/utils/tableDateRender";
 
 // Types
 import type { ColumnType } from "@/shared/ui/Table";
@@ -57,6 +58,7 @@ export const useCollectionImagesTable = ({
       title: "Created At",
       dataIndex: "created_at",
       key: "created_at",
+      render: tableDateRender,
     },
     {
       title: "Status",

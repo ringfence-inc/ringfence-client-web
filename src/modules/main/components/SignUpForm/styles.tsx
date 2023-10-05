@@ -18,7 +18,7 @@ export const SubmitButton = styled(Button).attrs(() => ({
   max-width: 132px;
   width: 100%;
   &&& {
-    height: 64px;
+    height: 64px !important;
     ${({ theme }) => css`
       color: ${theme.color.black};
       font-weight: ${theme.weight.bold};

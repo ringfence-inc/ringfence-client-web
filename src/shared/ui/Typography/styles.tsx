@@ -1,5 +1,8 @@
 import styled, { css } from "styled-components";
 
+// Fonts
+import { newsGothicStd } from "@/shared/styles/fonts";
+
 // Styled components css
 export const commonTypographyCss = css`
   ${({ theme }) => css`
@@ -9,6 +12,7 @@ export const commonTypographyCss = css`
 
 export const titleTypographyCss = css`
   text-transform: uppercase;
+  font-family: ${newsGothicStd.style.fontFamily};
 `;
 
 export const paragraphTypographyCss = css``;

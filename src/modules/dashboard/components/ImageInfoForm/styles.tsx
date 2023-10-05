@@ -59,6 +59,8 @@ export const Image = styled(_Image)<ImageProps>`
   ${({ theme }) => css`
     img {
       border-radius: ${theme.radius.xss};
+      height: 100% !important;
+      object-fit: cover;
     }
   `};
 `;

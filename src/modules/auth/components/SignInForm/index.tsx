@@ -65,7 +65,7 @@ export const SignInForm = ({
             inputType="password"
           />
 
-          <SubmitButton loading={isLoading}>LOG IN</SubmitButton>
+          <SubmitButton loading={isLoading}>Log in</SubmitButton>
           <MutationAlert
             successMessage="Successful login"
             mutation={mutation}

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 // Icons
 import PenSvg from "public/icons/pen.svg";
-import LogoSvg from "public/icons/logo.svg";
+import LogoSvg from "public/icons/logo-icon.svg";
 import FolderSvg from "public/icons/folder.svg";
 import TrashSvg from "public/icons/trash.svg";
 

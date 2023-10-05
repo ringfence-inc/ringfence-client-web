@@ -12,7 +12,9 @@ export interface TdProps extends HtmlHTMLAttributes<HTMLTableCellElement> {
 }
 
 export const IconWrap = styled.span`
-  margin-right: 8px;
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
 `;
 
 // Styled components
@@ -28,7 +30,7 @@ export const StyledButton = styled.button<TdProps>`
   }) => css`
     display: flex;
     align-items: center;
-    padding: 0 8px;
+    padding: 0 12px 0 8px;
     height: 36px;
     color: ${theme.color.text};
     border: 1px solid ${theme.color.midGrey};
