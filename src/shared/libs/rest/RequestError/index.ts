@@ -1,5 +1,5 @@
 // Utils
-import { getErrorMessage } from '../utils/getErrorMessage';
+import { getErrorMessage } from "../utils/getErrorMessage";
 
 export interface RequestErrorConfig {
   getErrorMessage?(response: any): string;
@@ -15,11 +15,11 @@ export class RequestError extends Error {
 
   constructor(response: any, config: RequestErrorConfig = {}) {
     const _config = { ...defConfig, ...config };
-    const { getErrorMessage = () => '' } = _config;
+    const { getErrorMessage = () => "" } = _config;
     const errorMessage = getErrorMessage(response);
     super(errorMessage);
-    this.name = 'RequestError';
+    this.name = "RequestError";
     this.error = true;
-    this.status = response?.status;
+    this.status = response?.status || response?.statusCode;
   }
 }
