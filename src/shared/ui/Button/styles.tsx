@@ -20,14 +20,7 @@ export const commonButtonCss = css`
   font-weight: 500 !important;
 `;
 
-export const primaryButtonCss = css`
-  ${({ theme }) => css`
-    && {
-      background-color: ${theme.color.primary};
-      color: ${theme.color.black};
-    }
-  `};
-`;
+export const primaryButtonCss = css``;
 
 export const primaryDisabledCss = css`
   ${({ theme }) => css`

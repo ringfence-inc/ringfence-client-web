@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import React, { useMemo } from "react";
 
 // Styles
 import "antd/dist/reset.css";
@@ -10,7 +8,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "@/shared/libs/query";
 
 // Fonts
-import { inter, newsGothicStd } from "@/shared/styles/fonts";
+import { inter } from "@/shared/styles/fonts";
 
 // Layouts
 import AntdRegistry from "../AntdRegistry";
@@ -30,7 +28,7 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <AntdRegistry>
           <StyledRegistry>
             <QueryClientProvider client={queryClient}>
-              <Theme>
+              <Theme theme="dark">
                 <GlobalStyled>{children}</GlobalStyled>
               </Theme>
             </QueryClientProvider>

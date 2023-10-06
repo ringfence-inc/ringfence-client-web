@@ -2,6 +2,9 @@
 import type { GlobalToken } from "antd";
 import type { ThemeType } from "./types";
 
+// Constants
+import { PRIMARY_COLOR } from "./variables";
+
 export interface StyledTheme {
   color: {
     primary?: string;
@@ -91,7 +94,7 @@ export const styledLightTheme = {
   ...styledCommonTheme,
   color: {
     ...styledCommonTheme.color,
-    primary: "#4ADC8C",
+    primary: PRIMARY_COLOR,
     white: "#fff",
     black: "#000",
     text: "#000",
@@ -102,7 +105,7 @@ export const styledDarkTheme = {
   ...styledCommonTheme,
   color: {
     ...styledCommonTheme.color,
-    primary: "#4ADC8C",
+    primary: PRIMARY_COLOR,
     white: "#fff",
     black: "#000",
     text: "#fff",
