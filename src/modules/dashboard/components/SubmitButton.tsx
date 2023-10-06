@@ -10,7 +10,7 @@ export type SubmitButtonProps = ButtonProps;
 export const SubmitButton = styled(Button).attrs(() => ({
   type: "primary",
   htmlType: "submit",
-  size: "large",
+  size: "middle",
 }))<ButtonProps>``;
 
 export default SubmitButton;

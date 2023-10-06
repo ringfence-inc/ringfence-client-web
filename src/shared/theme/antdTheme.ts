@@ -9,30 +9,49 @@ import { inter } from "../styles/fonts";
 import theme from "antd/lib/theme";
 const { darkAlgorithm, defaultAlgorithm } = theme;
 
-export const antdCommonTheme: ThemeConfig["token"] = {
-  fontFamily: inter.style.fontFamily,
-  borderRadius: 4,
+// Constants
+import { PRIMARY_COLOR } from "./variables";
+
+export const antdCommonTheme: ThemeConfig | any = {
+  token: { fontFamily: inter.style.fontFamily, borderRadius: 4 },
+  components: {
+    Button: {
+      colorPrimary: PRIMARY_COLOR,
+      dangerColor: "#000",
+      primaryColor: "#000",
+    },
+  },
 };
 
 export const antdDarkTheme: ThemeConfig = {
   algorithm: darkAlgorithm,
   token: {
-    ...antdCommonTheme,
+    ...antdCommonTheme.token,
     colorBgBase: "#000",
-    colorPrimary: "#4ADC8C",
+    colorPrimary: PRIMARY_COLOR,
     colorBgContainer: "#363837",
     sizeXXL: 68,
+  },
+  components: {
+    Button: {
+      ...antdCommonTheme.components?.Button,
+    },
   },
 };
 
 export const antdLightTheme: ThemeConfig = {
   algorithm: defaultAlgorithm,
   token: {
-    ...antdCommonTheme,
+    ...antdCommonTheme.token,
     colorBgBase: "#fff",
-    colorPrimary: "#4ADC8C",
+    colorPrimary: PRIMARY_COLOR,
     colorBgContainer: "#fff",
     sizeXXL: 68,
+  },
+  components: {
+    Button: {
+      ...antdCommonTheme.components?.Button,
+    },
   },
 };
 
