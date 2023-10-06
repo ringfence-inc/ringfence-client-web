@@ -10,7 +10,7 @@ export type CloseButtonProps = ButtonProps;
 export const CloseButton = styled(Button).attrs(() => ({
   type: "primary",
   htmlType: "button",
-  size: "large",
+  size: "middle",
   danger: true,
 }))<ButtonProps>``;
 
