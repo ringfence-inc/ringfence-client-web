@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from "react";
+import { forwardRef, useMemo, useState } from "react";
 
 // Styles
 import {
@@ -34,6 +34,7 @@ export const UploadDragger = forwardRef(
     }: UploadDraggerProps,
     ref
   ) => {
+    const [highlight, setHighlight] = useState(false);
     const handleCustomRequest = (options: any) => {
       return options?.onSuccess?.({}, options?.file);
     };
