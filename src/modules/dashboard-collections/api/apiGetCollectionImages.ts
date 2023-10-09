@@ -5,7 +5,10 @@ import rest from "../../../shared/api";
 export const QUERY_KEY_GET_COLLECTION_IMAGES = "/org/upload-images";
 
 // Types
-import type { PaginationResponse, PaginationRequest } from "../../../shared/api/types";
+import type {
+  PaginationResponse,
+  PaginationRequest,
+} from "../../../shared/api/types";
 import type {
   TCollection,
   TCollectionStatus,
@@ -39,7 +42,7 @@ export type TCollectionImage = {
   count_brands?: number;
   s3_url?: string;
   title?: string;
-  key?: string;
+  key?: number | string;
   user?: TCollectionUser;
   status?: TCollectionStatus;
   collections?: TImageCollection[];
