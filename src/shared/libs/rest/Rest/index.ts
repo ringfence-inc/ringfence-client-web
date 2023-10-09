@@ -9,6 +9,8 @@ import { textResponseHandler } from "../utils/textResponseHandler";
 import { blobResponseHandler } from "../utils/blobResponseHandler";
 import { arrayBufferResponseHandler } from "../utils/arrayBufferResponseHandler";
 import { formDataResponseHandler } from "../utils/formDataResponseHandler";
+// Cookies lib
+import { setCookie, getCookie, deleteCookie } from "cookies-next";
 
 // Config
 import { UNAUTHORIZED_CODE } from "../config";
@@ -54,6 +56,7 @@ export interface RestRequestConfig extends RestConfig {
   body?: any;
   fullUrl?: string;
   responseType?: ResponseTypes;
+  token?: string;
 }
 
 // Defaults
@@ -110,17 +113,26 @@ export class Rest implements RestConfig {
   }
 
   setTokens(obj: Partial<Record<TokensObjectKeys, string>>) {
-    if (!global?.window) return null;
     const { storageTokenKey, storageRefreshTokenKey } = this;
     const { token, refresh_token, refreshToken = refresh_token } = obj;
 
     if (token) {
-      localStorage.setItem(storageTokenKey as string, token);
+      try {
+        setCookie(storageTokenKey as string, token);
+      } catch (e) {
+        console.log("unable to set cookie", storageTokenKey);
+      }
+
       this.token = token;
     }
 
     if (refreshToken) {
-      localStorage.setItem(storageRefreshTokenKey as string, refreshToken);
+      try {
+        setCookie(storageRefreshTokenKey as string, refreshToken);
+      } catch (e) {
+        console.log("unable to set cookie", storageRefreshTokenKey);
+      }
+
       this.refreshToken = refreshToken;
     }
 
@@ -128,11 +140,19 @@ export class Rest implements RestConfig {
   }
 
   removeTokens() {
-    if (!global?.window) return null;
     const { storageTokenKey, storageRefreshTokenKey } = this;
 
-    localStorage.removeItem(storageTokenKey as string);
-    localStorage.removeItem(storageRefreshTokenKey as string);
+    try {
+      deleteCookie(storageTokenKey as string);
+    } catch (e) {
+      console.log("unable to delete cookie", storageTokenKey);
+    }
+
+    try {
+      deleteCookie(storageRefreshTokenKey as string);
+    } catch (e) {
+      console.log("unable to delete cookie", storageRefreshTokenKey);
+    }
 
     this.token = undefined;
     this.refreshToken = undefined;
@@ -141,15 +161,23 @@ export class Rest implements RestConfig {
   }
 
   getTokens() {
-    if (!global?.window) return {};
-
     const { storageTokenKey, storageRefreshTokenKey } = this;
-    const token = localStorage.getItem(storageTokenKey as string) || "";
-    const refreshToken =
-      localStorage.getItem(storageRefreshTokenKey as string) || "";
 
-    this.token = token;
-    this.refreshToken = refreshToken;
+    let token;
+    try {
+      token = getCookie(storageTokenKey as string) || "";
+      this.token = token;
+    } catch (e) {
+      console.log("unable to get cookie", storageTokenKey);
+    }
+
+    let refreshToken;
+    try {
+      refreshToken = getCookie(storageRefreshTokenKey as string) || "";
+      this.refreshToken = refreshToken;
+    } catch (e) {
+      console.log("unable to get cookie", storageRefreshTokenKey);
+    }
 
     return {
       token,
@@ -167,8 +195,15 @@ export class Rest implements RestConfig {
     options = {},
     responseHandlers,
     refreshTokenEnabled = this.refreshTokenEnabled,
+    token: paramToken,
   }: RestRequestConfig) {
-    const { token, baseUrl = "", baseOptions = {}, executeTokenRefresh } = this;
+    const {
+      token: thisToken,
+      baseUrl = "",
+      baseOptions = {},
+      executeTokenRefresh,
+    } = this;
+    const token = paramToken || thisToken;
 
     const _responseHandlers = {
       ...(this.responseHandlers || {}),
@@ -191,10 +226,14 @@ export class Rest implements RestConfig {
           headers.append("Authorization", `Bearer ${token}`);
         } else {
           const { token: storageToken } = this.getTokens();
+
           if (storageToken) {
             headers.append("Authorization", `Bearer ${storageToken}`);
           } else {
-            throw new RequestError({ message: "Unauthorized" });
+            throw new RequestError({
+              message: "Unauthorized",
+              status: UNAUTHORIZED_CODE,
+            });
           }
         }
       }
@@ -245,11 +284,9 @@ export class Rest implements RestConfig {
     } catch (error: any) {
       if (refreshTokenEnabled && error?.status === UNAUTHORIZED_CODE) {
         const tokens = await executeTokenRefresh.call(this);
-        console.log("token refresh", tokens);
 
         if (tokens) {
           headers.set("Authorization", `Bearer ${tokens.token}`);
-          console.log("new request execution");
           return await executeRequest();
         }
       }

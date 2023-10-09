@@ -1,9 +1,14 @@
 // Libs
-import { initRest, RestConfig, RequestError } from "../libs/rest";
+import {
+  initRest,
+  RestConfig,
+  RestRequestConfig,
+  RequestError,
+} from "../libs/rest";
 import { initFakeRest } from "../libs/fake-rest";
 
 // Re export types
-export type { RestConfig, RequestError };
+export type { RestConfig, RequestError, RestRequestConfig };
 
 // Fake API
 import fakeApi from "./fake";

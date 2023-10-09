@@ -1,5 +1,3 @@
-"use client";
+import ProtectedDashboardLayout from "@/modules/dashboard/layouts/ProtectedDashboardLayout";
 
-import DashboardLayout from "@/modules/dashboard/layouts/DashboardLayout";
-
-export default DashboardLayout;
+export default ProtectedDashboardLayout;

@@ -48,7 +48,7 @@ export const useUploadCollectionImagesForm = ({
   const onSubmit = handleSubmit(async (values: CollectionImagesFormValues) => {
     try {
       const images = values.images.map((image: any) => image?.originFileObj);
-      console.log("upload collection images submit", values, images);
+
       try {
         await mutateAsync({ images, collection_id: collectionId });
         await refetch();
