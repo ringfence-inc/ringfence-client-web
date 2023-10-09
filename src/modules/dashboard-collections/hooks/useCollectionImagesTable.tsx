@@ -81,7 +81,7 @@ export const useCollectionImagesTable = ({
   const mapData = (data: TCollectionImage[]) => {
     return data.map((collection) => ({
       ...collection,
-      key: String(collection.id),
+      key: collection.id,
     }));
   };
 

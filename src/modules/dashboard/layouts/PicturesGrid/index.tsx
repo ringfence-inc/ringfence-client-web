@@ -23,7 +23,6 @@ export const PicturesGrid = ({
   collectionId,
   ...props
 }: PicturesGridProps) => {
-  console.log("pictures grid items", items);
   return (
     <Wrap {...props}>
       {loading && <Spin />}
