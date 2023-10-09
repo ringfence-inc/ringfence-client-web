@@ -46,13 +46,16 @@ export const MenuItem = styled(_MenuItem)<MenuItemProps>`
   width: 100% !important;
   padding: 12px !important;
   ${({ theme }) => css`
-    border-radius: ${theme.radius.xss} !important;
     margin: 0 !important;
+    color: #bfbfbf;
 
     &.ant-menu-item-selected {
       background-color: ${theme.color.primary} !important;
       color: ${theme.color.black} !important;
       font-weight: ${theme.weight.semiBold} !important;
+    }
+    .ant-menu-title-content {
+      margin-left: 12px !important;
     }
   `};
 `;

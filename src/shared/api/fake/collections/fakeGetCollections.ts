@@ -9,7 +9,7 @@ import type {
   GetCollectionsRequest,
   GetCollectionsResponse,
   TCollection,
-} from "@/modules/dashboard/api/apiGetCollections";
+} from "../../../../modules/dashboard-collections/api/apiGetCollections";
 
 export const fakeGetCollections = ({
   body = {},

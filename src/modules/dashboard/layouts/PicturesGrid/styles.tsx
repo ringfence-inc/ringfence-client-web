@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 // Components
-import _Picture, { PictureProps } from "../../components/Picture";
+import _Picture, { PictureProps } from "../../../../shared/ui/Picture";
 import _Empty, { EmptyProps } from "@/shared/ui/Empty";
 import _Spin, { SpinProps } from "@/shared/ui/Spin";
 

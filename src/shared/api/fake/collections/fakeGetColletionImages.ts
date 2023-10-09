@@ -9,7 +9,7 @@ import type {
   TCollectionImage,
   GetCollectionImagesResponse,
   GetCollectionImagesRequest,
-} from "@/modules/dashboard/api/apiGetCollectionImages";
+} from "../../../../modules/dashboard-collections/api/apiGetCollectionImages";
 
 export const fakeGetCollectionImages = ({
   body = {},

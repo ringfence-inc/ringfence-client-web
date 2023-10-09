@@ -5,7 +5,7 @@ import { Wrap, GridWrap, Picture, Empty, Spin, PictureProps } from "./styles";
 
 // Types
 import type { GetImagesImage } from "../../api/apiGetImages";
-import type { TCollectionImage } from "../../api/apiGetCollectionImages";
+import type { TCollectionImage } from "../../../dashboard-collections/api/apiGetCollectionImages";
 
 export interface PicturesGridProps extends HtmlHTMLAttributes<HTMLDivElement> {
   items?: Array<GetImagesImage | TCollectionImage>;
@@ -23,7 +23,6 @@ export const PicturesGrid = ({
   collectionId,
   ...props
 }: PicturesGridProps) => {
-  console.log("pictures grid items", items);
   return (
     <Wrap {...props}>
       {loading && <Spin />}
