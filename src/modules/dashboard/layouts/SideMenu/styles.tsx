@@ -54,6 +54,9 @@ export const MenuItem = styled(_MenuItem)<MenuItemProps>`
       color: ${theme.color.black} !important;
       font-weight: ${theme.weight.semiBold} !important;
     }
+    .ant-menu-title-content {
+      margin-left: 12px !important;
+    }
   `};
 `;
 
