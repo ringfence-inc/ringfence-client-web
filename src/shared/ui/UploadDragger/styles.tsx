@@ -24,9 +24,19 @@ export type {
 };
 
 // Styled components
-export const StyledDragger = styled(Dragger)`
+export const StyledDragger = styled(Dragger)<DraggerProps>`
   ${({ theme }) => css`
     display: block;
+
+    .ant-upload-drag {
+      &:hover {
+        border-color: ${theme.color.primary} !important;
+      }
+    }
+
+    .ant-upload-drag-hover {
+      border-color: ${theme.color.primary};
+    }
   `};
 `;
 

@@ -41,6 +41,16 @@ export const borderedCheckboxLargeCss = css`
         height: 12px;
       }
     }
+
+    .ant-checkbox-indeterminate {
+      .ant-checkbox-inner {
+        &::after {
+          border-radius: 2px;
+          width: 11px;
+          height: 11px;
+        }
+      }
+    }
   `};
 `;
 
@@ -55,6 +65,16 @@ export const borderedCheckboxMiddleCss = css`
         height: 10px;
       }
     }
+
+    .ant-checkbox-indeterminate {
+      .ant-checkbox-inner {
+        &::after {
+          border-radius: 2px;
+          width: 9px;
+          height: 9px;
+        }
+      }
+    }
   `};
 `;
 
@@ -67,6 +87,16 @@ export const borderedCheckboxSmallCss = css`
       &::after {
         width: 5px;
         height: 7px;
+      }
+    }
+
+    .ant-checkbox-indeterminate {
+      .ant-checkbox-inner {
+        &::after {
+          border-radius: 2px;
+          width: 7px;
+          height: 7px;
+        }
       }
     }
   `};
