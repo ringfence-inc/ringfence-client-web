@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import type {
   TCollectionStatus,
   TCollectionStatusTitle,
-} from "@/modules/dashboard/api/apiGetCollections";
+} from "../../../../modules/dashboard-collections/api/apiGetCollections";
 
 const fakeCollectionStatus = (): TCollectionStatus => {
   const collectionStatus: TCollectionStatus = {

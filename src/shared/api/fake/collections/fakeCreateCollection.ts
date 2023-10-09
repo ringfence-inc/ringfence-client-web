@@ -1,7 +1,7 @@
 import type {
   CreateCollectionRequest,
   CreateCollectionResponse,
-} from "@/modules/dashboard/api/apiCreateCollection";
+} from "../../../../modules/dashboard-collections/api/apiCreateCollection";
 import type { FakeRestConfig } from "@/shared/libs/fake-rest";
 
 export const fakeCreateCollection = async (

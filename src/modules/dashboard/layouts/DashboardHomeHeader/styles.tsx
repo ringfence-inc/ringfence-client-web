@@ -6,7 +6,7 @@ import _IconButton, { IconButtonProps } from "../../components/IconButton";
 import _GenerateImagesButton, {
   GenerateImagesButtonProps,
 } from "./components/GenerateImagesButton";
-import _GridViewSwitch from "../../components/GridViewSwitch";
+import _GridViewSwitch from "../../../../shared/ui/GridViewSwitch";
 
 // Re export types
 export type { ButtonProps, IconButtonProps };

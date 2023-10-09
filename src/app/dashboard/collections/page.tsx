@@ -1,5 +1,5 @@
 "use client";
 
-import CollectionsPage from "@/modules/dashboard/pages/CollectionsPage";
+import CollectionsPage from "../../../modules/dashboard-collections/pages/CollectionsPage";
 
 export default CollectionsPage;
