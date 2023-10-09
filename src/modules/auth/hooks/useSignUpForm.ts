@@ -19,7 +19,6 @@ export type SignUpFormValues = {
 export const useSignUpForm = () => {
   const { email } = useAuthModal();
   const mutation = useCreateAccount();
-  console.log("sign up mutation", mutation);
   const { mutate } = mutation;
 
   const schema = yup.object().shape({

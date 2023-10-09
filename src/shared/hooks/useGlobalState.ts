@@ -16,7 +16,6 @@ export const useGlobalState = (
   defaultState: State = defState
 ): [State, SetStateFunction] => {
   const [i, setI] = useState(0);
-  console.log("global state", globalState);
 
   useEffect(() => {
     if (!globalState[stateKey]) {

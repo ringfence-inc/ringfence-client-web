@@ -5,7 +5,11 @@ import rest from "../../../shared/api";
 export const QUERY_KEY_GET_COLLECTIONS = "/org/collections";
 
 // Types
-import type { PaginationResponse, PaginationRequest } from "../../../shared/api/types";
+import type { RestRequestConfig } from "../../../shared/api";
+import type {
+  PaginationResponse,
+  PaginationRequest,
+} from "../../../shared/api/types";
 
 export interface GetCollectionsRequest extends PaginationRequest {}
 
@@ -45,9 +49,10 @@ export interface GetCollectionsResponse extends PaginationResponse {
 
 // Api function
 export const apiGetCollections = async (
-  params: GetCollectionsRequest
+  params: GetCollectionsRequest,
+  config?: RestRequestConfig
 ): Promise<GetCollectionsResponse> => {
-  return await rest.get(QUERY_KEY_GET_COLLECTIONS, true, {});
+  return await rest.get(QUERY_KEY_GET_COLLECTIONS, true, params, config);
 };
 
 export default apiGetCollections;
