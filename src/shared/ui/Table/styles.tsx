@@ -38,9 +38,9 @@ export interface StyledTableProps extends TableProps<any> {
 export const selectedRowCss = css`
   ${({ theme }) => css`
     td {
-      background: rgba(74, 220, 140, 0.1) !important;
+      background: #07160e !important;
       border: 1px solid ${theme.color.midGrey} !important;
-      border-color: ${theme.color.primary} !important;
+      border-color: #4adc8c !important;
       border-style: solid none solid none !important;
 
       &:last-child {

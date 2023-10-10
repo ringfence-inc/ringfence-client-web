@@ -31,9 +31,7 @@ export const Wrap = styled.div`
 
 export const CreateCollection = styled(
   _CreateCollection
-)<CreateCollectionProps>`
-  margin-bottom: 40px;
-`;
+)<CreateCollectionProps>``;
 
 export const CollectionsHeader = styled(
   _CollectionsHeader

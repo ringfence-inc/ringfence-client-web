@@ -40,6 +40,7 @@ export const StyledButton = styled.button<TdProps>`
     css`
       border: none;
       width: ${$space};
+      padding: 0;
     `};
 
     ${$roundedLeft &&
