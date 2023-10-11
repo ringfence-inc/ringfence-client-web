@@ -25,7 +25,7 @@ export const ProtectedDashboardLayout = async ({ ...props }) => {
       throw new Error("User not found");
     }
   } catch (e) {
-    redirect("/auth/sign-in");
+    // redirect("/auth/sign-in");
   }
 
   return <DashboardLayout>{props.children}</DashboardLayout>;
